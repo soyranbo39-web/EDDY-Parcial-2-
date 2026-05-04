@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Eddy Parcial 2</string>
     <string name="hello_world">Hello World!</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="entrar">Entrar</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="desc_logo">Logo de la aplicación</string>
 </resources>
