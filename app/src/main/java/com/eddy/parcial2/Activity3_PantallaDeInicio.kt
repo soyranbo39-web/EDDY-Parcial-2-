@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.eddy.parcial2.databinding.ActivityMainBinding
 
-class Activity3 : AppCompatActivity() {
+class Activity3_PantallaDeInicio : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
