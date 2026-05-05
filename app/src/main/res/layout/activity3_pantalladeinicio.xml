@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity3_PantallaDeInicio">
 
-    <TextView
+    <Spinner
+        android:id="@+id/tipoMovimeinto"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
+
+    <Button
+        android:id="@+id/ingresoButton"
+        android:layout_width="120dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/tipoMovimeinto"
+        android:layout_margin="10dp"
+        android:text="ingreso">
+
+    </Button>
+
+    <Button
+        android:id="@+id/retiroButton"
+        android:layout_width="120dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/tipoMovimeinto"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="retiro">
+
+    </Button>
+
+    <Button
+        android:id="@+id/transefenciaButton"
+        android:layout_width="120dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/tipoMovimeinto"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:text="transferencia">
+
+    </Button>
+
+    <RelativeLayout
+        android:id="@+id/balanceMensual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/retiroButton"
+        android:layout_centerHorizontal="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+    
+
+</RelativeLayout>
