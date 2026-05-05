@@ -12,47 +12,144 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp" />
 
-    <Button
-        android:id="@+id/ingresoButton"
-        android:layout_width="120dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/tipoMovimeinto"
-        android:layout_margin="10dp"
-        android:text="ingreso">
+    <LinearLayout
+        android:id="@+id/buttonSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tipoMovimeinto">
 
-    </Button>
+        <Button
+            android:id="@+id/ingresoButton"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="ingreso">
 
-    <Button
-        android:id="@+id/retiroButton"
-        android:layout_width="120dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/tipoMovimeinto"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:text="retiro">
+        </Button>
 
-    </Button>
+        <Button
+            android:id="@+id/retiroButton"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="retiro">
 
-    <Button
-        android:id="@+id/transefenciaButton"
-        android:layout_width="120dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/tipoMovimeinto"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:text="transferencia">
+        </Button>
 
-    </Button>
+        <Button
+            android:id="@+id/transefenciaButton"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="transferencia">
+
+        </Button>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/spinnerSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSection"
+        android:layout_centerHorizontal="true">
+
+        <Spinner
+            android:id="@+id/añoSpinnenr"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp" />
+
+        <Spinner
+            android:id="@+id/mesSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/balanceMensual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/retiroButton"
-        android:layout_centerHorizontal="true">
+        android:layout_below="@+id/spinnerSection"
+        android:layout_marginVertical="10dp">
+
+        <TextView
+            android:id="@+id/balanceMensualTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:text="Balance Mensual" />
+
+
+        <TextView
+            android:id="@+id/ingreso"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/balanceMensualTitle"
+            android:layout_marginLeft="60dp"
+            android:gravity="center"
+            android:text="Ingreso:" />
+
+        <TextView
+            android:id="@+id/saldoAnterior"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/balanceMensualTitle"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="Saldo Anterior:" />
+
+        <TextView
+            android:id="@+id/gastos"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ingreso"
+            android:layout_marginLeft="60dp"
+            android:gravity="center"
+            android:text="Gastos:" />
+
+        <TextView
+            android:id="@+id/saldoActual"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/saldoAnterior"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="Saldo Acutal:" />
 
     </RelativeLayout>
 
-    
+    <RelativeLayout
+        android:id="@+id/categoriaMensual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/balanceMensual">
+
+        <TextView
+            android:id="@+id/categoriaMensualTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:text="Categoria Mensual" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriaRecycleView"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@id/categoriaMensualTitle"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="20dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
 
 </RelativeLayout>
