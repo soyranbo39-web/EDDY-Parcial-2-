@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.eddy.parcial2.databinding.ActivityMainBinding
@@ -63,6 +64,12 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         setContentView(binding.root)
 
         tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
+        val opcionesTipoMovimiento = arrayOf("Todas", "Debito", "Crédito", "Vales")
+        val adapterTiposMovimeintosSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesTipoMovimiento)
+        adapterTiposMovimeintosSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        tipoMovimientoSp.adapter = adapterTiposMovimeintosSp
+
+
         ingresoBt = findViewById(R.id.ingresoButton)
         retiroBt = findViewById(R.id.retiroButton)
         tranferenciaBt = findViewById(R.id.transefenciaButton)
