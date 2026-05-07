@@ -5,10 +5,10 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.eddy.parcial2.data.models.User
- // Interfaz para operaciones en la base de datos
+
 @Dao
 interface UserDao {
-    @Insert(onConflict = OnConflictStrategy.Companion.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertUser(user: User): Long
 
     @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
