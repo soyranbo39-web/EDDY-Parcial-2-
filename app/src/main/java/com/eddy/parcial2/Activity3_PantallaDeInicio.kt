@@ -1,17 +1,19 @@
 package com.eddy.parcial2
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
-import androidx.recyclerview.widget.RecyclerView
-import com.eddy.parcial2.databinding.ActivityMainBinding
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.eddy.parcial2.databinding.ActivityMainBinding
+
 
 data class Categoria (var tipo: String, var nombre : String, var cantidad : Int )
 class CategoriaAdapter(private val lista: List<Categoria>) :
@@ -71,10 +73,43 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
 
         ingresoBt = findViewById(R.id.ingresoButton)
+        ingresoBt.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
+            }
+        })
+
         retiroBt = findViewById(R.id.retiroButton)
+        retiroBt.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
+            }
+        })
+
         tranferenciaBt = findViewById(R.id.transefenciaButton)
+        tranferenciaBt.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
+            }
+        })
+
         yearSp = findViewById(R.id.añoSpinnenr)
+        val years = ArrayList<String>()
+        val yearActual = 2026
+        for (i in yearActual downTo 2010) {
+            years.add(i.toString())
+        }
+        val adapterYear = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
+        adapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        yearSp.adapter = adapterYear
+
         monthSp = findViewById(R.id.mesSpinner)
+        val opcionesMes = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo"
+        ,"Julio", "Junio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+        val adapterMesSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesMes)
+        adapterMesSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        tipoMovimientoSp.adapter = adapterMesSp
+
         ingresoTx = findViewById(R.id.ingreso)
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
         gastosTx = findViewById(R.id.gastos)
