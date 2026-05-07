@@ -9,18 +9,21 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.data.UserRepository
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var dbHelper: DatabaseHelper
-    // Define constantes para las preferencias de sesión, incluyendo si el usuario está logueado y su correo electrónico
+    private lateinit var userRepository: UserRepository
 
     companion object {
         private const val PREFS = "session_prefs"
         private const val KEY_LOGGED = "is_logged"
         private const val KEY_EMAIL = "user_email"
     }
-    // En el método onCreate, se verifica si el usuario ya está logueado. Si es así, se redirige a HomeActivity. Si no, se muestra la pantalla de inicio de sesión y se configuran los botones para iniciar sesión o crear una cuenta
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,17 +36,21 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_pantalla_1)
 
-        // Se inicializa el DatabaseHelper y se crea un usuario demo si no existe para facilitar las pruebas
-        dbHelper = DatabaseHelper(this)
-        dbHelper.createDemoUserIfNeeded()
-        // Se obtienen las referencias a los elementos de la interfaz, como los campos de correo y contraseña, los botones de inicio de sesión y creación de cuenta, y el TextView para mostrar errores
+        // Inicializar Room y el Repositorio
+        val database = AppDatabase.getDatabase(this)
+        userRepository = UserRepository(database.userDao())
+
+        // Crear usuario demo en una corrutina
+        lifecycleScope.launch {
+            userRepository.createDemoUserIfNeeded()
+        }
+
         val etCorreo = findViewById<EditText>(R.id.etCorreo)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnCrearCuenta = findViewById<Button>(R.id.btnCrearCuenta)
         val tvError = findViewById<TextView>(R.id.tvError)
 
-        // Configura el botón de inicio de sesión para validar los campos, autenticar al usuario y manejar la sesión
         btnLogin.setOnClickListener {
             val correo = etCorreo.text.toString().trim()
             val password = etPassword.text.toString().trim()
@@ -57,21 +64,23 @@ class MainActivity : AppCompatActivity() {
 
             tvError.visibility = View.GONE
 
-            if (dbHelper.authenticate(correo, password)) {
-                prefs.edit()
-                    .putBoolean(KEY_LOGGED, true)
-                    .putString(KEY_EMAIL, correo)
-                    .apply()
+            lifecycleScope.launch {
+                if (userRepository.authenticate(correo, password)) {
+                    prefs.edit()
+                        .putBoolean(KEY_LOGGED, true)
+                        .putString(KEY_EMAIL, correo)
+                        .apply()
 
-                Toast.makeText(this, "Inicio de sesion correcto", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
-            } else {
-                tvError.text = "Correo o contrasena incorrectos"
-                tvError.visibility = View.VISIBLE
+                    Toast.makeText(this@MainActivity, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                    finish()
+                } else {
+                    tvError.text = "Correo o contraseña incorrectos"
+                    tvError.visibility = View.VISIBLE
+                }
             }
         }
-        // Configura el botón de creación de cuenta para validar los campos, intentar crear un nuevo usuario y mostrar mensajes de éxito o error
+
         btnCrearCuenta.setOnClickListener {
             val correo = etCorreo.text.toString().trim()
             val password = etPassword.text.toString().trim()
@@ -85,23 +94,25 @@ class MainActivity : AppCompatActivity() {
 
             tvError.visibility = View.GONE
 
-            val creado = dbHelper.insertUser(correo, password)
-            if (creado) {
-                Toast.makeText(this, "Cuenta creada. Ahora puedes iniciar sesion.", Toast.LENGTH_LONG).show()
-                etPassword.text.clear()
-            } else {
-                tvError.text = "Ese correo ya existe"
-                tvError.visibility = View.VISIBLE
+            lifecycleScope.launch {
+                val creado = userRepository.insertUser(correo, password)
+                if (creado) {
+                    Toast.makeText(this@MainActivity, "Cuenta creada. Ahora puedes iniciar sesión.", Toast.LENGTH_LONG).show()
+                    etPassword.text.clear()
+                } else {
+                    tvError.text = "Ese correo ya existe"
+                    tvError.visibility = View.VISIBLE
+                }
             }
         }
     }
-    // Este método valida que el correo y la contraseña cumplan con los requisitos básicos, como no estar vacíos, tener un formato de correo válido y una longitud mínima para la contraseña
+
     private fun validarCampos(correo: String, password: String): String? {
         return when {
             correo.isEmpty() -> "El correo es obligatorio"
-            !Patterns.EMAIL_ADDRESS.matcher(correo).matches() -> "Correo invalido"
-            password.isEmpty() -> "La contrasena es obligatoria"
-            password.length < 6 -> "La contrasena debe tener al menos 6 caracteres"
+            !Patterns.EMAIL_ADDRESS.matcher(correo).matches() -> "Correo inválido"
+            password.isEmpty() -> "La contraseña es obligatoria"
+            password.length < 6 -> "La contraseña debe tener al menos 6 caracteres"
             else -> null
         }
     }
