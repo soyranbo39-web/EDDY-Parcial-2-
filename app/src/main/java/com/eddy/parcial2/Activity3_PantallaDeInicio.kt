@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.eddy.parcial2.databinding.ActivityMainBinding
+import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
 
 
 data class Categoria (var tipo: String, var nombre : String, var cantidad : Int )
@@ -43,11 +43,11 @@ class CategoriaAdapter(private val lista: List<Categoria>) :
 }
 class Activity3_PantallaDeInicio : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: Activity3PantalladeinicioBinding
     private lateinit var tipoMovimientoSp: Spinner
     private lateinit var ingresoBt : Button
     private lateinit var retiroBt : Button
-    private lateinit var tranferenciaBt : Button
+    private lateinit var transferenciaBt : Button
     private lateinit var yearSp: Spinner
     private lateinit var monthSp: Spinner
 
@@ -62,7 +62,7 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = Activity3PantalladeinicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
@@ -86,8 +86,8 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
             }
         })
 
-        tranferenciaBt = findViewById(R.id.transefenciaButton)
-        tranferenciaBt.setOnClickListener(object : View.OnClickListener {
+        transferenciaBt = findViewById(R.id.transferenciaButton)
+        transferenciaBt.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
             }
@@ -105,7 +105,7 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
         monthSp = findViewById(R.id.mesSpinner)
         val opcionesMes = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo"
-        ,"Julio", "Junio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+        ,"Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
         val adapterMesSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesMes)
         adapterMesSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         monthSp.adapter = adapterMesSp
@@ -115,17 +115,16 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         gastosTx = findViewById(R.id.gastos)
         saldoActualTx = findViewById(R.id.saldoActual)
 
-        categoriaRV = findViewById(R.id.categoriaRecycleView)
-        categoriaRV.layoutManager = LinearLayoutManager(this)
-        val adapter = CategoriaAdapter(Categorias)
-        categoriaRV.adapter = adapter
+
         Categorias = mutableListOf(
             Categoria("Debito", "Comida", 1200),
             Categoria("Crédito", "Gasolina", 800),
             Categoria("Vales", "Despensa", 500)
         )
-
-
+        categoriaRV = findViewById(R.id.categoriaRecycleView)
+        categoriaRV.layoutManager = LinearLayoutManager(this)
+        val adapter = CategoriaAdapter(Categorias)
+        categoriaRV.adapter = adapter
 
     }
 }

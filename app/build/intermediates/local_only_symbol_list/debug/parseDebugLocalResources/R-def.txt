@@ -29,7 +29,7 @@ id saldoAnterior
 id spinnerSection
 id tipoCategoria
 id tipoMovimeinto
-id transefenciaButton
+id transferenciaButton
 layout activity3_pantalladeinicio
 layout activity_main
 layout categoria_layout

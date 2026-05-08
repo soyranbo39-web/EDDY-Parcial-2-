@@ -39,7 +39,7 @@
         </Button>
 
         <Button
-            android:id="@+id/transefenciaButton"
+            android:id="@+id/transferenciaButton"
             android:layout_width="120dp"
             android:layout_height="55dp"
             android:layout_gravity="center"

@@ -72,7 +72,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
   public final Spinner tipoMovimeinto;
 
   @NonNull
-  public final Button transefenciaButton;
+  public final Button transferenciaButton;
 
   private Activity3PantalladeinicioBinding(@NonNull RelativeLayout rootView,
       @NonNull Spinner aOSpinnenr, @NonNull RelativeLayout balanceMensual,
@@ -82,7 +82,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
       @NonNull TextView ingreso, @NonNull Button ingresoButton, @NonNull Spinner mesSpinner,
       @NonNull Button retiroButton, @NonNull TextView saldoActual, @NonNull TextView saldoAnterior,
       @NonNull LinearLayout spinnerSection, @NonNull Spinner tipoMovimeinto,
-      @NonNull Button transefenciaButton) {
+      @NonNull Button transferenciaButton) {
     this.rootView = rootView;
     this.aOSpinnenr = aOSpinnenr;
     this.balanceMensual = balanceMensual;
@@ -100,7 +100,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
     this.saldoAnterior = saldoAnterior;
     this.spinnerSection = spinnerSection;
     this.tipoMovimeinto = tipoMovimeinto;
-    this.transefenciaButton = transefenciaButton;
+    this.transferenciaButton = transferenciaButton;
   }
 
   @Override
@@ -226,9 +226,9 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.transefenciaButton;
-      Button transefenciaButton = ViewBindings.findChildViewById(rootView, id);
-      if (transefenciaButton == null) {
+      id = R.id.transferenciaButton;
+      Button transferenciaButton = ViewBindings.findChildViewById(rootView, id);
+      if (transferenciaButton == null) {
         break missingId;
       }
 
@@ -236,7 +236,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
           balanceMensual, balanceMensualTitle, buttonSection, categoriaMensual,
           categoriaMensualTitle, categoriaRecycleView, gastos, ingreso, ingresoButton, mesSpinner,
           retiroButton, saldoActual, saldoAnterior, spinnerSection, tipoMovimeinto,
-          transefenciaButton);
+          transferenciaButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

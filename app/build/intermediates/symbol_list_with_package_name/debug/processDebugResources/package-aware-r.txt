@@ -3604,7 +3604,7 @@ id toggle
 id top
 id topPanel
 id touch_outside
-id transefenciaButton
+id transferenciaButton
 id transitionToEnd
 id transitionToStart
 id transition_clip
