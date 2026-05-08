@@ -1,5 +1,6 @@
 package com.eddy.parcial2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.eddy.parcial2.databinding.ActivityMainBinding
@@ -12,5 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        startActivity(Intent(this@MainActivity, Activity3_PantallaDeInicio::class.java))
     }
 }

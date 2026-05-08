@@ -108,7 +108,7 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         ,"Julio", "Junio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
         val adapterMesSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesMes)
         adapterMesSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        tipoMovimientoSp.adapter = adapterMesSp
+        monthSp.adapter = adapterMesSp
 
         ingresoTx = findViewById(R.id.ingreso)
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
@@ -119,6 +119,12 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         categoriaRV.layoutManager = LinearLayoutManager(this)
         val adapter = CategoriaAdapter(Categorias)
         categoriaRV.adapter = adapter
+        Categorias = mutableListOf(
+            Categoria("Debito", "Comida", 1200),
+            Categoria("Crédito", "Gasolina", 800),
+            Categoria("Vales", "Despensa", 500)
+        )
+
 
 
     }
