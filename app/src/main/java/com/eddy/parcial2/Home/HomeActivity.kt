@@ -68,7 +68,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             userData?.let {
                 tvUsername.text = it.username
                 tvEmail.text = it.email
-                // Aquí podrías asignar el icono según it.avatarId
+                // Imagen Avatar
                 ivAvatar.setImageResource(R.drawable.ic_launcher_foreground)
             }
         }
