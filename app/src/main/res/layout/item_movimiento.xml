@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="#555555">
+
+    <TextView
+        android:id="@+id/contenedorMovimientoTextoTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titulo"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/contenedorMovimientoTextoValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$999"
+        android:textColor="#CCCCCC"
+        android:textSize="14sp" />
+
+</LinearLayout>
