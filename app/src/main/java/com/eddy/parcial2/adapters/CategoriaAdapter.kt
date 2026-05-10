@@ -12,10 +12,15 @@ class CategoriaAdapter(
     private val lista: MutableList<CategoriaResumen>
 ) : RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemCategoriaBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(
+        val binding: ItemCategoriaBinding
+    ) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+
         val binding = ItemCategoriaBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -27,17 +32,28 @@ class CategoriaAdapter(
 
     override fun getItemCount(): Int = lista.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int
+    ) {
 
         val categoria = lista[position]
 
-        holder.binding.imgIcono.setImageResource(categoria.icono)
-        holder.binding.txtNombre.text = categoria.nombre
+        holder.binding.imgIcono.setImageResource(
+            categoria.icono
+        )
+
+        holder.binding.txtNombre.text =
+            categoria.nombre
+
         holder.binding.txtMovimientos.text =
             "(${categoria.movimientos} movimientos)"
 
-        holder.binding.txtTotal.text = "$${categoria.total}"
-        holder.binding.progreso.progress = categoria.porcentaje
+        holder.binding.txtTotal.text =
+            "$${categoria.total}"
+
+        holder.binding.progreso.progress =
+            categoria.porcentaje
 
         holder.itemView.setOnClickListener {
 
@@ -46,8 +62,15 @@ class CategoriaAdapter(
                 DetalleCategoriaActivity::class.java
             )
 
-            intent.putExtra("categoria", categoria.nombre)
-            intent.putExtra("total", categoria.total)
+            intent.putExtra(
+                "categoria",
+                categoria.nombre
+            )
+
+            intent.putExtra(
+                "total",
+                categoria.total
+            )
 
             holder.itemView.context.startActivity(intent)
         }
