@@ -1,4 +1,4 @@
-package com.eddy.parcial2.login.model
+package com.eddy.parcial2.Login.model
 
 data class LoginCredentials(
     val email: String,

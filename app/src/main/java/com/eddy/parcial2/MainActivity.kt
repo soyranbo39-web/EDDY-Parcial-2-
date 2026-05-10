@@ -3,7 +3,8 @@ package com.eddy.parcial2
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.eddy.parcial2.login.LoginActivity
+import com.eddy.parcial2.home.HomeActivity
+import com.eddy.parcial2.Login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 

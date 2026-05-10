@@ -7,4 +7,14 @@
     <string name="entrar">Entrar</string>
     <string name="crear_cuenta">Crear cuenta</string>
     <string name="desc_logo">Logo de la aplicación</string>
+
+    <string name="registro_usuario">Registro de usuario</string>
+    <string name="nombre_usuario">Nombre de usuario</string>
+    <string name="confirmar_contrasena">Confirmar contraseña</string>
+    <string name="seleccionar_avatar">Selecciona tu Avatar</string>
+    <string name="registrar">Registrar</string>
+    <string name="avatar_1">Avatar 1</string>
+    <string name="avatar_2">Avatar 2</string>
+    <string name="avatar_3">Avatar 3</string>
+    <string name="avatar_4">Avatar 4</string>
 </resources>

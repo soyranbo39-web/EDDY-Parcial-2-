@@ -1,4 +1,4 @@
-package com.eddy.parcial2.login
+package com.eddy.parcial2.Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,14 +9,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.eddy.parcial2.HomeActivity
+import com.eddy.parcial2.home.HomeActivity
 import com.eddy.parcial2.R
 import com.eddy.parcial2.data.AppDatabase
 import com.eddy.parcial2.data.UserRepository
-import com.eddy.parcial2.login.interfaces.ILoginInteractor
-import com.eddy.parcial2.login.model.LoginCredentials
-import com.eddy.parcial2.login.model.LoginResult
-import com.eddy.parcial2.login.`object`.LoginInteractorImpl
+import com.eddy.parcial2.Login.interfaces.ILoginInteractor
+import com.eddy.parcial2.Login.model.LoginCredentials
+import com.eddy.parcial2.Login.model.LoginResult
+import com.eddy.parcial2.Login.`object`.LoginInteractor
+import com.eddy.parcial2.registrar.RegisterActivity
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -39,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
         val database = AppDatabase.getDatabase(this)
         val userRepository = UserRepository(database.userDao())
 
-        // El Interactor (Capa Object) recibe el repositorio
-        loginInteractor = LoginInteractorImpl(userRepository)
+        // El Interactor recibe el repositorio
+        loginInteractor = LoginInteractor(userRepository)
 
         lifecycleScope.launch {
             userRepository.createDemoUserIfNeeded()
@@ -55,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             val credentials = LoginCredentials(etCorreo.text.toString().trim(), etPassword.text.toString().trim())
 
-            // Validación delegada al Interactor
             val error = loginInteractor.validate(credentials)
             if (error != null) {
                 tvError.text = error
@@ -82,27 +82,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnCrearCuenta.setOnClickListener {
-            val credentials = LoginCredentials(etCorreo.text.toString().trim(), etPassword.text.toString().trim())
-
-            val error = loginInteractor.validate(credentials)
-            if (error != null) {
-                tvError.text = error
-                tvError.visibility = View.VISIBLE
-                return@setOnClickListener
-            }
-
-            lifecycleScope.launch {
-                when (val result = loginInteractor.register(credentials)) {
-                    is LoginResult.Success -> {
-                        Toast.makeText(this@LoginActivity, "Cuenta creada correctamente", Toast.LENGTH_LONG).show()
-                        etPassword.text.clear()
-                    }
-                    is LoginResult.Error -> {
-                        tvError.text = result.message
-                        tvError.visibility = View.VISIBLE
-                    }
-                }
-            }
+            // Ahora este botón redirige a la pantalla de Registro (Actividad 2)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }

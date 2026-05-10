@@ -1,16 +1,12 @@
 package com.eddy.parcial2.data
-import com.eddy.parcial2.data.Interfaces.IUserRepository
-import com.eddy.parcial2.data.Interfaces.UserDao
+import com.eddy.parcial2.data.interfaces.IUserRepository
+import com.eddy.parcial2.data.interfaces.UserDao
 import com.eddy.parcial2.data.models.User
 import java.security.MessageDigest
 
 class UserRepository(private val userDao: UserDao) : IUserRepository {
 
-    override suspend fun insertUser(email: String, password: String): Boolean {
-        val user = User(
-            email = email.lowercase(),
-            passwordHash = hashPassword(password)
-        )
+    override suspend fun insertUser(user: User): Boolean {
         return userDao.insertUser(user) != -1L
     }
 
@@ -21,14 +17,23 @@ class UserRepository(private val userDao: UserDao) : IUserRepository {
 
     override suspend fun createDemoUserIfNeeded() {
         val demoEmail = "demo@correo.com"
-        val demoPassword = "123456"
         if (!userDao.userExists(demoEmail)) {
-            insertUser(demoEmail, demoPassword)
+            val demoUser = User(
+                email = demoEmail,
+                username = "Usuario Demo",
+                passwordHash = hashPassword("123456"),
+                avatarId = 1
+            )
+            insertUser(demoUser)
         }
     }
 
     override suspend fun getUserByEmail(email: String): User? {
         return userDao.getUserByEmail(email.lowercase())
+    }
+
+    override suspend fun userExists(email: String): Boolean {
+        return userDao.userExists(email.lowercase())
     }
 
     private fun hashPassword(password: String): String {
