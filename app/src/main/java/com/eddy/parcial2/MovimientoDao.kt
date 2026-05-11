@@ -10,9 +10,6 @@ interface MovimientoDao {
     @Insert
     suspend fun insertar(movimiento: MovimientoContenedor)
 
-    @Query("SELECT * FROM movimientos")
-    suspend fun obtenerTodos(): List<MovimientoContenedor>
-
     @Query("SELECT DISTINCT nombreCuenta FROM movimientos ORDER BY nombreCuenta")
     suspend fun obtenerCuentas(): List<String>
 
@@ -24,17 +21,19 @@ interface MovimientoDao {
 
     @Query("""
         SELECT * FROM movimientos
-        WHERE
-        (:cuenta = 'Cuenta' OR nombreCuenta = :cuenta)
-        AND
-        (:ano = -1 OR ano = :ano)
-        AND
-        (:mes = -1 OR mes = :mes)
-        ORDER BY ano DESC, mes DESC, dia DESC
+        WHERE (:cuenta = 'Cuenta' OR nombreCuenta = :cuenta)
+        AND (:ano = -1 OR ano = :ano)
+        AND (:mes = -1 OR mes = :mes)
+
+        ORDER BY
+        CASE WHEN :modo = 'cuenta' THEN nombreCuenta END ASC,
+        CASE WHEN :modo = 'cantidad' THEN cantidad END DESC,
+        ano DESC, mes DESC, dia DESC
     """)
     suspend fun obtenerFiltrados(
         cuenta: String,
         ano: Int,
-        mes: Int
+        mes: Int,
+        modo: String
     ): List<MovimientoContenedor>
 }
