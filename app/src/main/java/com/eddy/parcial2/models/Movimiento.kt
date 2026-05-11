@@ -1,7 +1,6 @@
 package com.eddy.parcial2.models
 
 data class Movimiento(
-
     val iconoCuenta: Int,
 
     val cuenta: String,

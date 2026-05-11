@@ -9,9 +9,7 @@ import com.eddy.parcial2.databinding.ActivityReporteCategoriasBinding
 import com.eddy.parcial2.utils.DatosDummy
 
 class ReporteCategoriasActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityReporteCategoriasBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -1,7 +1,6 @@
 package com.eddy.parcial2.models
 
 data class CategoriaResumen(
-
     val icono: Int,
 
     val nombre: String,

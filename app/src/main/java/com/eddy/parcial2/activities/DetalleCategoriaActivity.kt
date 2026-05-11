@@ -11,11 +11,8 @@ import com.eddy.parcial2.databinding.ActivityDetalleCategoriaBinding
 import com.eddy.parcial2.utils.DatosDummy
 
 class DetalleCategoriaActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityDetalleCategoriaBinding
-
     private var lista = DatosDummy.obtenerMovimientos()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

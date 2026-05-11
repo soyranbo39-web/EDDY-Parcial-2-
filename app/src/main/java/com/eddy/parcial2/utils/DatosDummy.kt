@@ -5,11 +5,8 @@ import com.eddy.parcial2.models.CategoriaResumen
 import com.eddy.parcial2.models.Movimiento
 
 object DatosDummy {
-
     fun obtenerCategorias(): MutableList<CategoriaResumen> {
-
         return mutableListOf(
-
             CategoriaResumen(
                 R.drawable.ic_food,
                 "Comida",
