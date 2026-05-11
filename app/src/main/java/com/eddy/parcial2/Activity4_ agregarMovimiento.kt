@@ -34,7 +34,7 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
         binding = Activity4layoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        tipoMovimientoSp = findViewById(R.id.TipoMovimeinto)
+        tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
         cantidadEt = findViewById(R.id.cantidad)
 
         cuentaSectionLy = findViewById(R.id.cuentaSection)
