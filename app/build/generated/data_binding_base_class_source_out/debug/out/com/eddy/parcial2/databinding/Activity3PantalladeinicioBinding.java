@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -21,13 +21,13 @@ import java.lang.String;
 
 public final class Activity3PantalladeinicioBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final Spinner aOSpinnenr;
 
   @NonNull
-  public final RelativeLayout balanceMensual;
+  public final LinearLayout balanceMensual;
 
   @NonNull
   public final TextView balanceMensualTitle;
@@ -36,7 +36,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
   public final LinearLayout buttonSection;
 
   @NonNull
-  public final RelativeLayout categoriaMensual;
+  public final LinearLayout categoriaMensual;
 
   @NonNull
   public final TextView categoriaMensualTitle;
@@ -74,10 +74,10 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
   @NonNull
   public final Button transferenciaButton;
 
-  private Activity3PantalladeinicioBinding(@NonNull RelativeLayout rootView,
-      @NonNull Spinner aOSpinnenr, @NonNull RelativeLayout balanceMensual,
+  private Activity3PantalladeinicioBinding(@NonNull ScrollView rootView,
+      @NonNull Spinner aOSpinnenr, @NonNull LinearLayout balanceMensual,
       @NonNull TextView balanceMensualTitle, @NonNull LinearLayout buttonSection,
-      @NonNull RelativeLayout categoriaMensual, @NonNull TextView categoriaMensualTitle,
+      @NonNull LinearLayout categoriaMensual, @NonNull TextView categoriaMensualTitle,
       @NonNull RecyclerView categoriaRecycleView, @NonNull TextView gastos,
       @NonNull TextView ingreso, @NonNull Button ingresoButton, @NonNull Spinner mesSpinner,
       @NonNull Button retiroButton, @NonNull TextView saldoActual, @NonNull TextView saldoAnterior,
@@ -105,7 +105,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -137,7 +137,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
       }
 
       id = R.id.balanceMensual;
-      RelativeLayout balanceMensual = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout balanceMensual = ViewBindings.findChildViewById(rootView, id);
       if (balanceMensual == null) {
         break missingId;
       }
@@ -155,7 +155,7 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
       }
 
       id = R.id.categoriaMensual;
-      RelativeLayout categoriaMensual = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout categoriaMensual = ViewBindings.findChildViewById(rootView, id);
       if (categoriaMensual == null) {
         break missingId;
       }
@@ -232,11 +232,10 @@ public final class Activity3PantalladeinicioBinding implements ViewBinding {
         break missingId;
       }
 
-      return new Activity3PantalladeinicioBinding((RelativeLayout) rootView, aOSpinnenr,
-          balanceMensual, balanceMensualTitle, buttonSection, categoriaMensual,
-          categoriaMensualTitle, categoriaRecycleView, gastos, ingreso, ingresoButton, mesSpinner,
-          retiroButton, saldoActual, saldoAnterior, spinnerSection, tipoMovimeinto,
-          transferenciaButton);
+      return new Activity3PantalladeinicioBinding((ScrollView) rootView, aOSpinnenr, balanceMensual,
+          balanceMensualTitle, buttonSection, categoriaMensual, categoriaMensualTitle,
+          categoriaRecycleView, gastos, ingreso, ingresoButton, mesSpinner, retiroButton,
+          saldoActual, saldoAnterior, spinnerSection, tipoMovimeinto, transferenciaButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
