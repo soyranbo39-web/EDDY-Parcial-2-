@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -64,7 +65,21 @@ class MovimientoAdapter(
         )
 
         holder.iconoTransferencia.setColorFilter(color)
+
+        holder.itemView.setOnLongClickListener { view ->
+
+            val popup = PopupMenu(view.context, view)
+            popup.menu.add("Modificar Movimiento")
+
+            popup.setOnMenuItemClickListener {
+                true
+            }
+
+            popup.show()
+            true
+        }
     }
+
     override fun getItemCount(): Int {
         return lista.size
     }
