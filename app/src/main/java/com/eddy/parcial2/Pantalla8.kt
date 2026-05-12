@@ -1,5 +1,6 @@
 package com.eddy.parcial2
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,11 +17,16 @@ import androidx.lifecycle.lifecycleScope
 import com.eddy.parcial2.data.AppDatabase
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
+import java.util.Calendar
 import java.util.Locale
 
 class Pantalla8 : AppCompatActivity() {
 
     private var movimientoActual: MovimientoContenedor? = null
+
+    private var selectedDia = 0
+    private var selectedMes = 0
+    private var selectedAno = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -98,9 +104,31 @@ class Pantalla8 : AppCompatActivity() {
                 val categoriaIndex = categorias.indexOf(movimiento.categoria)
                 if (categoriaIndex >= 0) spinnerCategoria.setSelection(categoriaIndex)
 
-                botonFechaHora.text =
-                    "${movimiento.dia}/${movimiento.mes}/${movimiento.ano}"
+                selectedDia = movimiento.dia
+                selectedMes = movimiento.mes
+                selectedAno = movimiento.ano
+
+                botonFechaHora.text = "$selectedDia/$selectedMes/$selectedAno"
             }
+        }
+
+        botonFechaHora.setOnClickListener {
+
+            val calendar = Calendar.getInstance()
+
+            val year = if (selectedAno != 0) selectedAno else calendar.get(Calendar.YEAR)
+            val month = if (selectedMes != 0) selectedMes - 1 else calendar.get(Calendar.MONTH)
+            val day = if (selectedDia != 0) selectedDia else calendar.get(Calendar.DAY_OF_MONTH)
+
+            DatePickerDialog(this, { _, y, m, d ->
+
+                selectedAno = y
+                selectedMes = m + 1
+                selectedDia = d
+
+                botonFechaHora.text = "$selectedDia/$selectedMes/$selectedAno"
+
+            }, year, month, day).show()
         }
 
         botonGuardar.setOnClickListener {
@@ -118,7 +146,10 @@ class Pantalla8 : AppCompatActivity() {
                 cantidad = cantidad,
                 descripcion = descripcionInput.text.toString(),
                 tipoCuenta = spinnerCuenta.selectedItem.toString(),
-                categoria = spinnerCategoria.selectedItem.toString()
+                categoria = spinnerCategoria.selectedItem.toString(),
+                dia = selectedDia,
+                mes = selectedMes,
+                ano = selectedAno
             )
 
             lifecycleScope.launch {
