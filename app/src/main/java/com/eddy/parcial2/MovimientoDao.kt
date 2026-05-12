@@ -3,12 +3,16 @@ package com.eddy.parcial2
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface MovimientoDao {
 
     @Insert
     suspend fun insertar(movimiento: MovimientoContenedor)
+
+    @Update
+    suspend fun actualizar(movimiento: MovimientoContenedor)
 
     @Query("SELECT DISTINCT nombreCuenta FROM movimientos ORDER BY nombreCuenta")
     suspend fun obtenerCuentas(): List<String>

@@ -3,6 +3,7 @@ package com.eddy.parcial2
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -18,6 +19,8 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class Pantalla8 : AppCompatActivity() {
+
+    private var movimientoActual: MovimientoContenedor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -39,6 +42,12 @@ class Pantalla8 : AppCompatActivity() {
         val spinnerCategoria = findViewById<Spinner>(R.id.spinnerCategoria)
 
         val botonFechaHora = findViewById<Button>(R.id.botonFechaHora)
+        val botonGuardar = findViewById<Button>(R.id.botonGuardar)
+        val botonBack = findViewById<View>(R.id.botonTopRegresar)
+
+        botonBack.setOnClickListener {
+            finish()
+        }
 
         val cuentas = listOf(
             "Efectivo",
@@ -74,29 +83,47 @@ class Pantalla8 : AppCompatActivity() {
             lifecycleScope.launch {
 
                 val movimiento = db.movimientoDao().obtenerPorId(movimientoId)
+                movimientoActual = movimiento
 
                 val formatted = NumberFormat
                     .getCurrencyInstance(Locale("es", "MX"))
                     .format(movimiento.cantidad)
 
                 montoInput.setText(formatted)
-
                 descripcionInput.setText(movimiento.descripcion)
 
                 val cuentaIndex = cuentas.indexOf(movimiento.tipoCuenta)
-
-                if (cuentaIndex >= 0) {
-                    spinnerCuenta.setSelection(cuentaIndex)
-                }
+                if (cuentaIndex >= 0) spinnerCuenta.setSelection(cuentaIndex)
 
                 val categoriaIndex = categorias.indexOf(movimiento.categoria)
-
-                if (categoriaIndex >= 0) {
-                    spinnerCategoria.setSelection(categoriaIndex)
-                }
+                if (categoriaIndex >= 0) spinnerCategoria.setSelection(categoriaIndex)
 
                 botonFechaHora.text =
                     "${movimiento.dia}/${movimiento.mes}/${movimiento.ano}"
+            }
+        }
+
+        botonGuardar.setOnClickListener {
+
+            val actual = movimientoActual ?: return@setOnClickListener
+
+            val clean = montoInput.text.toString()
+                .replace("$", "")
+                .replace(",", "")
+                .trim()
+
+            val cantidad = clean.toDoubleOrNull() ?: actual.cantidad
+
+            val updated = actual.copy(
+                cantidad = cantidad,
+                descripcion = descripcionInput.text.toString(),
+                tipoCuenta = spinnerCuenta.selectedItem.toString(),
+                categoria = spinnerCategoria.selectedItem.toString()
+            )
+
+            lifecycleScope.launch {
+                db.movimientoDao().actualizar(updated)
+                finish()
             }
         }
 
@@ -104,19 +131,9 @@ class Pantalla8 : AppCompatActivity() {
 
             private var current = ""
 
-            override fun beforeTextChanged(
-                s: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(
-                s: CharSequence?,
-                start: Int,
-                before: Int,
-                count: Int
-            ) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
 

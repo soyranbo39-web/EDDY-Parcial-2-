@@ -21,6 +21,12 @@ class Pantalla7 : AppCompatActivity() {
 
     private var modoOrden = "fecha"
 
+    private var lastCuenta = "Cuenta"
+    private var lastAno = -1
+    private var lastMes = -1
+
+    private lateinit var db: AppDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -43,7 +49,7 @@ class Pantalla7 : AppCompatActivity() {
 
         val sortButton = findViewById<View>(R.id.botonTopSort)
 
-        val db = AppDatabase.getDatabase(this)
+        db = AppDatabase.getDatabase(this)
 
         lifecycleScope.launch {
 
@@ -71,6 +77,10 @@ class Pantalla7 : AppCompatActivity() {
             val cuentaSeleccionada = spinnerCuenta.selectedItem.toString()
             val anoSeleccionado = anos[spinnerAno.selectedItemPosition]
             val mesSeleccionado = meses[spinnerMes.selectedItemPosition]
+
+            lastCuenta = cuentaSeleccionada
+            lastAno = anoSeleccionado
+            lastMes = mesSeleccionado
 
             lifecycleScope.launch {
 
@@ -151,6 +161,23 @@ class Pantalla7 : AppCompatActivity() {
             spinnerMes.onItemSelectedListener = listener
 
             actualizarLista()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        lifecycleScope.launch {
+
+            val filtrados = db.movimientoDao().obtenerFiltrados(
+                lastCuenta,
+                lastAno,
+                lastMes,
+                modoOrden
+            )
+
+            findViewById<RecyclerView>(R.id.recyclerListaMovimientos).adapter =
+                MovimientoAdapter(filtrados)
         }
     }
 }
