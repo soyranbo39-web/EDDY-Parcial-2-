@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:aap="http://schemas.android.com/apk/res-auto"
     android:background="#121212"
     tools:context=".Activity3_PantallaDeInicio">
 
@@ -21,6 +22,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/outline_arrow_top_left_24"
+                aap:tint="@color/white"
                 />
 
             <TextView
@@ -212,6 +214,7 @@
             <TextView
                 android:id="@+id/categoriaMensualTitle"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
