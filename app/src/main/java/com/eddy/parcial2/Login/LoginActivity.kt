@@ -78,7 +78,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnCrearCuenta.setOnClickListener {
-            // Ahora este botón redirige a la pantalla de Registro (Actividad 2)
+
+            binding.etCorreo.text?.clear()
+            binding.etPassword.text?.clear()
+
+            binding.tvError.visibility = android.view.View.GONE
+
+            //  Actividad 2
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
