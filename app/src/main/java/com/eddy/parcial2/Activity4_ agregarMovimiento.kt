@@ -9,6 +9,9 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.eddy.parcial2.databinding.Activity4layoutBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class Activity4_agregarMovimiento : AppCompatActivity() {
     private lateinit var tipoMovimientoSp: Spinner
@@ -109,7 +112,7 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
         guardarBt.setOnClickListener {
 
             val tipoMovimiento = tipoMovimientoSp.selectedItem.toString()
-            val cantidad = cantidadEt.text.toString()
+            val cantidad = cantidadEt.text.toString().toInt()
 
             val cuenta = cuentaSp.selectedItem.toString()
             val categoria = categoriaSp.selectedItem.toString()
@@ -123,7 +126,9 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
             val mes = fechaDp.month + 1
             val año = fechaDp.year
 
-            val fechaCompleta = "$dia/$mes/$año"
+            val fechaString = "$dia/$mes/$año"
+            val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val fechaCompleta = formato.parse(fechaString)
 
             println("Tipo Movimiento: $tipoMovimiento")
             println("Cantidad: $cantidad")
@@ -133,6 +138,17 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
             println("Cuenta Destino: $cuentaDestino")
             println("Descripcion: $descripcion")
             println("Fecha: $fechaCompleta")
+
+            Movimiento(
+                id = 1,
+                tipoMovimiento = tipoMovimiento,
+                cantidad = cantidad,
+                cuenta = cuenta,
+                categoria = categoria,
+                cuentaOrigen = cuentaOrigen,
+                cuentaDestino = cuentaDestino,
+                descripcion = descripcion,
+                fecha = fechaCompleta)
         }
     }
 }

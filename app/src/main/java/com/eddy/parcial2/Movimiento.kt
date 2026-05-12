@@ -13,5 +13,7 @@ data class Movimiento(
 
     val cuentaOrigen: String,
     val cuentaDestino: String,
-    val fecha: Date,
+
+    val descripcion:String,
+    val fecha: Date?,
 )
