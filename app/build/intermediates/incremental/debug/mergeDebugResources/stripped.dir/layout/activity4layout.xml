@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA">
+    android:background="#121212">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Agregar Movimiento"
-            android:textSize="28sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="#222222"
-            android:layout_marginBottom="20dp" />
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp" />
 
         <!-- Tipo de movimiento -->
         <TextView
@@ -27,14 +27,14 @@
             android:layout_height="wrap_content"
             android:text="Tipo de movimiento"
             android:textStyle="bold"
-            android:textColor="#555555"
+            android:textColor="#BDBDBD"
             android:layout_marginBottom="6dp" />
 
         <Spinner
             android:id="@+id/tipoMovimeinto"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@android:drawable/editbox_background"
+            android:layout_height="52dp"
+            android:background="#1E1E1E"
             android:padding="10dp" />
 
         <!-- Cantidad -->
@@ -43,18 +43,20 @@
             android:layout_height="wrap_content"
             android:text="Cantidad"
             android:textStyle="bold"
-            android:textColor="#555555"
-            android:layout_marginTop="16dp"
+            android:textColor="#BDBDBD"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="6dp" />
 
         <EditText
             android:id="@+id/cantidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/edit_text"
+            android:background="#1E1E1E"
             android:hint="Ingrese cantidad"
+            android:textColorHint="#757575"
             android:inputType="number"
-            android:padding="12dp"
+            android:padding="14dp"
+            android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
         <!-- Sección principal -->
@@ -63,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="18dp">
 
             <!-- Cuenta -->
             <TextView
@@ -71,14 +73,14 @@
                 android:layout_height="wrap_content"
                 android:text="Cuenta"
                 android:textStyle="bold"
-                android:textColor="#555555"
+                android:textColor="#BDBDBD"
                 android:layout_marginBottom="6dp" />
 
             <Spinner
                 android:id="@+id/cuenta"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@android:drawable/editbox_background"
+                android:layout_height="52dp"
+                android:background="#1E1E1E"
                 android:padding="10dp" />
 
             <!-- Categoría -->
@@ -87,15 +89,15 @@
                 android:layout_height="wrap_content"
                 android:text="Categoría"
                 android:textStyle="bold"
-                android:textColor="#555555"
-                android:layout_marginTop="16dp"
+                android:textColor="#BDBDBD"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="6dp" />
 
             <Spinner
                 android:id="@+id/categoria"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@android:drawable/editbox_background"
+                android:layout_height="52dp"
+                android:background="#1E1E1E"
                 android:padding="10dp" />
 
             <!-- Cuenta origen -->
@@ -104,15 +106,15 @@
                 android:layout_height="wrap_content"
                 android:text="Cuenta origen"
                 android:textStyle="bold"
-                android:textColor="#555555"
-                android:layout_marginTop="16dp"
+                android:textColor="#BDBDBD"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="6dp" />
 
             <Spinner
                 android:id="@+id/cuentaOrigen"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@android:drawable/editbox_background"
+                android:layout_height="52dp"
+                android:background="#1E1E1E"
                 android:padding="10dp" />
 
             <!-- Cuenta destino -->
@@ -121,15 +123,15 @@
                 android:layout_height="wrap_content"
                 android:text="Cuenta destino"
                 android:textStyle="bold"
-                android:textColor="#555555"
-                android:layout_marginTop="16dp"
+                android:textColor="#BDBDBD"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="6dp" />
 
             <Spinner
                 android:id="@+id/cuentaDestino"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@android:drawable/editbox_background"
+                android:layout_height="52dp"
+                android:background="#1E1E1E"
                 android:padding="10dp" />
 
             <!-- Descripción -->
@@ -138,20 +140,22 @@
                 android:layout_height="wrap_content"
                 android:text="Descripción"
                 android:textStyle="bold"
-                android:textColor="#555555"
-                android:layout_marginTop="16dp"
+                android:textColor="#BDBDBD"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="6dp" />
 
             <EditText
                 android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/edit_text"
+                android:background="#1E1E1E"
                 android:hint="Ingrese descripción"
+                android:textColorHint="#757575"
                 android:inputType="textMultiLine"
                 android:minLines="3"
                 android:gravity="top"
-                android:padding="12dp"
+                android:padding="14dp"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
             <!-- Fecha -->
@@ -160,23 +164,24 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha"
                 android:textStyle="bold"
-                android:textColor="#555555"
-                android:layout_marginTop="16dp"
+                android:textColor="#BDBDBD"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="6dp" />
 
             <DatePicker
                 android:id="@+id/fecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#1E1E1E"
                 android:datePickerMode="spinner" />
 
             <!-- Botón -->
             <Button
                 android:id="@+id/guardar"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="#4CAF50"
+                android:layout_height="58dp"
+                android:layout_marginTop="28dp"
+                android:backgroundTint="#00C853"
                 android:text="Guardar Movimiento"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
