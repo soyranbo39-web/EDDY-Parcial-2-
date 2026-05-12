@@ -45,6 +45,23 @@ class Pantalla7 : AppCompatActivity() {
 
         val db = AppDatabase.getDatabase(this)
 
+        lifecycleScope.launch {
+
+            db.movimientoDao().insertar(
+                MovimientoContenedor(
+                    nombreCuenta = "BBVA",
+                    tipoCuenta = "TarjetaDebito",
+                    tipoTransferencia = "Gasto",
+                    categoria = "Comida",
+                    cantidad = 250.75,
+                    dia = 11,
+                    mes = 5,
+                    ano = 2026,
+                    descripcion = "uhh"
+                )
+            )
+        }
+
         var cuentas = listOf<String>()
         var anos = listOf<Int>()
         var meses = listOf<Int>()

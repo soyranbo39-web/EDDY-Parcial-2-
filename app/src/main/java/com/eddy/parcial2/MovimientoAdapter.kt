@@ -1,5 +1,6 @@
 package com.eddy.parcial2
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -72,6 +73,9 @@ class MovimientoAdapter(
             popup.menu.add("Modificar Movimiento")
 
             popup.setOnMenuItemClickListener {
+                val intent = Intent(view.context, Pantalla8::class.java)
+                intent.putExtra("movimiento_id", movimiento.id)
+                view.context.startActivity(intent)
                 true
             }
 

@@ -36,4 +36,7 @@ interface MovimientoDao {
         mes: Int,
         modo: String
     ): List<MovimientoContenedor>
+
+    @Query("SELECT * FROM movimientos WHERE id = :id")
+    suspend fun obtenerPorId(id: Int): MovimientoContenedor
 }
