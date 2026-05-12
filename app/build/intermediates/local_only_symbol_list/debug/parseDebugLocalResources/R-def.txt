@@ -9,6 +9,7 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable outline_arrow_top_left_24
 id cantidad
 id categoria
 id cuenta
@@ -19,6 +20,7 @@ id descripcion
 id fecha
 id guardar
 id main
+id returnButton
 id tipoMovimeinto
 layout activity4layout
 layout activity_main

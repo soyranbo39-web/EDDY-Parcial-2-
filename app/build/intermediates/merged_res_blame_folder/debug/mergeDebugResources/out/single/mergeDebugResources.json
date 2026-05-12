@@ -1,30 +1,30 @@
 [
     {
-        "merged": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-debug-32:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-main-34:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.eddy.parcial2.app-debug-32:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.eddy.parcial2.app-main-34:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-debug-32:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-main-34:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "com.eddy.parcial2.app-debug-32:/layout_activity_main.xml.flat",
+        "source": "com.eddy.parcial2.app-main-34:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-debug-32:\\layout_activity4layout.xml.flat",
-        "source": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-main-34:\\layout\\activity4layout.xml"
+        "merged": "com.eddy.parcial2.app-debug-32:/drawable_outline_arrow_top_left_24.xml.flat",
+        "source": "com.eddy.parcial2.app-main-34:/drawable/outline_arrow_top_left_24.xml"
     },
     {
-        "merged": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-debug-32:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-main-34:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.eddy.parcial2.app-debug-32:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.eddy.parcial2.app-main-34:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-debug-32:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-main-34:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-debug-32:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\vicente\\.gradle\\daemon\\8.9\\com.eddy.parcial2.app-main-34:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.eddy.parcial2.app-debug-32:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.eddy.parcial2.app-main-34:/drawable/ic_launcher_background.xml"
     },
     {
         "merged": "com.eddy.parcial2.app-debug-32:/layout_activity4layout.xml.flat",
         "source": "com.eddy.parcial2.app-main-34:/layout/activity4layout.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-debug-32:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.eddy.parcial2.app-main-34:/mipmap-anydpi-v26/ic_launcher_round.xml"
     }
 ]

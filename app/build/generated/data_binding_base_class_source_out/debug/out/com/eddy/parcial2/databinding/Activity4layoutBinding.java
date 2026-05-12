@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -45,10 +45,13 @@ public final class Activity4layoutBinding implements ViewBinding {
   public final EditText descripcion;
 
   @NonNull
-  public final DatePicker fecha;
+  public final Button fecha;
 
   @NonNull
   public final Button guardar;
+
+  @NonNull
+  public final ImageButton returnButton;
 
   @NonNull
   public final Spinner tipoMovimeinto;
@@ -56,8 +59,8 @@ public final class Activity4layoutBinding implements ViewBinding {
   private Activity4layoutBinding(@NonNull ScrollView rootView, @NonNull EditText cantidad,
       @NonNull Spinner categoria, @NonNull Spinner cuenta, @NonNull Spinner cuentaDestino,
       @NonNull Spinner cuentaOrigen, @NonNull LinearLayout cuentaSection,
-      @NonNull EditText descripcion, @NonNull DatePicker fecha, @NonNull Button guardar,
-      @NonNull Spinner tipoMovimeinto) {
+      @NonNull EditText descripcion, @NonNull Button fecha, @NonNull Button guardar,
+      @NonNull ImageButton returnButton, @NonNull Spinner tipoMovimeinto) {
     this.rootView = rootView;
     this.cantidad = cantidad;
     this.categoria = categoria;
@@ -68,6 +71,7 @@ public final class Activity4layoutBinding implements ViewBinding {
     this.descripcion = descripcion;
     this.fecha = fecha;
     this.guardar = guardar;
+    this.returnButton = returnButton;
     this.tipoMovimeinto = tipoMovimeinto;
   }
 
@@ -141,7 +145,7 @@ public final class Activity4layoutBinding implements ViewBinding {
       }
 
       id = R.id.fecha;
-      DatePicker fecha = ViewBindings.findChildViewById(rootView, id);
+      Button fecha = ViewBindings.findChildViewById(rootView, id);
       if (fecha == null) {
         break missingId;
       }
@@ -152,6 +156,12 @@ public final class Activity4layoutBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.returnButton;
+      ImageButton returnButton = ViewBindings.findChildViewById(rootView, id);
+      if (returnButton == null) {
+        break missingId;
+      }
+
       id = R.id.tipoMovimeinto;
       Spinner tipoMovimeinto = ViewBindings.findChildViewById(rootView, id);
       if (tipoMovimeinto == null) {
@@ -159,7 +169,8 @@ public final class Activity4layoutBinding implements ViewBinding {
       }
 
       return new Activity4layoutBinding((ScrollView) rootView, cantidad, categoria, cuenta,
-          cuentaDestino, cuentaOrigen, cuentaSection, descripcion, fecha, guardar, tipoMovimeinto);
+          cuentaDestino, cuentaOrigen, cuentaSection, descripcion, fecha, guardar, returnButton,
+          tipoMovimeinto);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

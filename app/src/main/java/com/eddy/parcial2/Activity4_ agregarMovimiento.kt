@@ -12,6 +12,8 @@ import com.eddy.parcial2.databinding.Activity4layoutBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.app.DatePickerDialog
+import java.util.Calendar
 
 class Activity4_agregarMovimiento : AppCompatActivity() {
     private lateinit var tipoMovimientoSp: Spinner
@@ -25,11 +27,16 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
     private lateinit var cuentaDestinoSp: Spinner
 
     private lateinit var descripcionEt: EditText
-    private lateinit var fechaDp: DatePicker
+    private lateinit var fechaDp: Button
 
     private lateinit var guardarBt: Button
 
     private lateinit var binding: Activity4layoutBinding
+    private var fechaCompleta: Date? = null
+
+    var selectedAno = 0
+    var selectedDia = 0
+    var selectedMes = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,10 +116,49 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
 
         categoriaSp.adapter = categoriaAdapter
 
+        fechaDp.setOnClickListener {
+
+            val calendar = Calendar.getInstance()
+
+            val year = if (selectedAno != 0)
+                selectedAno
+            else
+                calendar.get(Calendar.YEAR)
+
+            val month = if (selectedMes != 0)
+                selectedMes - 1
+            else
+                calendar.get(Calendar.MONTH)
+
+            val day = if (selectedDia != 0)
+                selectedDia
+            else
+                calendar.get(Calendar.DAY_OF_MONTH)
+
+            DatePickerDialog(this, { _, y, m, d ->
+
+                selectedAno = y
+                selectedMes = m + 1
+                selectedDia = d
+
+                val fechaString = "$selectedDia/$selectedMes/$selectedAno"
+
+                fechaDp.text = fechaString
+
+                val formato = SimpleDateFormat(
+                    "dd/MM/yyyy",
+                    Locale.getDefault()
+                )
+
+                fechaCompleta = formato.parse(fechaString)!!
+
+            }, year, month, day).show()
+        }
+
         guardarBt.setOnClickListener {
 
             val tipoMovimiento = tipoMovimientoSp.selectedItem.toString()
-            val cantidad = cantidadEt.text.toString().toInt()
+            val cantidad = cantidadEt.text.toString().toIntOrNull() ?: 0
 
             val cuenta = cuentaSp.selectedItem.toString()
             val categoria = categoriaSp.selectedItem.toString()
@@ -122,13 +168,7 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
 
             val descripcion = descripcionEt.text.toString()
 
-            val dia = fechaDp.dayOfMonth
-            val mes = fechaDp.month + 1
-            val año = fechaDp.year
 
-            val fechaString = "$dia/$mes/$año"
-            val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val fechaCompleta = formato.parse(fechaString)
 
             println("Tipo Movimiento: $tipoMovimiento")
             println("Cantidad: $cantidad")

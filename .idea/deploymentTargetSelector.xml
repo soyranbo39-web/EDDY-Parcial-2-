@@ -8,10 +8,10 @@
       <SelectionState runConfigName="Activity3_PantallaDeInicio">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Activity4_agregarMovimiento (2)">
+      <SelectionState runConfigName="Activity4_agregarMovimiento">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Activity4_agregarMovimiento (3)">
+      <SelectionState runConfigName="Activity4_agregarMovimiento (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
