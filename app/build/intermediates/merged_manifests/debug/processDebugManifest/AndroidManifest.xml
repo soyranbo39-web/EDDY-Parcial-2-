@@ -34,6 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.eddy.parcial2.Activity3_PantallaDeInicio"
+            android:exported="true" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
