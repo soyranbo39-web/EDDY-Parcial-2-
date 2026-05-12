@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/outline_arrow_top_left_24"
