@@ -58,18 +58,27 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
         val email = prefs.getString(KEY_EMAIL, null) ?: return
 
+        if (binding.navView.headerCount == 0) {
+            return
+        }
+
         val headerView = binding.navView.getHeaderView(0)
         val ivAvatar = headerView.findViewById<ImageView>(R.id.ivUserAvatar)
         val tvUsername = headerView.findViewById<TextView>(R.id.tvHeaderUsername)
         val tvEmail = headerView.findViewById<TextView>(R.id.tvHeaderEmail)
 
         lifecycleScope.launch {
-            val userData = homeInteractor.getUserData(email)
-            userData?.let {
-                tvUsername.text = it.username
-                tvEmail.text = it.email
-                // Imagen Avatar
-                ivAvatar.setImageResource(R.drawable.ic_launcher_foreground)
+            runCatching {
+                homeInteractor.getUserData(email)
+            }.onSuccess { userData ->
+                userData?.let {
+                    tvUsername.text = it.username
+                    tvEmail.text = it.email
+                    // Imagen Avatar
+                    ivAvatar.setImageResource(R.drawable.ic_launcher_foreground)
+                }
+            }.onFailure {
+                Toast.makeText(this@HomeActivity, "No se pudo cargar el perfil", Toast.LENGTH_SHORT).show()
             }
         }
     }
