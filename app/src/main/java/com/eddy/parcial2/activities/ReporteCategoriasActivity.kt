@@ -9,14 +9,16 @@ import com.eddy.parcial2.databinding.ActivityReporteCategoriasBinding
 import com.eddy.parcial2.utils.DatosDummy
 
 class ReporteCategoriasActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityReporteCategoriasBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityReporteCategoriasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        title = "Reporte por categorías"
+        binding.toolbar.title = "Reporte por categorías"
 
         configurarSpinners()
         configurarRecycler()

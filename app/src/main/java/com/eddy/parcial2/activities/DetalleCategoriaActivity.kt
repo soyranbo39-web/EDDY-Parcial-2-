@@ -1,25 +1,28 @@
 package com.eddy.parcial2.activities
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eddy.parcial2.R
 import com.eddy.parcial2.adapters.MovimientoAdapter
 import com.eddy.parcial2.databinding.ActivityDetalleCategoriaBinding
+import com.eddy.parcial2.models.Movimiento
 import com.eddy.parcial2.utils.DatosDummy
 
 class DetalleCategoriaActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityDetalleCategoriaBinding
-    private var lista = DatosDummy.obtenerMovimientos()
+
+    private var lista = mutableListOf<Movimiento>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityDetalleCategoriaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        title = "Detalle"
+        title = "Detalles"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val categoria =
             intent.getStringExtra("categoria")
@@ -31,7 +34,52 @@ class DetalleCategoriaActivity : AppCompatActivity() {
         binding.txtCategoria.text = categoria
         binding.txtTotal.text = "Total: $$total"
 
+        lista = if (savedInstanceState != null) {
+
+            savedInstanceState.getParcelableArrayList(
+                "listaMovimientos",
+                Movimiento::class.java
+            )?.toMutableList()
+
+                ?: mutableListOf()
+
+        } else {
+
+            DatosDummy.obtenerMovimientos()
+        }
+
         configurarRecycler()
+
+        binding.toolbar.setOnMenuItemClickListener {
+
+            when (it.itemId) {
+
+                R.id.ordenCuenta -> {
+
+                    lista = lista.sortedBy {
+                            mov -> mov.cuenta
+                    }.toMutableList()
+                }
+
+                R.id.ordenFecha -> {
+
+                    lista = lista.sortedByDescending {
+                            mov -> mov.fecha
+                    }.toMutableList()
+                }
+
+                R.id.ordenCantidad -> {
+
+                    lista = lista.sortedByDescending {
+                            mov -> mov.cantidad
+                    }.toMutableList()
+                }
+            }
+
+            configurarRecycler()
+
+            true
+        }
     }
 
     private fun configurarRecycler() {
@@ -43,43 +91,18 @@ class DetalleCategoriaActivity : AppCompatActivity() {
             MovimientoAdapter(lista)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
 
-        menuInflater.inflate(
-            R.menu.menu_detalle_categoria,
-            menu
+        outState.putParcelableArrayList(
+            "listaMovimientos",
+            ArrayList(lista)
         )
-
-        return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onSupportNavigateUp(): Boolean {
 
-        when (item.itemId) {
-
-            R.id.ordenCuenta -> {
-
-                lista = lista.sortedBy {
-                    it.cuenta
-                }.toMutableList()
-            }
-
-            R.id.ordenFecha -> {
-
-                lista = lista.sortedByDescending {
-                    it.fecha
-                }.toMutableList()
-            }
-
-            R.id.ordenCantidad -> {
-
-                lista = lista.sortedByDescending {
-                    it.cantidad
-                }.toMutableList()
-            }
-        }
-
-        configurarRecycler()
+        finish()
 
         return true
     }
