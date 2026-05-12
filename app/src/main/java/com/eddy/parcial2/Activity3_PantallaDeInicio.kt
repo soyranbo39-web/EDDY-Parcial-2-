@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
 
 
-data class Categoria (var tipo: String, var nombre : String, var cantidad : Int )
+class Categoria (var tipo: String, var nombre : String, var cantidad : Int )
 class CategoriaAdapter(private val lista: List<Categoria>) :
 
     RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {
