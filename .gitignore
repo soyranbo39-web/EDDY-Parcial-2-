@@ -1,19 +1,51 @@
-*.iml
-.gradle
-/local.properties
-/.idea/
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
+# -----------------------------
+# Android / Gradle build output
+# -----------------------------
+.gradle/
+build/
 **/build/
-/captures
-.externalNativeBuild
-.cxx
+captures/
+.externalNativeBuild/
+.cxx/
+
+# -----------------------------
+# Local machine configuration
+# -----------------------------
 local.properties
+
+# -----------------------------
+# IDE files (Android Studio / IntelliJ / VS)
+# -----------------------------
+*.iml
+.idea/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
 .vs/
 .vscode/
+
+# -----------------------------
+# Logs and temporary files
+# -----------------------------
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# -----------------------------
+# OS generated files
+# -----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -----------------------------
+# Sensitive signing files
+# -----------------------------
+*.jks
+*.keystore
+*.p12
