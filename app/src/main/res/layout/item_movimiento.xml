@@ -7,15 +7,15 @@
     android:layout_margin="8dp"
     android:padding="12dp"
     android:orientation="vertical"
-    android:background="#2C2C2C">
+    android:background="#2A2A2A">
 
     <TextView
         android:id="@+id/textoFecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="15 Jun 2024"
-        android:textColor="#AAAAAA"
-        android:textSize="14sp"
+        android:textColor="#BDBDBD"
+        android:textSize="13sp"
         android:layout_marginBottom="6dp" />
 
     <LinearLayout
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$480.00"
-                android:textColor="#FFFFFF"
+                android:textColor="#40C4FF"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginEnd="6dp" />

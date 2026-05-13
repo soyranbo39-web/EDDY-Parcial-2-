@@ -6,52 +6,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#1E1E1E"
     android:fitsSystemWindows="true"
     tools:context=".activities.ReporteCategoriasActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#6200EE"
+        android:layout_height="60dp"
+        android:background="#2A2A2A"
         android:minHeight="?attr/actionBarSize"
         app:title="Reporte por categorías"
-        app:titleTextColor="@android:color/white" />
+        app:titleTextColor="#FFFFFF"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <Spinner
             android:id="@+id/spCuenta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="52dp"
+            android:background="@drawable/spinner_darkbg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:popupBackground="#2E2E2E" />
 
         <Spinner
             android:id="@+id/spTipo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_darkbg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:popupBackground="#2E2E2E" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
 
             <Spinner
                 android:id="@+id/spAnio"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/spinner_darkbg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:popupBackground="#2E2E2E" />
 
             <Spinner
                 android:id="@+id/spMes"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/spinner_darkbg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:popupBackground="#2E2E2E" />
 
         </LinearLayout>
 
@@ -59,7 +80,7 @@
             android:id="@+id/rvCategorias"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 
