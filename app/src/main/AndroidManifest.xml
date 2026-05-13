@@ -19,6 +19,8 @@
         <activity
             android:name=".Activity4_agregarMovimiento"
             android:exported="true"/>
+        <activity android:name=".activities.ReporteCategoriasActivity" />
+        <activity android:name=".activities.DetalleCategoriaActivity" />
     </application>
 
 </manifest>
