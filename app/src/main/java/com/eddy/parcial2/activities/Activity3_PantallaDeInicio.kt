@@ -19,9 +19,9 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
     private lateinit var binding: Activity3PantalladeinicioBinding
     private lateinit var tipoMovimientoSp: Spinner
-    private lateinit var ingresoBt : Button
-    private lateinit var retiroBt : Button
-    private lateinit var transferenciaBt : Button
+    private lateinit var ingresoBt: Button
+    private lateinit var retiroBt: Button
+    private lateinit var transferenciaBt: Button
     private lateinit var yearSp: Spinner
     private lateinit var monthSp: Spinner
 
@@ -85,29 +85,43 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         yearSp.adapter = adapterYear
 
         monthSp = findViewById(R.id.mesSpinner)
-        val opcionesMes = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo"
-        ,"Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+        val opcionesMes = arrayOf(
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        )
         val adapterMesSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesMes)
         adapterMesSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         monthSp.adapter = adapterMesSp
 
         ingresoTx = findViewById(R.id.ingreso)
-
         val ingresos = ingresosDao.getIngresosMontos().sum()
         ingresoTx.text = "$ingresos"
 
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
+        val saldoAnterior = ingresosDao.getIngresosMontos().sum()
+        saldoAnteriorTx.text = "$saldoAnterior"
+
 
 
         gastosTx = findViewById(R.id.gastos)
-            val gastos = gastosDao.getMontos().sum()
-            gastosTx.text = "$gastos"
+        val gastos = gastosDao.getMontos().sum()
+        gastosTx.text = "$gastos"
 
         saldoActualTx = findViewById(R.id.saldoActual)
-//            val saldoTotal = db.getIngresosMontos().sum()
-//            val gastosTotales = db.getGastosMonto().sum()
-//            val saldoActual = saldoTotal - gastosTotales
-////            saldoActualTx.text = "$saldoActual"
+        val saldoTotal = ingresosDao.getIngresosMontos().sum()
+        val gastosTotales = gastosDao.getMontos().sum()
+        val saldoActual = saldoTotal - gastosTotales
+        saldoActualTx.text = "$saldoActual"
 
 
         Categorias = mutableListOf(
