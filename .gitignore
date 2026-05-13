@@ -47,7 +47,6 @@ captures/
 .cxx
 local.properties
 /app/build
-/app/build
 /app/build/intermediates
 /app/build/generated
 Thumbs.db
