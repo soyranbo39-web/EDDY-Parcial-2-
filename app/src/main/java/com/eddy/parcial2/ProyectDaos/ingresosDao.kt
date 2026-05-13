@@ -1,6 +1,9 @@
-package com.eddy.parcial2
+package com.eddy.parcial2.ProyectDaos
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
+import androidx.room.Transaction
+import com.eddy.parcial2.models.Ingresos
 
 @Dao
 interface ingresosDao {

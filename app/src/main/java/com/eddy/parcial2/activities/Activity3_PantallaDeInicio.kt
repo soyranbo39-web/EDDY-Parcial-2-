@@ -1,4 +1,4 @@
-package com.eddy.parcial2
+package com.eddy.parcial2.activities
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.eddy.parcial2.models.Categoria
+import com.eddy.parcial2.CategoriaAdapter
+import com.eddy.parcial2.R
 import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
+
 class Activity3_PantallaDeInicio : AppCompatActivity() {
 
     private lateinit var binding: Activity3PantalladeinicioBinding
@@ -36,7 +40,8 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
         tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
         val opcionesTipoMovimiento = arrayOf("Todas", "Debito", "Crédito", "Vales")
-        val adapterTiposMovimeintosSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesTipoMovimiento)
+        val adapterTiposMovimeintosSp =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesTipoMovimiento)
         adapterTiposMovimeintosSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tipoMovimientoSp.adapter = adapterTiposMovimeintosSp
 
@@ -81,7 +86,7 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
         ingresoTx = findViewById(R.id.ingreso)
 //        ingresoTx.text = "$db.getIngresosMontos().sum()"
-        
+
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
 
 

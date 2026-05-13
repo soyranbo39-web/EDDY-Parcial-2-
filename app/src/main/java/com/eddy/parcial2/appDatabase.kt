@@ -4,10 +4,15 @@ import android.content.Context
 import androidx.room.*
 import com.eddy.parcial2.Movimiento
 import com.eddy.parcial2.ProyectDaos.MovimientoDao
-
-@Database([Movimiento::class], version = 1)
+import com.eddy.parcial2.ProyectDaos.gastosDao
+import com.eddy.parcial2.ProyectDaos.ingresosDao
+import com.eddy.parcial2.models.Gastos
+import com.eddy.parcial2.models.Ingresos
+@Database([Movimiento::class, Gastos::class, Ingresos::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun movimientoDao(): MovimientoDao
+    abstract fun gastosDao(): gastosDao
+    abstract fun ingresosDao(): ingresosDao
 
     companion object {
 

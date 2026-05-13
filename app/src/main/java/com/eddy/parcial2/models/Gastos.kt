@@ -1,6 +1,7 @@
-package com.eddy.parcial2
-import androidx.room.*
-import java.util.Date
+package com.eddy.parcial2.models
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName="gastos")
 data class Gastos(

@@ -1,6 +1,7 @@
-package com.eddy.parcial2
+package com.eddy.parcial2.models
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName="ingresos")
 data class Ingresos(
@@ -9,4 +10,4 @@ data class Ingresos(
     val monto : Int,
     val fecha : String,
 
-)
+    )
