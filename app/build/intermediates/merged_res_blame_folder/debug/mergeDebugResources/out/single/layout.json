@@ -1,7 +1,23 @@
 [
     {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/item_movimiento.xml",
+        "source": "com.eddy.parcial2.app-main-34:/layout/item_movimiento.xml"
+    },
+    {
         "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/activity4layout.xml",
         "source": "com.eddy.parcial2.app-main-34:/layout/activity4layout.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/activity_detalle_categoria.xml",
+        "source": "com.eddy.parcial2.app-main-34:/layout/activity_detalle_categoria.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/activity_reporte_categorias.xml",
+        "source": "com.eddy.parcial2.app-main-34:/layout/activity_reporte_categorias.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/item_categoria.xml",
+        "source": "com.eddy.parcial2.app-main-34:/layout/item_categoria.xml"
     },
     {
         "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/activity_main.xml",

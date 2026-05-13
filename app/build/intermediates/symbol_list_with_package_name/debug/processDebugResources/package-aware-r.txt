@@ -3018,6 +3018,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3025,8 +3026,13 @@ drawable ic_call_answer_video
 drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
+drawable ic_card
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
+drawable ic_clothes
+drawable ic_food
+drawable ic_gas
+drawable ic_house
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -3038,6 +3044,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable ic_wallet
 drawable indeterminate_static
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3349,6 +3356,8 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imgCuenta
+id imgIcono
 id immediateStop
 id included
 id indeterminate
@@ -3396,6 +3405,8 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id menuEliminar
+id menuModificar
 id message
 id middle
 id mini
@@ -3465,6 +3476,9 @@ id open_search_view_search_prefix
 id open_search_view_status_bar_spacer
 id open_search_view_toolbar
 id open_search_view_toolbar_container
+id ordenCantidad
+id ordenCuenta
+id ordenFecha
 id outline
 id outward
 id overshoot
@@ -3483,6 +3497,7 @@ id pin
 id position
 id postLayout
 id pressed
+id progreso
 id progress_circular
 id progress_horizontal
 id radio
@@ -3497,6 +3512,8 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id rvCategorias
+id rvMovimientos
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3535,6 +3552,10 @@ id snackbar_text
 id snap
 id snapMargins
 id south
+id spAnio
+id spCuenta
+id spMes
+id spTipo
 id spacer
 id special_effects_controller_view_tag
 id spline
@@ -3594,6 +3615,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toolbar
 id top
 id topPanel
 id touch_outside
@@ -3608,6 +3630,14 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id txtCantidad
+id txtCategoria
+id txtCuenta
+id txtDescripcion
+id txtFecha
+id txtMovimientos
+id txtNombre
+id txtTotal
 id unchecked
 id uniform
 id unlabeled
@@ -3747,7 +3777,9 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity4layout
+layout activity_detalle_categoria
 layout activity_main
+layout activity_reporte_categorias
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3766,6 +3798,8 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_categoria
+layout item_movimiento
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3827,6 +3861,8 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+menu menu_detalle_categoria
+menu menu_movimiento
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

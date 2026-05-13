@@ -1,19 +1,19 @@
-package com.eddy.parcial2.models
+package com.eddy.parcial2
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.room.*
+import java.util.Date
 
-@Parcelize
+@Entity(tableName = "movimientos")
 data class Movimiento(
-
-    val iconoCuenta: Int,
-
+    @PrimaryKey val id: Int,
+    val tipoMovimiento: String,
+    val cantidad: Int,
     val cuenta: String,
+    val categoria: String,
 
-    val fecha: String,
+    val cuentaOrigen: String,
+    val cuentaDestino: String,
 
-    val descripcion: String,
-
-    val cantidad: Double
-
-) : Parcelable
+    val descripcion:String,
+    val fecha: Date?,
+)

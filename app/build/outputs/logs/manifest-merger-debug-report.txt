@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-24:12
+ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-26:12
+INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-26:12
+INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-26:12
+INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.databinding:viewbinding:8.7.3] C:\Users\vicente\.gradle\caches\8.9\transforms\bd498289eed439664c7d26d068d74202\transformed\viewbinding-8.7.3\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\vicente\.gradle\caches\8.9\transforms\a7949cf0e006b09ee458708f695b91d8\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\vicente\.gradle\caches\8.9\transforms\189596854ecbc50e47c4ea81919e9b60\transformed\constraintlayout-2.2.0\AndroidManifest.xml:2:1-9:12
@@ -58,8 +58,8 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\vicente\.gradle\caches\8.9\tra
 	xmlns:android
 		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:4:5-22:19
-INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:4:5-22:19
+ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:4:5-24:19
+INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:4:5-24:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\vicente\.gradle\caches\8.9\transforms\a7949cf0e006b09ee458708f695b91d8\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\vicente\.gradle\caches\8.9\transforms\a7949cf0e006b09ee458708f695b91d8\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\vicente\.gradle\caches\8.9\transforms\189596854ecbc50e47c4ea81919e9b60\transformed\constraintlayout-2.2.0\AndroidManifest.xml:7:5-20
@@ -110,12 +110,20 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:16:17-77
 	android:name
 		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:16:27-74
-activity#com.eddy.parcial2.Activity4_agregarMovimiento
+activity#com.eddy.parcial2.activities.Activity4_agregarMovimiento
 ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:19:9-21:38
 	android:exported
 		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:21:13-36
 	android:name
-		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:20:13-56
+		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:20:13-67
+activity#com.eddy.parcial2.activities.ReporteCategoriasActivity
+ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:22:9-74
+	android:name
+		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:22:19-71
+activity#com.eddy.parcial2.activities.DetalleCategoriaActivity
+ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:23:9-73
+	android:name
+		ADDED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml:23:19-70
 uses-sdk
 INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\vicente\Downloads\EDDY-Parcial-2-\app\src\main\AndroidManifest.xml

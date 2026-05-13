@@ -7,7 +7,7 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.eddy.parcial2.R
 import com.eddy.parcial2.databinding.ItemMovimientoBinding
-import com.eddy.parcial2.models.Movimiento
+import com.eddy.parcial2.Movimiento
 import com.google.android.material.snackbar.Snackbar
 
 class MovimientoAdapter(
@@ -41,15 +41,12 @@ class MovimientoAdapter(
 
         val movimiento = lista[position]
 
-        holder.binding.imgCuenta.setImageResource(
-            movimiento.iconoCuenta
-        )
 
         holder.binding.txtCuenta.text =
             movimiento.cuenta
 
         holder.binding.txtFecha.text =
-            movimiento.fecha
+            movimiento.fecha.toString()
 
         holder.binding.txtDescripcion.text =
             movimiento.descripcion

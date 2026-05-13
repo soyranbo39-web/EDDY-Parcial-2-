@@ -35,8 +35,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eddy.parcial2.Activity4_agregarMovimiento"
+            android:name="com.eddy.parcial2.activities.Activity4_agregarMovimiento"
             android:exported="true" />
+        <activity android:name="com.eddy.parcial2.activities.ReporteCategoriasActivity" />
+        <activity android:name="com.eddy.parcial2.activities.DetalleCategoriaActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
