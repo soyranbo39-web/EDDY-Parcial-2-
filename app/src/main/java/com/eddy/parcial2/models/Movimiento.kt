@@ -5,7 +5,8 @@ import java.util.Date
 
 @Entity(tableName = "movimientos")
 data class Movimiento(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val tipoMovimiento: String,
     val cantidad: Int,
     val cuenta: String,
@@ -15,5 +16,5 @@ data class Movimiento(
     val cuentaDestino: String,
 
     val descripcion:String,
-    val fecha: Date?,
+    val fecha: String,
 )

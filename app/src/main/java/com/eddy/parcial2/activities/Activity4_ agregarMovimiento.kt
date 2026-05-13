@@ -12,9 +12,13 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import android.app.DatePickerDialog
+import androidx.lifecycle.lifecycleScope
 import com.eddy.parcial2.Movimiento
 import com.eddy.parcial2.R
+import com.example.roomapp.AppDatabase
+import kotlinx.coroutines.launch
 import java.util.Calendar
+import kotlin.math.log
 
 class Activity4_agregarMovimiento : AppCompatActivity() {
     private lateinit var tipoMovimientoSp: Spinner
@@ -33,14 +37,16 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
     private lateinit var guardarBt: Button
 
     private lateinit var binding: Activity4layoutBinding
-    private var fechaCompleta: Date? = null
+    private var fechaCompleta: String = ""
 
+    private lateinit var db: AppDatabase
     var selectedAno = 0
     var selectedDia = 0
     var selectedMes = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        db = AppDatabase.getDatabase(applicationContext)
 
         binding = Activity4layoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -146,12 +152,7 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
 
                 fechaDp.text = fechaString
 
-                val formato = SimpleDateFormat(
-                    "dd/MM/yyyy",
-                    Locale.getDefault()
-                )
-
-                fechaCompleta = formato.parse(fechaString)!!
+                fechaCompleta = fechaString
 
             }, year, month, day).show()
         }
@@ -170,8 +171,7 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
             val descripcion = descripcionEt.text.toString()
 
 
-            Movimiento(
-                id = 1,
+            val movimiento = Movimiento(
                 tipoMovimiento = tipoMovimiento,
                 cantidad = cantidad,
                 cuenta = cuenta,
@@ -182,7 +182,11 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
                 fecha = fechaCompleta
             )
 
-
+            
+            val movimientoDao = db.movimientoDao()
+            lifecycleScope.launch {
+                movimientoDao.insertMovimiento(movimiento)
+            }
         }
     }
 }
