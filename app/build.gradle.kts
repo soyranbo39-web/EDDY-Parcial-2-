@@ -61,3 +61,7 @@ tasks.register("unitTestClasses") {
     dependsOn("compileDebugUnitTestSources")
     dependsOn("compileReleaseUnitTestSources")
 }
+
+tasks.register("androidTestClasses") {
+    dependsOn("compileDebugAndroidTestSources")
+}
