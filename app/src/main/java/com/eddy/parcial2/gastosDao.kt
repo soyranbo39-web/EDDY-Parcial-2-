@@ -1,4 +1,5 @@
 package com.eddy.parcial2
+import android.R
 import androidx.room.*
 
 @Dao
@@ -15,4 +16,8 @@ interface gastosDao {
     @Transaction
     @Query("SELECT * FROM gastos WHERE categoria = :categoria")
     fun getGastosCategoria(categoria: Categoria): List<Gastos>
+
+    @Transaction
+    @Query("SELECT monto FROM gastos")
+    fun getMontos(): List<R.integer>
 }

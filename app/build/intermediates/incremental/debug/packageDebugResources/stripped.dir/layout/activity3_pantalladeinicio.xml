@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:aap="http://schemas.android.com/apk/res-auto"
     android:background="#121212"
     tools:context=".Activity3_PantallaDeInicio">
 
@@ -12,24 +13,36 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Título -->
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:text="Control Financiero"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="24dp" />
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
 
-        <!-- Spinner principal -->
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/outline_arrow_top_left_24"
+                aap:tint="@color/white"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Control Financiero"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
             android:text="Tipo de movimiento"
-            android:textStyle="bold"
             android:textColor="#BDBDBD"
-            android:layout_marginBottom="6dp" />
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/tipoMovimeinto"
@@ -38,7 +51,6 @@
             android:background="#1E1E1E"
             android:padding="10dp" />
 
-        <!-- Botones -->
         <LinearLayout
             android:id="@+id/buttonSection"
             android:layout_width="match_parent"
@@ -51,8 +63,8 @@
                 android:id="@+id/ingresoButton"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
-                android:layout_weight="1"
                 android:layout_margin="6dp"
+                android:layout_weight="1"
                 android:backgroundTint="#00C853"
                 android:text="Ingreso"
                 android:textAllCaps="false"
@@ -63,8 +75,8 @@
                 android:id="@+id/retiroButton"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
-                android:layout_weight="1"
                 android:layout_margin="6dp"
+                android:layout_weight="1"
                 android:backgroundTint="#D50000"
                 android:text="Retiro"
                 android:textAllCaps="false"
@@ -75,8 +87,8 @@
                 android:id="@+id/transferenciaButton"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
-                android:layout_weight="1"
                 android:layout_margin="6dp"
+                android:layout_weight="1"
                 android:backgroundTint="#2962FF"
                 android:text="Transferencia"
                 android:textAllCaps="false"
@@ -84,7 +96,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Filtros -->
         <LinearLayout
             android:id="@+id/spinnerSection"
             android:layout_width="match_parent"
@@ -97,8 +108,8 @@
                 android:id="@+id/añoSpinnenr"
                 android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:layout_weight="1"
                 android:layout_marginEnd="8dp"
+                android:layout_weight="1"
                 android:background="#1E1E1E"
                 android:padding="10dp" />
 
@@ -106,13 +117,12 @@
                 android:id="@+id/mesSpinner"
                 android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:layout_weight="1"
                 android:layout_marginStart="8dp"
+                android:layout_weight="1"
                 android:background="#1E1E1E"
                 android:padding="10dp" />
         </LinearLayout>
 
-        <!-- Tarjeta Balance -->
         <LinearLayout
             android:id="@+id/balanceMensual"
             android:layout_width="match_parent"
@@ -127,11 +137,11 @@
                 android:id="@+id/balanceMensualTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
                 android:text="Balance Mensual"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="18dp" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -191,7 +201,6 @@
 
         </LinearLayout>
 
-        <!-- Categorías -->
         <LinearLayout
             android:id="@+id/categoriaMensual"
             android:layout_width="match_parent"
@@ -206,11 +215,8 @@
                 android:id="@+id/categoriaMensualTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categorías Mensuales"
-                android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="18dp" />
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoriaRecycleView"

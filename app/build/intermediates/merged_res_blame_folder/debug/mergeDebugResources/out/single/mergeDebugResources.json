@@ -12,6 +12,10 @@
         "source": "com.eddy.parcial2.app-main-37:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
+        "merged": "com.eddy.parcial2.app-debug-35:/drawable_outline_arrow_top_left_24.xml.flat",
+        "source": "com.eddy.parcial2.app-main-37:/drawable/outline_arrow_top_left_24.xml"
+    },
+    {
         "merged": "com.eddy.parcial2.app-debug-35:/layout_activity3_pantalladeinicio.xml.flat",
         "source": "com.eddy.parcial2.app-main-37:/layout/activity3_pantalladeinicio.xml"
     },

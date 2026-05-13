@@ -80,6 +80,8 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         monthSp.adapter = adapterMesSp
 
         ingresoTx = findViewById(R.id.ingreso)
+//        ingresoTx.text = "$db.getMontos()"
+        
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
         gastosTx = findViewById(R.id.gastos)
         saldoActualTx = findViewById(R.id.saldoActual)
