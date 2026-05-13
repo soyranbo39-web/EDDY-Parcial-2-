@@ -10,7 +10,8 @@
         android:theme="@style/Theme.EddyParcial2">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -18,6 +19,26 @@
         </activity>
         <activity android:name=".Activity3_PantallaDeInicio"
             android:exported="true"/>
+        <activity
+            android:name=".Login.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+        <activity
+            android:name=".registrar.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+        <activity
+            android:name=".activities.Activity4_agregarMovimiento"
+            android:exported="true" />
+        <activity android:name=".activities.ReporteCategoriasActivity" />
+        <activity android:name=".activities.DetalleCategoriaActivity" />
     </application>
 
 </manifest>
