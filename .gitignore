@@ -41,6 +41,15 @@ captures/
 
 # OS Specific
 .DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build
+/app/build
+/app/build/intermediates
+/app/build/generated
 Thumbs.db
 desktop.ini
 

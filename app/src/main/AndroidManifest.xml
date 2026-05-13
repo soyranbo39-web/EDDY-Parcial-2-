@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity3_PantallaDeInicio"
+            android:exported="true"/>
         <activity
             android:name=".Login.LoginActivity"
             android:exported="false"
