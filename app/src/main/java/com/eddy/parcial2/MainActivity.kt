@@ -15,7 +15,5 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        startActivity(Intent(this, Activity3PantalladeinicioBinding::class.java))
-        finish()
     }
 }

@@ -19,5 +19,5 @@ interface gastosDao {
 
     @Transaction
     @Query("SELECT monto FROM gastos")
-    fun getMontos(): List<R.integer>
+    fun getMontos(): List<Int>
 }

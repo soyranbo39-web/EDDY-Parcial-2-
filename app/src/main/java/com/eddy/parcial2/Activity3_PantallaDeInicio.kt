@@ -80,11 +80,19 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         monthSp.adapter = adapterMesSp
 
         ingresoTx = findViewById(R.id.ingreso)
-//        ingresoTx.text = "$db.getMontos()"
+//        ingresoTx.text = "$db.getIngresosMontos().sum()"
         
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
+
+
         gastosTx = findViewById(R.id.gastos)
+//            gastosTx.text = "$db.getGastosMonto().sum()"
+
         saldoActualTx = findViewById(R.id.saldoActual)
+//            val saldoTotal = db.getIngresosMontos().sum()
+//            val gastosTotales = db.getGastosMonto().sum()
+//            val saldoActual = saldoTotal - gastosTotales
+////            saldoActualTx.text = "$saldoActual"
 
 
         Categorias = mutableListOf(
