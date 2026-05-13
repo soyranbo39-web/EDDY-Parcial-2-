@@ -49,3 +49,9 @@ desktop.ini
 *.jks
 *.keystore
 *.p12
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build

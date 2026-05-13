@@ -1,0 +1,34 @@
+package com.example.roomapp
+
+import android.content.Context
+import androidx.room.*
+import com.eddy.parcial2.Movimiento
+import com.eddy.parcial2.ProyectDaos.MovimientoDao
+
+@Database([Movimiento::class], version = 1)
+abstract class AppDatabase : RoomDatabase(){
+    abstract fun movimientoDao(): MovimientoDao
+
+    companion object {
+
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+
+            return INSTANCE ?: synchronized(this) {
+
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "movimientos_database"
+                ).build()
+
+                INSTANCE = instance
+
+                instance
+            }
+        }
+    }
+
+}

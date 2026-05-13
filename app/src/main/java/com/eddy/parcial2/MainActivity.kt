@@ -29,5 +29,14 @@ class MainActivity : AppCompatActivity() {
         
         // Cerramos esta actividad para que no quede en la pila
         finish()
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.eddy.parcial2.activities.ReporteCategoriasActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 }
