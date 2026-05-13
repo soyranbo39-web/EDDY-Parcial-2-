@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         //  enrutador
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
-        
+
         if (prefs.getBoolean(KEY_LOGGED, false)) {
             //  Home
             startActivity(Intent(this, HomeActivity::class.java))
@@ -26,17 +26,8 @@ class MainActivity : AppCompatActivity() {
             //  Login
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        
+
         // Cerramos esta actividad para que no quede en la pila
         finish()
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.eddy.parcial2.activities.ReporteCategoriasActivity
-
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
     }
 }
