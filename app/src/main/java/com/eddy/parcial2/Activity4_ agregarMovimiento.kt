@@ -169,16 +169,6 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
             val descripcion = descripcionEt.text.toString()
 
 
-
-            println("Tipo Movimiento: $tipoMovimiento")
-            println("Cantidad: $cantidad")
-            println("Cuenta: $cuenta")
-            println("Categoria: $categoria")
-            println("Cuenta Origen: $cuentaOrigen")
-            println("Cuenta Destino: $cuentaDestino")
-            println("Descripcion: $descripcion")
-            println("Fecha: $fechaCompleta")
-
             Movimiento(
                 id = 1,
                 tipoMovimiento = tipoMovimiento,
@@ -189,6 +179,8 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
                 cuentaDestino = cuentaDestino,
                 descripcion = descripcion,
                 fecha = fechaCompleta)
+
+            
         }
     }
 }
