@@ -1,4 +1,4 @@
-package com.eddy.parcial2.home.`object`
+package com.eddy.parcial2.Home.`object`
 
 import com.eddy.parcial2.Home.model.HomeUserData
 import com.eddy.parcial2.data.interfaces.IUserRepository

@@ -1,5 +1,6 @@
 package com.eddy.parcial2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.Home.HomeActivity
 import kotlinx.coroutines.launch
 
 class Pantalla7 : AppCompatActivity() {
@@ -59,6 +61,7 @@ class Pantalla7 : AppCompatActivity() {
         spinnerMes = findViewById(R.id.spinnerSortMes)
 
         val sortButton = findViewById<View>(R.id.botonTopSort)
+        val backButton = findViewById<View>(R.id.botonTopRegresar)
 
         db = AppDatabase.getDatabase(this)
 
@@ -80,6 +83,13 @@ class Pantalla7 : AppCompatActivity() {
             }
 
             popup.show()
+        }
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+            finish()
         }
 
         cargarFiltros()
@@ -116,6 +126,7 @@ class Pantalla7 : AppCompatActivity() {
             spinnersReady = false
 
             val listener = object : AdapterView.OnItemSelectedListener {
+
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
                     if (!spinnersReady) return
@@ -156,5 +167,12 @@ class Pantalla7 : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         cargarLista()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        startActivity(intent)
+        finish()
     }
 }
