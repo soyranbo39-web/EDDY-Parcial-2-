@@ -56,3 +56,5 @@ desktop.ini
 .vscode/
 .vs/
 /app/build
+/app/build/generated
+/app/build
