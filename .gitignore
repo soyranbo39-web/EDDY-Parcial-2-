@@ -1,12 +1,45 @@
+# Build artifacts
+*.apk
+*.aar
+*.ap_
+*.aab
+*.dex
+*.class
+bin/
+gen/
+out/
+.kotlin/
+.gradle/
+build/
+app/build/
+**/build/
+
+# Local configuration
+local.properties
+proguard/
+
+# Log Files
+*.log
+
+# Android Studio / IntelliJ
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+*.iws
+*.ipr
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystores
+*.jks
+*.keystore
+*.p12
+
+# Google Services
+# google-services.json
+
+# OS Specific
 .DS_Store
 /build
 /captures
@@ -14,3 +47,11 @@
 .cxx
 local.properties
 /app/build
+/app/build/intermediates
+/app/build/generated
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.vs/

@@ -99,5 +99,7 @@
                 android:tint="#00E676" />
 
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>
