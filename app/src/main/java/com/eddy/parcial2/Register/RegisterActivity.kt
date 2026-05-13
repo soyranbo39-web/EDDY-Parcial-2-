@@ -1,6 +1,7 @@
 package com.eddy.parcial2.registrar
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -80,13 +81,17 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun highlightSelectedAvatar(selectedIndex: Int) {
         val avatars = listOf(binding.ibAvatar1, binding.ibAvatar2, binding.ibAvatar3, binding.ibAvatar4)
-        avatars.forEachIndexed { index, imageButton ->
+        avatars.forEachIndexed { index, imageView ->
             if (index == selectedIndex) {
-                imageButton.alpha = 1.0f
-                imageButton.setBackgroundColor(getColor(android.R.color.darker_gray))
+                imageView.alpha = 1.0f
+                imageView.strokeWidth = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 4f, resources.displayMetrics
+                )
             } else {
-                imageButton.alpha = 0.5f
-                imageButton.background = null
+                imageView.alpha = 0.6f
+                imageView.strokeWidth = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 1f, resources.displayMetrics
+                )
             }
         }
     }

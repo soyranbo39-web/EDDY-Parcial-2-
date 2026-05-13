@@ -17,4 +17,6 @@
     <string name="avatar_2">Avatar 2</string>
     <string name="avatar_3">Avatar 3</string>
     <string name="avatar_4">Avatar 4</string>
+    <string name="volver">Volver</string>
+    <string name="ya_tengo_cuenta">Ya tengo cuenta. Iniciar sesión</string>
 </resources>
