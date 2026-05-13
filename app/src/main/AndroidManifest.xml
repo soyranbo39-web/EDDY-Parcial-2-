@@ -20,10 +20,12 @@
         <activity
             android:name=".Login.LoginActivity"
             android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
         <activity
             android:name=".registrar.RegisterActivity"
             android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
         <activity
             android:name=".home.HomeActivity"

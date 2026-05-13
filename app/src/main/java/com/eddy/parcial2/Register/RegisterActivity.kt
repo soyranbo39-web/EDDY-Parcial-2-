@@ -30,6 +30,14 @@ class RegisterActivity : AppCompatActivity() {
 
         setupAvatarSelection()
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
+        binding.btnGoBack.setOnClickListener {
+            finish()
+        }
+
         binding.btnRegister.setOnClickListener {
             val data = RegisterData(
                 email = binding.etEmail.text.toString().trim(),

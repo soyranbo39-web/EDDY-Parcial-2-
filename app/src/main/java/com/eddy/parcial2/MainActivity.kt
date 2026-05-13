@@ -16,14 +16,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Esta actividad actúa como un enrutador (Splash Screen)
+        //  enrutador
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
         
         if (prefs.getBoolean(KEY_LOGGED, false)) {
-            // Si ya hay sesión, vamos al Home
+            //  Home
             startActivity(Intent(this, HomeActivity::class.java))
         } else {
-            // Si no, vamos al Login
+            //  Login
             startActivity(Intent(this, LoginActivity::class.java))
         }
         

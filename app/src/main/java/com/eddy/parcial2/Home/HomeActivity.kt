@@ -75,7 +75,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     tvUsername.text = it.username
                     tvEmail.text = it.email
                     // Imagen Avatar
-                    ivAvatar.setImageResource(R.drawable.ic_launcher_foreground)
+                    val avatarRes = when (it.avatarId) {
+                        1 -> R.drawable.abrahan1
+                        2 -> R.drawable.abraham2
+                        3 -> R.drawable.abraham3
+                        4 -> R.drawable.abraham4
+                        else -> R.drawable.ic_launcher_foreground
+                    }
+                    ivAvatar.setImageResource(avatarRes)
                 }
             }.onFailure {
                 Toast.makeText(this@HomeActivity, "No se pudo cargar el perfil", Toast.LENGTH_SHORT).show()
