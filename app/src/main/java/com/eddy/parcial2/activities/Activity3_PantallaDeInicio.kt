@@ -13,6 +13,7 @@ import com.eddy.parcial2.models.Categoria
 import com.eddy.parcial2.CategoriaAdapter
 import com.eddy.parcial2.R
 import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
+import com.example.roomapp.AppDatabase
 
 class Activity3_PantallaDeInicio : AppCompatActivity() {
 
@@ -30,6 +31,8 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
     private lateinit var saldoActualTx: TextView
     private lateinit var categoriaRV: RecyclerView
 
+    private lateinit var db: AppDatabase
+
     private lateinit var Categorias: MutableList<Categoria>
 
 
@@ -37,6 +40,10 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = Activity3PantalladeinicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        db = AppDatabase.getDatabase(applicationContext)
+        val ingresosDao = db.ingresosDao()
+        val gastosDao = db.gastosDao()
 
         tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
         val opcionesTipoMovimiento = arrayOf("Todas", "Debito", "Crédito", "Vales")
@@ -85,13 +92,16 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         monthSp.adapter = adapterMesSp
 
         ingresoTx = findViewById(R.id.ingreso)
-//        ingresoTx.text = "$db.getIngresosMontos().sum()"
+
+        val ingresos = ingresosDao.getIngresosMontos().sum()
+        ingresoTx.text = "$ingresos"
 
         saldoAnteriorTx = findViewById(R.id.saldoAnterior)
 
 
         gastosTx = findViewById(R.id.gastos)
-//            gastosTx.text = "$db.getGastosMonto().sum()"
+            val gastos = gastosDao.getMontos().sum()
+            gastosTx.text = "$gastos"
 
         saldoActualTx = findViewById(R.id.saldoActual)
 //            val saldoTotal = db.getIngresosMontos().sum()
