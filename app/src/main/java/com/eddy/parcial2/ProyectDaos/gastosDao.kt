@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.eddy.parcial2.models.Gastos
+import com.eddy.parcial2.models.CategoriaTotal
 
 @Dao
 interface gastosDao {
@@ -20,4 +21,7 @@ interface gastosDao {
 
     @Query("SELECT monto FROM gastos")
     fun getMontos(): List<Int>
+
+    @Query("SELECT categoria, SUM(monto) as total FROM gastos GROUP BY categoria")
+    fun getGastosPorCategoria(): List<CategoriaTotal>
 }

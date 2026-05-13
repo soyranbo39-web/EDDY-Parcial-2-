@@ -94,7 +94,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-                R.id.nav_inicio -> Toast.makeText(this, "Es esta wey xd", Toast.LENGTH_SHORT).show()
+                R.id.nav_inicio ->
+                {
+                    startActivity(Intent(this, com.eddy.parcial2.activities.Activity3PantallaDeInicio::class.java))
+                }
 
             R.id.nav_movimientos -> {
                 startActivity(Intent(this, Pantalla7::class.java))

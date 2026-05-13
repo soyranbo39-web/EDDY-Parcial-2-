@@ -2,130 +2,113 @@ package com.eddy.parcial2.activities
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.eddy.parcial2.models.Categoria
-import com.eddy.parcial2.CategoriaAdapter
 import com.eddy.parcial2.R
-import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
+import com.eddy.parcial2.adapters.CategoriaAdapter
 import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
+import com.eddy.parcial2.models.CategoriaResumen
 
 class Activity3PantallaDeInicio : AppCompatActivity() {
 
     private lateinit var binding: Activity3PantalladeinicioBinding
-    private lateinit var tipoMovimientoSp: Spinner
-    private lateinit var ingresoBt: Button
-    private lateinit var retiroBt: Button
-    private lateinit var transferenciaBt: Button
-    private lateinit var yearSp: Spinner
-    private lateinit var monthSp: Spinner
-
-    private lateinit var ingresoTx: TextView
-    private lateinit var saldoAnteriorTx: TextView
-    private lateinit var gastosTx: TextView
-    private lateinit var saldoActualTx: TextView
-    private lateinit var categoriaRV: RecyclerView
-
     private lateinit var db: AppDatabase
-
-    private lateinit var categorias: MutableList<Categoria>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = Activity3PantalladeinicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         db = AppDatabase.getDatabase(applicationContext)
+
         val ingresosDao = db.ingresosDao()
         val gastosDao = db.gastosDao()
 
-        tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
         val opcionesTipoMovimiento = arrayOf("Todas", "Debito", "Crédito", "Vales")
-        val adapterTiposMovimeintosSp =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesTipoMovimiento)
-        adapterTiposMovimeintosSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        tipoMovimientoSp.adapter = adapterTiposMovimeintosSp
 
-
-        ingresoBt = findViewById(R.id.ingresoButton)
-        ingresoBt.setOnClickListener {
-            //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
-        }
-
-        retiroBt = findViewById(R.id.retiroButton)
-        retiroBt.setOnClickListener {
-            //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
-        }
-
-        transferenciaBt = findViewById(R.id.transferenciaButton)
-        transferenciaBt.setOnClickListener {
-            //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
-        }
-
-        yearSp = findViewById(R.id.añoSpinnenr)
-        val years = ArrayList<String>()
-        val yearActual = 2026
-        for (i in yearActual downTo 2010) {
-            years.add(i.toString())
-        }
-        val adapterYear = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
-        adapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        yearSp.adapter = adapterYear
-
-        monthSp = findViewById(R.id.mesSpinner)
-        val opcionesMes = arrayOf(
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"
+        val adapterTipos = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            opcionesTipoMovimiento
         )
-        val adapterMesSp = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesMes)
-        adapterMesSp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        monthSp.adapter = adapterMesSp
 
-        ingresoTx = findViewById(R.id.ingreso)
-        val ingresos = ingresosDao.getIngresosMontos().sum()
-        ingresoTx.text = "$ingresos"
-
-        saldoAnteriorTx = findViewById(R.id.saldoAnterior)
-        val saldoAnterior = ingresosDao.getIngresosMontos().sum()
-        saldoAnteriorTx.text = "$saldoAnterior"
-
-
-
-        gastosTx = findViewById(R.id.gastos)
-        val gastos = gastosDao.getMontos().sum()
-        gastosTx.text = "$gastos"
-
-        saldoActualTx = findViewById(R.id.saldoActual)
-        val saldoTotal = ingresosDao.getIngresosMontos().sum()
-        val gastosTotales = gastosDao.getMontos().sum()
-        val saldoActual = saldoTotal - gastosTotales
-        saldoActualTx.text = "$saldoActual"
-
-
-        categorias = mutableListOf(
-            Categoria("Debito", "Comida", 1200),
-            Categoria("Crédito", "Gasolina", 800),
-            Categoria("Vales", "Despensa", 500)
+        adapterTipos.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
         )
-        categoriaRV = findViewById(R.id.categoriaRecycleView)
-        categoriaRV.layoutManager = LinearLayoutManager(this)
-        val adapter = CategoriaAdapter(categorias)
-        categoriaRV.adapter = adapter
 
+        binding.tipoMovimeinto.adapter = adapterTipos
+
+        val years = (2026 downTo 2010).map { it.toString() }
+
+        val adapterYear = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            years
+        )
+
+        adapterYear.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        binding.aOSpinnenr.adapter = adapterYear
+
+        val meses = arrayOf(
+            "Enero", "Febrero", "Marzo", "Abril",
+            "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        )
+
+        val adapterMes = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            meses
+        )
+
+        adapterMes.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        binding.mesSpinner.adapter = adapterMes
+
+        val ingresosTotal = try {
+            ingresosDao.getIngresosMontos().sum()
+        } catch (e: Exception) {
+            0
+        }
+
+        val gastosPorCategoria = try {
+            gastosDao.getGastosPorCategoria()
+        } catch (e: Exception) {
+            emptyList()
+        }
+
+        val gastosTotal = gastosPorCategoria.sumOf { it.total }
+
+        binding.ingreso.text = "$ingresosTotal"
+        binding.saldoAnterior.text = "$ingresosTotal"
+        binding.gastos.text = "$gastosTotal"
+        binding.saldoActual.text = "${ingresosTotal - gastosTotal}"
+
+        val max = gastosPorCategoria.maxOfOrNull { it.total } ?: 1
+
+        val categorias = gastosPorCategoria.map { item ->
+            CategoriaResumen(
+                icono = when (item.categoria) {
+                    "Comida" -> R.drawable.ic_food
+                    "Gasolina" -> R.drawable.ic_gas
+                    "Despensa" -> R.drawable.ic_wallet
+                    else -> R.drawable.ic_wallet
+                },
+                nombre = item.categoria,
+                movimientos = 1,
+                total = item.total.toDouble(),
+                porcentaje = ((item.total.toDouble() / max) * 100).toInt()
+            )
+        }.toMutableList()
+
+        binding.categoriaRecycleView.layoutManager = LinearLayoutManager(this)
+        binding.categoriaRecycleView.adapter = CategoriaAdapter(categorias)
     }
 }

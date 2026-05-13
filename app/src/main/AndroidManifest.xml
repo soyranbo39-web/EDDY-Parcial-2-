@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Activity3_PantallaDeInicio"
+        <activity android:name=".activities.Activity3PantallaDeInicio"
             android:exported="true"/>
         <activity
             android:name=".Login.LoginActivity"
@@ -42,7 +42,7 @@
             android:theme="@style/Theme.EddyParcial2.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
         <activity
-            android:name=".activities.Activity4_agregarMovimiento"
+            android:name=".activities.Activity4AgregarMovimiento"
             android:exported="true" />
         <activity android:name=".activities.ReporteCategoriasActivity" />
         <activity android:name=".activities.DetalleCategoriaActivity" />
