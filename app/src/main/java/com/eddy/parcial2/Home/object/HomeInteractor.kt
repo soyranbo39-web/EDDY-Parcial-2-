@@ -1,8 +1,8 @@
 package com.eddy.parcial2.home.`object`
 
-import com.eddy.parcial2.home.model.HomeUserData
+import com.eddy.parcial2.Home.model.HomeUserData
 import com.eddy.parcial2.data.interfaces.IUserRepository
-import com.eddy.parcial2.home.interfaces.IHomeInteractor
+import com.eddy.parcial2.Home.interfaces.IHomeInteractor
 
 class HomeInteractor(private val userRepository: IUserRepository) : IHomeInteractor {
     override suspend fun getUserData(email: String): HomeUserData? {

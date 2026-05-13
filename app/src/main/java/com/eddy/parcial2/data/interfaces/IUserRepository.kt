@@ -1,5 +1,4 @@
 package com.eddy.parcial2.data.interfaces
-
 import com.eddy.parcial2.data.models.User
 
 interface IUserRepository {

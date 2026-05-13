@@ -1,14 +1,58 @@
 [
     {
-        "merged": "com.eddy.parcial2.app-mergeDebugResources-34:/layout/activity3_pantalladeinicio.xml",
-        "source": "com.eddy.parcial2.app-main-37:/layout/activity3_pantalladeinicio.xml"
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_pantalla8.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_pantalla8.xml"
     },
     {
-        "merged": "com.eddy.parcial2.app-mergeDebugResources-34:/layout/activity_main.xml",
-        "source": "com.eddy.parcial2.app-main-37:/layout/activity_main.xml"
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_main.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_main.xml"
     },
     {
-        "merged": "com.eddy.parcial2.app-mergeDebugResources-34:/layout/categoria_layout.xml",
-        "source": "com.eddy.parcial2.app-main-37:/layout/categoria_layout.xml"
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity4layout.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity4layout.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_pantalla_1.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_pantalla_1.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_detalle_categoria.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_detalle_categoria.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/item_categoria.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/item_categoria.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_reporte_categorias.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_reporte_categorias.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/nav_header_main.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/nav_header_main.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity3_pantalladeinicio.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity3_pantalladeinicio.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/categoria_layout.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/categoria_layout.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_2.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_2.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_home.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/activity_pantalla7.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/activity_pantalla7.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-36:/layout/item_movimiento.xml",
+        "source": "com.eddy.parcial2.app-main-39:/layout/item_movimiento.xml"
     }
 ]

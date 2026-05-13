@@ -2,17 +2,21 @@ package com.eddy.parcial2
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 
 @Dao
 interface MovimientoDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertar(movimiento: MovimientoContenedor)
 
     @Update
     suspend fun actualizar(movimiento: MovimientoContenedor)
+
+    @Query("SELECT * FROM movimientos")
+    suspend fun getMovimientos(): List<MovimientoContenedor>
 
     @Query("SELECT DISTINCT nombreCuenta FROM movimientos ORDER BY nombreCuenta")
     suspend fun obtenerCuentas(): List<String>
@@ -28,7 +32,6 @@ interface MovimientoDao {
         WHERE (:cuenta = 'Cuenta' OR nombreCuenta = :cuenta)
         AND (:ano = -1 OR ano = :ano)
         AND (:mes = -1 OR mes = :mes)
-
         ORDER BY
         CASE WHEN :modo = 'cuenta' THEN nombreCuenta END ASC,
         CASE WHEN :modo = 'cantidad' THEN cantidad END DESC,

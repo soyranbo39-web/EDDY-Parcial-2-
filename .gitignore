@@ -55,3 +55,4 @@ desktop.ini
 # IDEs
 .vscode/
 .vs/
+/app/build

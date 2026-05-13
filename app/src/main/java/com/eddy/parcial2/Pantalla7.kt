@@ -27,8 +27,16 @@ class Pantalla7 : AppCompatActivity() {
 
     private lateinit var db: AppDatabase
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var spinnerCuenta: Spinner
+    private lateinit var spinnerAno: Spinner
+    private lateinit var spinnerMes: Spinner
 
+    private var spinnersReady = false
+
+    private lateinit var adapter: MovimientoAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
@@ -40,19 +48,21 @@ class Pantalla7 : AppCompatActivity() {
             insets
         }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerListaMovimientos)
+        recyclerView = findViewById(R.id.recyclerListaMovimientos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val spinnerCuenta = findViewById<Spinner>(R.id.spinnerSortCuenta)
-        val spinnerAno = findViewById<Spinner>(R.id.spinnerSortAno)
-        val spinnerMes = findViewById<Spinner>(R.id.spinnerSortMes)
+        adapter = MovimientoAdapter(mutableListOf())
+        recyclerView.adapter = adapter
+
+        spinnerCuenta = findViewById(R.id.spinnerSortCuenta)
+        spinnerAno = findViewById(R.id.spinnerSortAno)
+        spinnerMes = findViewById(R.id.spinnerSortMes)
 
         val sortButton = findViewById<View>(R.id.botonTopSort)
 
         db = AppDatabase.getDatabase(this)
 
         sortButton.setOnClickListener {
-
             val popup = PopupMenu(this, sortButton)
 
             popup.menu.add(Menu.NONE, 1, 1, "Fecha")
@@ -60,38 +70,30 @@ class Pantalla7 : AppCompatActivity() {
             popup.menu.add(Menu.NONE, 3, 3, "Cantidad")
 
             popup.setOnMenuItemClickListener {
-
                 modoOrden = when (it.itemId) {
                     2 -> "cuenta"
                     3 -> "cantidad"
                     else -> "fecha"
                 }
-
-                cargarFiltrosYLista()
+                cargarLista()
                 true
             }
 
             popup.show()
         }
 
-        cargarFiltrosYLista()
+        cargarFiltros()
     }
 
-    private fun cargarFiltrosYLista() {
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerListaMovimientos)
-        val spinnerCuenta = findViewById<Spinner>(R.id.spinnerSortCuenta)
-        val spinnerAno = findViewById<Spinner>(R.id.spinnerSortAno)
-        val spinnerMes = findViewById<Spinner>(R.id.spinnerSortMes)
-
+    private fun cargarFiltros() {
         lifecycleScope.launch {
 
-            var cuentas = listOf("Cuenta") + db.movimientoDao().obtenerCuentas()
-            var anos = listOf(-1) + db.movimientoDao().obtenerAnos()
-            var meses = listOf(-1) + db.movimientoDao().obtenerMeses()
+            val cuentas = listOf("Cuenta") + db.movimientoDao().obtenerCuentas()
+            val anosRaw = listOf(-1) + db.movimientoDao().obtenerAnos()
+            val mesesRaw = listOf(-1) + db.movimientoDao().obtenerMeses()
 
-            val anosTexto = anos.map { if (it == -1) "Año" else it.toString() }
-            val mesesTexto = meses.map { if (it == -1) "Mes" else it.toString() }
+            val anosTexto = anosRaw.map { if (it == -1) "Año" else it.toString() }
+            val mesesTexto = mesesRaw.map { if (it == -1) "Mes" else it.toString() }
 
             spinnerCuenta.adapter = ArrayAdapter(
                 this@Pantalla7,
@@ -111,12 +113,16 @@ class Pantalla7 : AppCompatActivity() {
                 mesesTexto
             )
 
-            val listener = object : AdapterView.OnItemSelectedListener {
+            spinnersReady = false
 
+            val listener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                    if (!spinnersReady) return
+
                     lastCuenta = spinnerCuenta.selectedItem.toString()
-                    lastAno = anos[spinnerAno.selectedItemPosition]
-                    lastMes = meses[spinnerMes.selectedItemPosition]
+                    lastAno = anosRaw[spinnerAno.selectedItemPosition]
+                    lastMes = mesesRaw[spinnerMes.selectedItemPosition]
 
                     cargarLista()
                 }
@@ -128,14 +134,12 @@ class Pantalla7 : AppCompatActivity() {
             spinnerAno.onItemSelectedListener = listener
             spinnerMes.onItemSelectedListener = listener
 
+            spinnersReady = true
             cargarLista()
         }
     }
 
     private fun cargarLista() {
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerListaMovimientos)
-
         lifecycleScope.launch {
 
             val filtrados = db.movimientoDao().obtenerFiltrados(
@@ -145,12 +149,12 @@ class Pantalla7 : AppCompatActivity() {
                 modoOrden
             )
 
-            recyclerView.adapter = MovimientoAdapter(filtrados)
+            adapter.updateData(filtrados)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        cargarFiltrosYLista()
+        cargarLista()
     }
 }

@@ -12,7 +12,7 @@ class CategoriaAdapter(
     private val lista: MutableList<CategoriaResumen>
 ) : RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {
 
-    inner class ViewHolder(
+    class ViewHolder(
         val binding: ItemCategoriaBinding
     ) : RecyclerView.ViewHolder(binding.root)
 

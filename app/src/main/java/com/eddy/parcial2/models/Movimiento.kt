@@ -1,7 +1,6 @@
-package com.eddy.parcial2
+package com.eddy.parcial2.models
 
 import androidx.room.*
-import java.util.Date
 
 @Entity(tableName = "movimientos")
 data class Movimiento(

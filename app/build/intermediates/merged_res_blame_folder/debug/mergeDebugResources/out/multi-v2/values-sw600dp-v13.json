@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.eddy.parcial2.app-mergeDebugResources-33:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.eddy.parcial2.app-mergeDebugResources-35:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vicente\\.gradle\\caches\\8.9\\transforms\\38a11b898bd69e99b35c4d06cd0c627d\\transformed\\appcompat-1.7.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\golde\\.gradle\\caches\\8.9\\transforms\\c6bbcf9f205ed05ca74156e8b8abc77d\\transformed\\appcompat-1.7.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vicente\\.gradle\\caches\\8.9\\transforms\\198a0923b6ee96c5f937b5bd2a40330d\\transformed\\material-1.12.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\golde\\.gradle\\caches\\8.9\\transforms\\1fe97823735da3c82cef24cecb534892\\transformed\\material-1.12.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",

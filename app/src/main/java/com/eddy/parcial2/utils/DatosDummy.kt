@@ -2,7 +2,7 @@ package com.eddy.parcial2.utils
 
 import com.eddy.parcial2.R
 import com.eddy.parcial2.models.CategoriaResumen
-import com.eddy.parcial2.Movimiento
+import com.eddy.parcial2.models.Movimiento
 
 object DatosDummy {
     fun obtenerCategorias(): MutableList<CategoriaResumen> {

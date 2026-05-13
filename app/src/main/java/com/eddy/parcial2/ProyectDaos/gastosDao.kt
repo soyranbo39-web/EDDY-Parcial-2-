@@ -1,27 +1,23 @@
 package com.eddy.parcial2.ProyectDaos
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import com.eddy.parcial2.models.Categoria
 import com.eddy.parcial2.models.Gastos
 
 @Dao
 interface gastosDao {
-    @Transaction
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertGasto(gasto: Gastos)
+
     @Query("SELECT * FROM gastos")
     fun getGastos(): List<Gastos>
 
-
-    @Transaction
-    @Query("SELECT monto FROM gastos")
-    fun getGastosMonto(): List<Gastos>
-
-    @Transaction
     @Query("SELECT * FROM gastos WHERE categoria = :categoria")
-    fun getGastosCategoria(categoria: Categoria): List<Gastos>
+    fun getGastosCategoria(categoria: String): List<Gastos>
 
-    @Transaction
     @Query("SELECT monto FROM gastos")
     fun getMontos(): List<Int>
 }

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.eddy.parcial2.app-mergeDebugResources-33:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.eddy.parcial2.app-mergeDebugResources-35:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vicente\\.gradle\\caches\\8.9\\transforms\\198a0923b6ee96c5f937b5bd2a40330d\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\golde\\.gradle\\caches\\8.9\\transforms\\1fe97823735da3c82cef24cecb534892\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

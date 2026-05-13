@@ -1,8 +1,8 @@
-package com.eddy.parcial2.registrar.objec
+package com.eddy.parcial2.Register.objec
 
 import android.util.Patterns
-import com.eddy.parcial2.registrar.interfaces.IRegisterInteractor
-import com.eddy.parcial2.registrar.model.RegisterData
+import com.eddy.parcial2.Register.interfaces.IRegisterInteractor
+import com.eddy.parcial2.Register.model.RegisterData
 
 import com.eddy.parcial2.data.models.User
 import com.eddy.parcial2.Login.model.LoginResult

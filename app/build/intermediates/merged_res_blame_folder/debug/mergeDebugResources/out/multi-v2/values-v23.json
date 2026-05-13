@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.eddy.parcial2.app-mergeDebugResources-33:/values-v23/values-v23.xml",
+            "outputFile": "com.eddy.parcial2.app-mergeDebugResources-35:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vicente\\.gradle\\caches\\8.9\\transforms\\38a11b898bd69e99b35c4d06cd0c627d\\transformed\\appcompat-1.7.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\golde\\.gradle\\caches\\8.9\\transforms\\c6bbcf9f205ed05ca74156e8b8abc77d\\transformed\\appcompat-1.7.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vicente\\.gradle\\caches\\8.9\\transforms\\198a0923b6ee96c5f937b5bd2a40330d\\transformed\\material-1.12.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\golde\\.gradle\\caches\\8.9\\transforms\\1fe97823735da3c82cef24cecb534892\\transformed\\material-1.12.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -34,7 +34,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vicente\\.gradle\\caches\\8.9\\transforms\\2eabb1e1f001c3dbefe61e779cc2b6bf\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\golde\\.gradle\\caches\\8.9\\transforms\\c7ec2f3bcb077ea40f4a19e83df2784c\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

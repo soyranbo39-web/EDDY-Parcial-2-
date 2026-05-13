@@ -9,9 +9,10 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 
 class MovimientoAdapter(
-    private val lista: List<MovimientoContenedor>
+    private val lista: MutableList<MovimientoContenedor>
 ) : RecyclerView.Adapter<MovimientoAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,9 +29,10 @@ class MovimientoAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_movimiento, parent, false)
-
         return ViewHolder(view)
     }
+
+    override fun getItemCount(): Int = lista.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -46,13 +48,8 @@ class MovimientoAdapter(
             movimiento.ano
         )
 
-        holder.iconoCuenta.setImageResource(
-            getCuentaIcon(movimiento.tipoCuenta)
-        )
-
-        holder.iconoCategoria.setImageResource(
-            getCategoriaIcon(movimiento.categoria)
-        )
+        holder.iconoCuenta.setImageResource(getCuentaIcon(movimiento.tipoCuenta))
+        holder.iconoCategoria.setImageResource(getCategoriaIcon(movimiento.categoria))
 
         val color = when (movimiento.tipoTransferencia) {
             "Ingreso" -> Color.GREEN
@@ -64,19 +61,46 @@ class MovimientoAdapter(
         holder.iconoTransferencia.setImageResource(
             getTransferenciaIcon(movimiento.tipoTransferencia)
         )
-
         holder.iconoTransferencia.setColorFilter(color)
 
         holder.itemView.setOnLongClickListener { view ->
 
             val popup = PopupMenu(view.context, view)
-            popup.menu.add("Modificar Movimiento")
 
-            popup.setOnMenuItemClickListener {
-                val intent = Intent(view.context, Pantalla8::class.java)
-                intent.putExtra("movimiento_id", movimiento.id)
-                view.context.startActivity(intent)
-                true
+            popup.menu.add("Modificar")
+            popup.menu.add("Eliminar")
+
+            popup.setOnMenuItemClickListener { item ->
+
+                when (item.title) {
+
+                    "Eliminar" -> {
+                        val removed = lista[position]
+
+                        lista.removeAt(position)
+                        notifyItemRemoved(position)
+
+                        Snackbar.make(
+                            view,
+                            "Movimiento eliminado",
+                            Snackbar.LENGTH_LONG
+                        ).setAction("Deshacer") {
+                            lista.add(position, removed)
+                            notifyItemInserted(position)
+                        }.show()
+
+                        true
+                    }
+
+                    "Modificar" -> {
+                        val intent = Intent(view.context, Pantalla8::class.java)
+                        intent.putExtra("movimiento_id", movimiento.id)
+                        view.context.startActivity(intent)
+                        true
+                    }
+
+                    else -> false
+                }
             }
 
             popup.show()
@@ -84,9 +108,12 @@ class MovimientoAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return lista.size
+    fun updateData(newList: List<MovimientoContenedor>) {
+        lista.clear()
+        lista.addAll(newList)
+        notifyDataSetChanged()
     }
+
     private fun getCuentaIcon(tipo: String): Int {
         return when (tipo) {
             "Efectivo" -> R.drawable.spinner_bg
@@ -95,6 +122,7 @@ class MovimientoAdapter(
             else -> R.drawable.spinner_bg
         }
     }
+
     private fun getTransferenciaIcon(tipo: String): Int {
         return when (tipo) {
             "Ingreso" -> android.R.drawable.arrow_down_float
@@ -103,6 +131,7 @@ class MovimientoAdapter(
             else -> android.R.drawable.arrow_up_float
         }
     }
+
     private fun getCategoriaIcon(categoria: String): Int {
         return when (categoria) {
             "Comida" -> R.drawable.spinner_bg

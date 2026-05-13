@@ -1,30 +1,20 @@
 package com.eddy.parcial2.activities
 
-import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Spinner
-import androidx.appcompat.app.AppCompatActivity
-import com.eddy.parcial2.databinding.Activity4layoutBinding
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import android.app.DatePickerDialog
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.eddy.parcial2.Movimiento
 import com.eddy.parcial2.R
-import com.example.roomapp.AppDatabase
+import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.MovimientoContenedor
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import kotlin.math.log
 
-class Activity4_agregarMovimiento : AppCompatActivity() {
+class Activity4AgregarMovimiento : AppCompatActivity() {
+
     private lateinit var tipoMovimientoSp: Spinner
     private lateinit var cantidadEt: EditText
-
-    private lateinit var cuentaSectionLy: LinearLayout
 
     private lateinit var cuentaSp: Spinner
     private lateinit var categoriaSp: Spinner
@@ -32,29 +22,25 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
     private lateinit var cuentaDestinoSp: Spinner
 
     private lateinit var descripcionEt: EditText
-    private lateinit var fechaDp: Button
-
+    private lateinit var fechaBtn: Button
     private lateinit var guardarBt: Button
 
-    private lateinit var binding: Activity4layoutBinding
-    private var fechaCompleta: String = ""
-
     private lateinit var db: AppDatabase
-    var selectedAno = 0
-    var selectedDia = 0
-    var selectedMes = 0
+
+    private var ano = 0
+    private var mes = 0
+    private var dia = 0
+    private var fechaTexto = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        db = AppDatabase.getDatabase(applicationContext)
 
-        binding = Activity4layoutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity4layout)
+
+        db = AppDatabase.getDatabase(applicationContext)
 
         tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
         cantidadEt = findViewById(R.id.cantidad)
-
-        cuentaSectionLy = findViewById(R.id.cuentaSection)
 
         cuentaSp = findViewById(R.id.cuenta)
         categoriaSp = findViewById(R.id.categoria)
@@ -62,130 +48,42 @@ class Activity4_agregarMovimiento : AppCompatActivity() {
         cuentaDestinoSp = findViewById(R.id.cuentaDestino)
 
         descripcionEt = findViewById(R.id.descripcion)
-        fechaDp = findViewById(R.id.fecha)
-
+        fechaBtn = findViewById(R.id.fecha)
         guardarBt = findViewById(R.id.guardar)
 
-        val movimientos = arrayOf(
-            "Ingreso",
-            "Retiro",
-            "Transferencia"
-        )
+        fechaBtn.setOnClickListener {
+            val cal = Calendar.getInstance()
 
-        val cuentas = arrayOf(
-            "Cuenta BBVA",
-            "Cuenta Banamex",
-            "Cuenta Santander"
-        )
+            val y = if (ano != 0) ano else cal.get(Calendar.YEAR)
+            val m = if (mes != 0) mes - 1 else cal.get(Calendar.MONTH)
+            val d = if (dia != 0) dia else cal.get(Calendar.DAY_OF_MONTH)
 
-        val categorias = arrayOf(
-            "Comida",
-            "Transporte",
-            "Servicios"
-        )
+            DatePickerDialog(this, { _, year, month, day ->
+                ano = year
+                mes = month + 1
+                dia = day
 
-        val movimientoAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            movimientos
-        )
-
-        movimientoAdapter.setDropDownViewResource(
-
-            android.R.layout.simple_spinner_dropdown_item
-        )
-
-        tipoMovimientoSp.adapter = movimientoAdapter
-
-        val cuentaAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            cuentas
-        )
-
-        cuentaAdapter.setDropDownViewResource(
-            android.R.layout.simple_spinner_dropdown_item
-        )
-
-        cuentaSp.adapter = cuentaAdapter
-        cuentaOrigenSp.adapter = cuentaAdapter
-        cuentaDestinoSp.adapter = cuentaAdapter
-
-        val categoriaAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            categorias
-        )
-
-        categoriaAdapter.setDropDownViewResource(
-            android.R.layout.simple_spinner_dropdown_item
-        )
-
-        categoriaSp.adapter = categoriaAdapter
-
-        fechaDp.setOnClickListener {
-
-            val calendar = Calendar.getInstance()
-
-            val year = if (selectedAno != 0)
-                selectedAno
-            else
-                calendar.get(Calendar.YEAR)
-
-            val month = if (selectedMes != 0)
-                selectedMes - 1
-            else
-                calendar.get(Calendar.MONTH)
-
-            val day = if (selectedDia != 0)
-                selectedDia
-            else
-                calendar.get(Calendar.DAY_OF_MONTH)
-
-            DatePickerDialog(this, { _, y, m, d ->
-
-                selectedAno = y
-                selectedMes = m + 1
-                selectedDia = d
-
-                val fechaString = "$selectedDia/$selectedMes/$selectedAno"
-
-                fechaDp.text = fechaString
-
-                fechaCompleta = fechaString
-
-            }, year, month, day).show()
+                fechaTexto = "$dia/$mes/$ano"
+                fechaBtn.text = fechaTexto
+            }, y, m, d).show()
         }
 
         guardarBt.setOnClickListener {
 
-            val tipoMovimiento = tipoMovimientoSp.selectedItem.toString()
-            val cantidad = cantidadEt.text.toString().toIntOrNull() ?: 0
-
-            val cuenta = cuentaSp.selectedItem.toString()
-            val categoria = categoriaSp.selectedItem.toString()
-
-            val cuentaOrigen = cuentaOrigenSp.selectedItem.toString()
-            val cuentaDestino = cuentaDestinoSp.selectedItem.toString()
-
-            val descripcion = descripcionEt.text.toString()
-
-
-            val movimiento = Movimiento(
-                tipoMovimiento = tipoMovimiento,
-                cantidad = cantidad,
-                cuenta = cuenta,
-                categoria = categoria,
-                cuentaOrigen = cuentaOrigen,
-                cuentaDestino = cuentaDestino,
-                descripcion = descripcion,
-                fecha = fechaCompleta
+            val movimiento = MovimientoContenedor(
+                ano = ano,
+                mes = mes,
+                dia = dia,
+                cantidad = cantidadEt.text.toString().toDoubleOrNull() ?: 0.0,
+                descripcion = descripcionEt.text.toString(),
+                nombreCuenta = cuentaSp.selectedItem.toString(),
+                tipoCuenta = cuentaOrigenSp.selectedItem.toString(),
+                tipoTransferencia = tipoMovimientoSp.selectedItem.toString(),
+                categoria = categoriaSp.selectedItem.toString()
             )
 
-            
-            val movimientoDao = db.movimientoDao()
             lifecycleScope.launch {
-                movimientoDao.insertMovimiento(movimiento)
+                db.movimientoDao().insertar(movimiento)
             }
         }
     }

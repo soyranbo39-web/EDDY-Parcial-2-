@@ -3,11 +3,7 @@ package com.eddy.parcial2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
-import com.eddy.parcial2.databinding.ActivityMainBinding
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.eddy.parcial2.home.HomeActivity
+import com.eddy.parcial2.Home.HomeActivity
 import com.eddy.parcial2.Login.LoginActivity
 
 class MainActivity : AppCompatActivity() {

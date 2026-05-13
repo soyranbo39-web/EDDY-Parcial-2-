@@ -1,7 +1,6 @@
 package com.eddy.parcial2.activities
 
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -13,9 +12,9 @@ import com.eddy.parcial2.models.Categoria
 import com.eddy.parcial2.CategoriaAdapter
 import com.eddy.parcial2.R
 import com.eddy.parcial2.databinding.Activity3PantalladeinicioBinding
-import com.example.roomapp.AppDatabase
+import com.eddy.parcial2.data.AppDatabase
 
-class Activity3_PantallaDeInicio : AppCompatActivity() {
+class Activity3PantallaDeInicio : AppCompatActivity() {
 
     private lateinit var binding: Activity3PantalladeinicioBinding
     private lateinit var tipoMovimientoSp: Spinner
@@ -33,7 +32,7 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
     private lateinit var db: AppDatabase
 
-    private lateinit var Categorias: MutableList<Categoria>
+    private lateinit var categorias: MutableList<Categoria>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,25 +53,19 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
 
 
         ingresoBt = findViewById(R.id.ingresoButton)
-        ingresoBt.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
-            }
-        })
+        ingresoBt.setOnClickListener {
+            //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
+        }
 
         retiroBt = findViewById(R.id.retiroButton)
-        retiroBt.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
-            }
-        })
+        retiroBt.setOnClickListener {
+            //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
+        }
 
         transferenciaBt = findViewById(R.id.transferenciaButton)
-        transferenciaBt.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
-            }
-        })
+        transferenciaBt.setOnClickListener {
+            //startActivity(Intent(this@Activity3_PantallaDeInicio, SegundaActivity::class.Kotlin))
+        }
 
         yearSp = findViewById(R.id.añoSpinnenr)
         val years = ArrayList<String>()
@@ -124,14 +117,14 @@ class Activity3_PantallaDeInicio : AppCompatActivity() {
         saldoActualTx.text = "$saldoActual"
 
 
-        Categorias = mutableListOf(
+        categorias = mutableListOf(
             Categoria("Debito", "Comida", 1200),
             Categoria("Crédito", "Gasolina", 800),
             Categoria("Vales", "Despensa", 500)
         )
         categoriaRV = findViewById(R.id.categoriaRecycleView)
         categoriaRV.layoutManager = LinearLayoutManager(this)
-        val adapter = CategoriaAdapter(Categorias)
+        val adapter = CategoriaAdapter(categorias)
         categoriaRV.adapter = adapter
 
     }

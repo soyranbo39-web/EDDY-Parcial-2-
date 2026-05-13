@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.eddy.parcial2.home.HomeActivity
-import com.eddy.parcial2.R
+import com.eddy.parcial2.Home.HomeActivity
 import com.eddy.parcial2.data.AppDatabase
 import com.eddy.parcial2.data.UserRepository
 import com.eddy.parcial2.Login.interfaces.ILoginInteractor
@@ -14,8 +13,9 @@ import com.eddy.parcial2.Login.model.LoginCredentials
 import com.eddy.parcial2.Login.model.LoginResult
 import com.eddy.parcial2.Login.`object`.LoginInteractor
 import com.eddy.parcial2.databinding.ActivityPantalla1Binding
-import com.eddy.parcial2.registrar.RegisterActivity
+import com.eddy.parcial2.Register.RegisterActivity
 import kotlinx.coroutines.launch
+import androidx.core.content.edit
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,7 +64,12 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 when (val result = loginInteractor.login(credentials)) {
                     is LoginResult.Success -> {
-                        prefs.edit().putBoolean(KEY_LOGGED, true).putString(KEY_EMAIL, credentials.email).apply()
+                        prefs.edit {
+                            putBoolean(KEY_LOGGED, true).putString(
+                                KEY_EMAIL,
+                                credentials.email
+                            )
+                        }
                         Toast.makeText(this@LoginActivity, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                         finish()

@@ -1,4 +1,4 @@
-package com.eddy.parcial2.home
+package com.eddy.parcial2.Home
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,11 +14,12 @@ import com.eddy.parcial2.R
 import com.eddy.parcial2.data.AppDatabase
 import com.eddy.parcial2.data.UserRepository
 import com.eddy.parcial2.databinding.ActivityHomeBinding
-import com.eddy.parcial2.home.interfaces.IHomeInteractor
+import com.eddy.parcial2.Home.interfaces.IHomeInteractor
 import com.eddy.parcial2.home.`object`.HomeInteractor
 import com.eddy.parcial2.Login.LoginActivity
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
+import androidx.core.content.edit
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -106,10 +107,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun logout() {
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
-        prefs.edit()
-            .putBoolean(KEY_LOGGED, false)
-            .remove(KEY_EMAIL)
-            .apply()
+        prefs.edit {
+            putBoolean(KEY_LOGGED, false)
+                .remove(KEY_EMAIL)
+        }
 
         startActivity(Intent(this, LoginActivity::class.java))
         finish()

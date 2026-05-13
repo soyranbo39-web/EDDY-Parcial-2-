@@ -26,7 +26,14 @@
         android:testOnly="true"
         android:theme="@style/Theme.EddyParcial2" >
         <activity
+            android:name="com.eddy.parcial2.Pantalla8"
+            android:exported="true" />
+        <activity
+            android:name="com.eddy.parcial2.Pantalla7"
+            android:exported="true" />
+        <activity
             android:name="com.eddy.parcial2.MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +42,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eddy.parcial2.Activity3_PantallaDeInicio"
+            android:name="com.eddy.parcial2.activities.Activity3_PantallaDeInicio"
             android:exported="true" />
+        <activity
+            android:name="com.eddy.parcial2.Login.LoginActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar" />
+        <activity
+            android:name="com.eddy.parcial2.Register.RegisterActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar" />
+        <activity
+            android:name="com.eddy.parcial2.Home.HomeActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.EddyParcial2.NoActionBar" />
+        <activity
+            android:name="com.eddy.parcial2.activities.Activity4_agregarMovimiento"
+            android:exported="true" />
+        <activity android:name="com.eddy.parcial2.activities.ReporteCategoriasActivity" />
+        <activity android:name="com.eddy.parcial2.activities.DetalleCategoriaActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
