@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/activity4layout.xml",
+        "source": "com.eddy.parcial2.app-main-34:/layout/activity4layout.xml"
+    },
+    {
+        "merged": "com.eddy.parcial2.app-mergeDebugResources-31:/layout/activity_main.xml",
+        "source": "com.eddy.parcial2.app-main-34:/layout/activity_main.xml"
+    }
+]
