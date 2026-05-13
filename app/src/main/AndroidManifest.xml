@@ -32,8 +32,9 @@
             android:exported="false"
             android:theme="@style/Theme.EddyParcial2.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+        <activity
             android:name=".activities.Activity4_agregarMovimiento"
-            android:exported="true"/>
+            android:exported="true" />
         <activity android:name=".activities.ReporteCategoriasActivity" />
         <activity android:name=".activities.DetalleCategoriaActivity" />
     </application>
