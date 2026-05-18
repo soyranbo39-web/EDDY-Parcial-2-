@@ -1,6 +1,7 @@
 package com.eddy.parcial2.activities
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -40,56 +41,33 @@ class Activity4AgregarMovimiento : AppCompatActivity() {
         db = AppDatabase.getDatabase(applicationContext)
 
         tipoMovimientoSp = findViewById(R.id.tipoMovimeinto)
-        cantidadEt = findViewById(R.id.cantidad)
-        cuentaSp = findViewById(R.id.cuenta)
-        categoriaSp = findViewById(R.id.categoria)
-        cuentaOrigenSp = findViewById(R.id.cuentaOrigen)
-        cuentaDestinoSp = findViewById(R.id.cuentaDestino)
-        descripcionEt = findViewById(R.id.descripcion)
-        fechaBtn = findViewById(R.id.fecha)
-        guardarBt = findViewById(R.id.guardar)
+        cantidadEt       = findViewById(R.id.cantidad)
+        cuentaSp         = findViewById(R.id.cuenta)
+        categoriaSp      = findViewById(R.id.categoria)
+        cuentaOrigenSp   = findViewById(R.id.cuentaOrigen)
+        cuentaDestinoSp  = findViewById(R.id.cuentaDestino)
+        descripcionEt    = findViewById(R.id.descripcion)
+        fechaBtn         = findViewById(R.id.fecha)
+        guardarBt        = findViewById(R.id.guardar)
 
         val tiposTransferencia = listOf("Ingreso", "Gasto", "Transferencia")
-        val tiposCuenta = listOf("Efectivo", "TarjetaDebito", "TarjetaCredito")
-        val categorias = listOf("Comida", "Servicios", "Transporte", "Suscripciones", "Casa", "Ropa", "Gasolina", "Despensa")
+        val tiposCuenta        = listOf("Efectivo", "TarjetaDebito", "TarjetaCredito")
+        val categorias         = listOf("Comida", "Servicios", "Transporte", "Suscripciones",
+                                        "Casa", "Ropa", "Gasolina", "Despensa")
 
-        val tipoAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            tiposTransferencia
-        )
+        val tipoAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposTransferencia)
         tipoMovimientoSp.adapter = tipoAdapter
 
-        // Pre-select tipo based on the extra passed from Activity3
         val tipoFromIntent = intent.getStringExtra(EXTRA_TIPO_MOVIMIENTO)
         if (tipoFromIntent != null) {
             val pos = tiposTransferencia.indexOf(tipoFromIntent)
             if (pos >= 0) tipoMovimientoSp.setSelection(pos)
         }
 
-        cuentaSp.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            tiposCuenta
-        )
-
-        categoriaSp.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            categorias
-        )
-
-        cuentaOrigenSp.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            tiposCuenta
-        )
-
-        cuentaDestinoSp.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            tiposCuenta
-        )
+        cuentaSp.adapter        = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposCuenta)
+        categoriaSp.adapter     = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categorias)
+        cuentaOrigenSp.adapter  = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposCuenta)
+        cuentaDestinoSp.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposCuenta)
 
         val cal = Calendar.getInstance()
         ano = cal.get(Calendar.YEAR)
@@ -99,9 +77,7 @@ class Activity4AgregarMovimiento : AppCompatActivity() {
 
         fechaBtn.setOnClickListener {
             DatePickerDialog(this, { _, year, month, day ->
-                ano = year
-                mes = month + 1
-                dia = day
+                ano = year; mes = month + 1; dia = day
                 fechaBtn.text = "$dia/$mes/$ano"
             }, ano, mes - 1, dia).show()
         }
@@ -112,7 +88,6 @@ class Activity4AgregarMovimiento : AppCompatActivity() {
                 Toast.makeText(this, "Por favor ingresa una cantidad", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             val cantidad = cantidadStr.toDoubleOrNull()
             if (cantidad == null || cantidad <= 0) {
                 Toast.makeText(this, "Cantidad inválida", Toast.LENGTH_SHORT).show()
@@ -120,17 +95,16 @@ class Activity4AgregarMovimiento : AppCompatActivity() {
             }
 
             val tipoCuenta = cuentaSp.selectedItem.toString()
-
             val movimiento = Movimiento(
-                ano = ano,
-                mes = mes,
-                dia = dia,
-                cantidad = cantidad,
-                descripcion = descripcionEt.text.toString().trim(),
-                nombreCuenta = tipoCuenta,
-                tipoCuenta = tipoCuenta,
+                ano              = ano,
+                mes              = mes,
+                dia              = dia,
+                cantidad         = cantidad,
+                descripcion      = descripcionEt.text.toString().trim(),
+                nombreCuenta     = tipoCuenta,
+                tipoCuenta       = tipoCuenta,
                 tipoTransferencia = tipoMovimientoSp.selectedItem.toString(),
-                categoria = categoriaSp.selectedItem.toString()
+                categoria        = categoriaSp.selectedItem.toString()
             )
 
             lifecycleScope.launch {
@@ -140,4 +114,14 @@ class Activity4AgregarMovimiento : AppCompatActivity() {
             }
         }
     }
+
+    private fun goHome() {
+        val intent = Intent(this, Activity3PantallaDeInicio::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        startActivity(intent)
+        finish()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() { goHome() }
 }

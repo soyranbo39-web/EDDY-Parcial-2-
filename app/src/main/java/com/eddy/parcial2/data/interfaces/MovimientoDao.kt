@@ -56,12 +56,30 @@ interface MovimientoDao {
     suspend fun getTotalIngresos(): Double?
 
     @Query("""
+        SELECT COALESCE(SUM(cantidad), 0.0) FROM movimientos
+        WHERE tipoTransferencia = 'Ingreso'
+        AND (:ano = -1 OR ano = :ano)
+        AND (:mes = -1 OR mes = :mes)
+    """)
+    suspend fun getTotalIngresosFiltrado(ano: Int, mes: Int): Double?
+
+    @Query("""
         SELECT categoria, SUM(cantidad) as total, COUNT(*) as movimientos
         FROM movimientos
         WHERE tipoTransferencia = 'Gasto'
         GROUP BY categoria
     """)
     suspend fun getGastosPorCategoria(): List<CategoriaTotal>
+
+    @Query("""
+        SELECT categoria, SUM(cantidad) as total, COUNT(*) as movimientos
+        FROM movimientos
+        WHERE tipoTransferencia = 'Gasto'
+        AND (:ano = -1 OR ano = :ano)
+        AND (:mes = -1 OR mes = :mes)
+        GROUP BY categoria
+    """)
+    suspend fun getGastosPorCategoriaFiltrado(ano: Int, mes: Int): List<CategoriaTotal>
 
     @Query("DELETE FROM movimientos WHERE id = :id")
     suspend fun eliminarPorId(id: Int)
