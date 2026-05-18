@@ -1,6 +1,6 @@
-package com.eddy.parcial2.home.interfaces
+package com.eddy.parcial2.Home.interfaces
 
-import com.eddy.parcial2.home.model.HomeUserData
+import com.eddy.parcial2.Home.model.HomeUserData
 
 interface IHomeInteractor {
     suspend fun getUserData(email: String): HomeUserData?

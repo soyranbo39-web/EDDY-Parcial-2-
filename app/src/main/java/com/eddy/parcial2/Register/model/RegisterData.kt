@@ -1,4 +1,4 @@
-package com.eddy.parcial2.registrar.model
+package com.eddy.parcial2.Register.model
 
 data class RegisterData(
     val email: String,

@@ -1,6 +1,6 @@
-package com.eddy.parcial2.registrar.interfaces
+package com.eddy.parcial2.Register.interfaces
 
-import com.eddy.parcial2.registrar.model.RegisterData
+import com.eddy.parcial2.Register.model.RegisterData
 import com.eddy.parcial2.Login.model.LoginResult
 
 interface IRegisterInteractor {

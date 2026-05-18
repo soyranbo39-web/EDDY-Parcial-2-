@@ -4,12 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.eddy.parcial2.data.interfaces.MovimientoDao
 import com.eddy.parcial2.data.interfaces.UserDao
 import com.eddy.parcial2.data.models.User
+import com.eddy.parcial2.models.Movimiento
 
-@Database(entities = [User::class], version = 2, exportSchema = false)
+@Database(
+    entities = [
+        User::class,
+        Movimiento::class
+    ],
+    version = 3,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun userDao(): UserDao
+    abstract fun movimientoDao(): MovimientoDao
 
     companion object {
         @Volatile
@@ -20,10 +31,11 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "usuarios_db"
+                    "app_database"
                 )
-                .fallbackToDestructiveMigration(dropAllTables = true)
-                .build()
+                    .fallbackToDestructiveMigration()
+                    .build()
+
                 INSTANCE = instance
                 instance
             }

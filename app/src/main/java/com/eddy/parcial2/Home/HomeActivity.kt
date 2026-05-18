@@ -1,4 +1,4 @@
-package com.eddy.parcial2.home
+package com.eddy.parcial2.Home
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,11 +14,13 @@ import com.eddy.parcial2.R
 import com.eddy.parcial2.data.AppDatabase
 import com.eddy.parcial2.data.UserRepository
 import com.eddy.parcial2.databinding.ActivityHomeBinding
-import com.eddy.parcial2.home.interfaces.IHomeInteractor
-import com.eddy.parcial2.home.`object`.HomeInteractor
+import com.eddy.parcial2.Home.interfaces.IHomeInteractor
+import com.eddy.parcial2.Home.`object`.HomeInteractor
 import com.eddy.parcial2.Login.LoginActivity
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
+import androidx.core.content.edit
+import com.eddy.parcial2.Pantalla7
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -92,24 +94,47 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_inicio -> Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show()
-            R.id.nav_movimientos -> Toast.makeText(this, "Movimientos", Toast.LENGTH_SHORT).show()
-            R.id.nav_cuentas -> Toast.makeText(this, "Cuentas", Toast.LENGTH_SHORT).show()
-            R.id.nav_categorias -> Toast.makeText(this, "Categorías", Toast.LENGTH_SHORT).show()
-            R.id.nav_ayuda -> Toast.makeText(this, "Ayuda", Toast.LENGTH_SHORT).show()
-            R.id.nav_acerca_de -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+                R.id.nav_inicio ->
+                {
+                    startActivity(Intent(this, com.eddy.parcial2.activities.Activity3PantallaDeInicio::class.java))
+                }
+
+            R.id.nav_movimientos -> {
+                startActivity(Intent(this, Pantalla7::class.java))
+            }
+
+            R.id.nav_cuentas -> {
+                // pantalla de cuentas, no se cual es xd
+                  Toast.makeText(this, "Cuentas", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.nav_categorias -> {
+                startActivity(Intent(this, com.eddy.parcial2.activities.ReporteCategoriasActivity::class.java))
+            }
+
+            R.id.nav_ayuda -> {
+                // pantalla de ayuda?
+                 Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.nav_acerca_de -> {
+                // pantalla acerca de
+                 Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+            }
+
             R.id.nav_logout -> logout()
         }
+
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
     private fun logout() {
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
-        prefs.edit()
-            .putBoolean(KEY_LOGGED, false)
-            .remove(KEY_EMAIL)
-            .apply()
+        prefs.edit {
+            putBoolean(KEY_LOGGED, false)
+                .remove(KEY_EMAIL)
+        }
 
         startActivity(Intent(this, LoginActivity::class.java))
         finish()

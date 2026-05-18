@@ -1,4 +1,4 @@
-package com.eddy.parcial2.home.model
+package com.eddy.parcial2.Home.model
 
 data class HomeUserData(
     val username: String,

@@ -1,229 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/white"
-    tools:context=".registrar.RegisterActivity">
+    android:background="#1E1E1E"
+    tools:context=".Register.RegisterActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp">
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#2A2A2A"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/volver"
-            android:padding="12dp"
-            android:scaleType="fitCenter"
             android:src="?attr/homeAsUpIndicator"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
+            android:tint="#FFFFFF" />
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_weight="1"
             android:text="@string/registro_usuario"
-            android:textSize="28sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
+    </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:hint="@string/correo_electronico"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+            android:padding="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="@string/correo_electronico"
+                app:boxBackgroundColor="#2A2A2A"
+                app:hintTextColor="#BDBDBD"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilUsername"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="@string/nombre_usuario"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilEmail">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUsername"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUsername"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="12dp"
+                android:hint="@string/nombre_usuario"
+                app:boxBackgroundColor="#2A2A2A"
+                app:hintTextColor="#BDBDBD"
+                app:layout_constraintTop_toBottomOf="@id/tilEmail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="@string/contrasena"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilUsername">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="12dp"
+                android:hint="@string/contrasena"
+                app:boxBackgroundColor="#2A2A2A"
+                app:hintTextColor="#BDBDBD"
+                app:passwordToggleEnabled="true"
+                app:layout_constraintTop_toBottomOf="@id/tilUsername"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilConfirmPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="@string/confirmar_contrasena"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilPassword">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etConfirmPassword"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilConfirmPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="12dp"
+                android:hint="@string/confirmar_contrasena"
+                app:boxBackgroundColor="#2A2A2A"
+                app:hintTextColor="#BDBDBD"
+                app:passwordToggleEnabled="true"
+                app:layout_constraintTop_toBottomOf="@id/tilPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/tvAvatarLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/seleccionar_avatar"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <GridLayout
-            android:id="@+id/glAvatars"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:columnCount="2"
-            android:alignmentMode="alignMargins"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvAvatarLabel">
+            <TextView
+                android:id="@+id/tvAvatarLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/seleccionar_avatar"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ibAvatar1"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_margin="6dp"
-                android:src="@drawable/abrahan1"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                app:strokeColor="@color/design_default_color_primary"
-                app:strokeWidth="1dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8dp"
-                android:contentDescription="@string/avatar_1" />
+            <GridLayout
+                android:id="@+id/glAvatars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:columnCount="2"
+                app:layout_constraintTop_toBottomOf="@id/tvAvatarLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ibAvatar2"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_margin="6dp"
-                android:src="@drawable/abraham2"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                app:strokeColor="@color/design_default_color_primary"
-                app:strokeWidth="1dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8dp"
-                android:contentDescription="@string/avatar_2" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ibAvatar1"
+                    android:layout_width="140dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/abrahan1"
+                    android:scaleType="centerCrop"
+                    android:background="#2A2A2A"
+                    android:contentDescription="@string/avatar_1" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ibAvatar3"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_margin="6dp"
-                android:src="@drawable/abraham3"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                app:strokeColor="@color/design_default_color_primary"
-                app:strokeWidth="1dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8dp"
-                android:contentDescription="@string/avatar_3" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ibAvatar2"
+                    android:layout_width="140dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/abraham2"
+                    android:scaleType="centerCrop"
+                    android:background="#2A2A2A"
+                    android:contentDescription="@string/avatar_2" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ibAvatar4"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_margin="6dp"
-                android:src="@drawable/abraham4"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                app:strokeColor="@color/design_default_color_primary"
-                app:strokeWidth="1dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8dp"
-                android:contentDescription="@string/avatar_4" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ibAvatar3"
+                    android:layout_width="140dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/abraham3"
+                    android:scaleType="centerCrop"
+                    android:background="#2A2A2A"
+                    android:contentDescription="@string/avatar_3" />
 
-        </GridLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ibAvatar4"
+                    android:layout_width="140dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/abraham4"
+                    android:scaleType="centerCrop"
+                    android:background="#2A2A2A"
+                    android:contentDescription="@string/avatar_4" />
+            </GridLayout>
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/registrar"
-            app:cornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/glAvatars" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/registrar"
+                android:backgroundTint="#00C853"
+                android:textColor="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@id/glAvatars"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnGoBack"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/ya_tengo_cuenta"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnRegister" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoBack"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/ya_tengo_cuenta"
+                android:textColor="#BDBDBD"
+                app:layout_constraintTop_toBottomOf="@id/btnRegister"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

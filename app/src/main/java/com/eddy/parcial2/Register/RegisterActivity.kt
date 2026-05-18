@@ -1,17 +1,17 @@
-package com.eddy.parcial2.registrar
+package com.eddy.parcial2.Register
 
 import android.os.Bundle
 import android.util.TypedValue
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.eddy.parcial2.registrar.interfaces.IRegisterInteractor
-import com.eddy.parcial2.registrar.model.RegisterData
+import com.eddy.parcial2.Register.interfaces.IRegisterInteractor
+import com.eddy.parcial2.Register.model.RegisterData
 import com.eddy.parcial2.data.AppDatabase
 import com.eddy.parcial2.data.UserRepository
 import com.eddy.parcial2.databinding.Activity2Binding
 import com.eddy.parcial2.Login.model.LoginResult
-import com.eddy.parcial2.registrar.objec.RegisterInteractor
+import com.eddy.parcial2.Register.objec.RegisterInteractor
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {

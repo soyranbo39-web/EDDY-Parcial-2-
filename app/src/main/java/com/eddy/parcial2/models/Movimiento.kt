@@ -1,20 +1,31 @@
-package com.eddy.parcial2
+package com.eddy.parcial2.models
 
-import androidx.room.*
-import java.util.Date
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "movimientos")
 data class Movimiento(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val tipoMovimiento: String,
-    val cantidad: Int,
-    val cuenta: String,
-    val categoria: String,
-
-    val cuentaOrigen: String,
-    val cuentaDestino: String,
-
-    val descripcion:String,
-    val fecha: String,
+    val ano: Int,
+    val mes: Int,
+    val dia: Int,
+    val cantidad: Double,
+    val descripcion: String,
+    val nombreCuenta: String,
+    val tipoCuenta: String,
+    val tipoTransferencia: String,
+    val categoria: String
 )
+
+enum class TipoCuenta {
+    Efectivo,
+    TarjetaDebito,
+    TarjetaCredito
+}
+
+enum class TipoTransferencia {
+    Ingreso,
+    Gasto,
+    Transferencia
+}
