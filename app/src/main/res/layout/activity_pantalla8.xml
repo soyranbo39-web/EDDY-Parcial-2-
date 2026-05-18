@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E1E1E"
+    tools:context=".Pantalla8">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#2A2A2A"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/botonTopRegresar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="#FFFFFF" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Editando Movimiento"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monto"
+                android:textColor="#BDBDBD"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/inputMonto"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/spinner_darkbg"
+                android:hint="$0.00"
+                android:textColorHint="#757575"
+                android:inputType="numberDecimal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Spinner
+                    android:id="@+id/spinnerSeleccionarCuenta"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:popupBackground="#2E2E2E"
+                    android:spinnerMode="dropdown" />
+
+                <Spinner
+                    android:id="@+id/spinnerCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:popupBackground="#2E2E2E"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripción"
+                android:textColor="#BDBDBD"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/inputDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/spinner_darkbg"
+                android:gravity="top|start"
+                android:hint="Escribir descripcion..."
+                android:textColorHint="#757575"
+                android:inputType="textMultiLine"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha y Hora"
+                android:textColor="#BDBDBD"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/botonFechaHora"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:backgroundTint="#3A3A3A"
+                android:text="Seleccionar Fecha y Hora"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/botonGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#00C853"
+                android:text="Guardar"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

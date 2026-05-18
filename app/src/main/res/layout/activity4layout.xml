@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E1E1E"
+    tools:context=".activities.AgregarMovimiento">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#2A2A2A"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/returnButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/outline_arrow_top_left_24"
+            android:tint="#FFFFFF" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Agregar Movimiento"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo de movimiento"
+                android:textStyle="bold"
+                android:textColor="#BDBDBD"
+                android:layout_marginBottom="6dp" />
+
+            <Spinner
+                android:id="@+id/tipoMovimeinto"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/spinner_darkbg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:popupBackground="#2E2E2E"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cantidad"
+                android:textStyle="bold"
+                android:textColor="#BDBDBD"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/spinner_darkbg"
+                android:hint="Ingrese cantidad"
+                android:textColorHint="#757575"
+                android:inputType="number"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/cuentaSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cuenta"
+                    android:textStyle="bold"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginBottom="6dp" />
+
+                <Spinner
+                    android:id="@+id/cuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#2E2E2E"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoría"
+                    android:textStyle="bold"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp" />
+
+                <Spinner
+                    android:id="@+id/categoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#2E2E2E"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cuenta origen"
+                    android:textStyle="bold"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp" />
+
+                <Spinner
+                    android:id="@+id/cuentaOrigen"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#2E2E2E"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cuenta destino"
+                    android:textStyle="bold"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp" />
+
+                <Spinner
+                    android:id="@+id/cuentaDestino"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#2E2E2E"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción"
+                    android:textStyle="bold"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/spinner_darkbg"
+                    android:hint="Ingrese descripción"
+                    android:textColorHint="#757575"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"
+                    android:gravity="top"
+                    android:padding="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:textStyle="bold"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp" />
+
+                <Button
+                    android:id="@+id/fecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:backgroundTint="#3A3A3A"
+                    android:text="Seleccionar Fecha"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/guardar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#00C853"
+                    android:text="Guardar Movimiento"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
