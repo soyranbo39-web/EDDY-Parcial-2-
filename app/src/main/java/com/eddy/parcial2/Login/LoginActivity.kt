@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.eddy.parcial2.Home.HomeActivity
+import com.eddy.parcial2.activities.Activity3PantallaDeInicio
 import com.eddy.parcial2.data.AppDatabase
 import com.eddy.parcial2.data.UserRepository
 import com.eddy.parcial2.Login.interfaces.ILoginInteractor
@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
                             )
                         }
                         Toast.makeText(this@LoginActivity, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, Activity3PantallaDeInicio::class.java))
                         finish()
                     }
                     is LoginResult.Error -> {

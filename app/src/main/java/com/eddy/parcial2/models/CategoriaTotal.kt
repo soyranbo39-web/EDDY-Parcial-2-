@@ -2,5 +2,6 @@ package com.eddy.parcial2.models
 
 data class CategoriaTotal(
     val categoria: String,
-    val total: Int
+    val total: Double,
+    val movimientos: Int = 0
 )

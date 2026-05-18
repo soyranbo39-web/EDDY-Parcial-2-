@@ -9,10 +9,12 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.eddy.parcial2.models.Movimiento
 import com.google.android.material.snackbar.Snackbar
 
 class MovimientoAdapter(
-    private val lista: MutableList<MovimientoContenedor>
+    private val lista: MutableList<Movimiento>,
+    private val onDelete: (Movimiento) -> Unit
 ) : RecyclerView.Adapter<MovimientoAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -20,7 +22,6 @@ class MovimientoAdapter(
         val textoCuenta: TextView = view.findViewById(R.id.textoCuenta)
         val textoCategoria: TextView = view.findViewById(R.id.textoCategoria)
         val textoFecha: TextView = view.findViewById(R.id.textoFecha)
-
         val iconoCuenta: ImageView = view.findViewById(R.id.iconoCuenta)
         val iconoTransferencia: ImageView = view.findViewById(R.id.iconoTipoTransferencia)
         val iconoCategoria: ImageView = view.findViewById(R.id.iconoCategoria)
@@ -35,7 +36,6 @@ class MovimientoAdapter(
     override fun getItemCount(): Int = lista.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val movimiento = lista[position]
 
         holder.textoCantidad.text = movimiento.cantidad.toString()
@@ -58,37 +58,39 @@ class MovimientoAdapter(
             else -> Color.WHITE
         }
 
-        holder.iconoTransferencia.setImageResource(
-            getTransferenciaIcon(movimiento.tipoTransferencia)
-        )
+        holder.iconoTransferencia.setImageResource(getTransferenciaIcon(movimiento.tipoTransferencia))
         holder.iconoTransferencia.setColorFilter(color)
 
         holder.itemView.setOnLongClickListener { view ->
-
             val popup = PopupMenu(view.context, view)
-
             popup.menu.add("Modificar")
             popup.menu.add("Eliminar")
 
             popup.setOnMenuItemClickListener { item ->
-
                 when (item.title) {
-
                     "Eliminar" -> {
                         val removed = lista[position]
-
                         lista.removeAt(position)
                         notifyItemRemoved(position)
 
-                        Snackbar.make(
-                            view,
-                            "Movimiento eliminado",
-                            Snackbar.LENGTH_LONG
-                        ).setAction("Deshacer") {
-                            lista.add(position, removed)
-                            notifyItemInserted(position)
-                        }.show()
-
+                        var undone = false
+                        Snackbar.make(view, "Movimiento eliminado", Snackbar.LENGTH_LONG)
+                            .setAction("Deshacer") {
+                                undone = true
+                                lista.add(position, removed)
+                                notifyItemInserted(position)
+                            }
+                            .addCallback(object : Snackbar.Callback() {
+                                override fun onDismissed(
+                                    transientBottomBar: Snackbar?,
+                                    event: Int
+                                ) {
+                                    if (!undone) {
+                                        onDelete(removed)
+                                    }
+                                }
+                            })
+                            .show()
                         true
                     }
 
@@ -108,7 +110,7 @@ class MovimientoAdapter(
         }
     }
 
-    fun updateData(newList: List<MovimientoContenedor>) {
+    fun updateData(newList: List<Movimiento>) {
         lista.clear()
         lista.addAll(newList)
         notifyDataSetChanged()

@@ -53,7 +53,13 @@ class Pantalla7 : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerListaMovimientos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = MovimientoAdapter(mutableListOf())
+        db = AppDatabase.getDatabase(this)
+
+        adapter = MovimientoAdapter(mutableListOf()) { movimiento ->
+            lifecycleScope.launch {
+                db.movimientoDao().eliminarPorId(movimiento.id)
+            }
+        }
         recyclerView.adapter = adapter
 
         spinnerCuenta = findViewById(R.id.spinnerSortCuenta)
@@ -62,8 +68,6 @@ class Pantalla7 : AppCompatActivity() {
 
         val sortButton = findViewById<View>(R.id.botonTopSort)
         val backButton = findViewById<View>(R.id.botonTopRegresar)
-
-        db = AppDatabase.getDatabase(this)
 
         sortButton.setOnClickListener {
             val popup = PopupMenu(this, sortButton)
@@ -127,8 +131,12 @@ class Pantalla7 : AppCompatActivity() {
 
             val listener = object : AdapterView.OnItemSelectedListener {
 
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
                     if (!spinnersReady) return
 
                     lastCuenta = spinnerCuenta.selectedItem.toString()
@@ -152,14 +160,12 @@ class Pantalla7 : AppCompatActivity() {
 
     private fun cargarLista() {
         lifecycleScope.launch {
-
             val filtrados = db.movimientoDao().obtenerFiltrados(
                 lastCuenta,
                 lastAno,
                 lastMes,
                 modoOrden
             )
-
             adapter.updateData(filtrados)
         }
     }
