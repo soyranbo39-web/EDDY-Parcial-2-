@@ -113,7 +113,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_ayuda -> {
-                // pantalla de ayuda?
+                // pantalla de ayuda
                  Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
             }
 

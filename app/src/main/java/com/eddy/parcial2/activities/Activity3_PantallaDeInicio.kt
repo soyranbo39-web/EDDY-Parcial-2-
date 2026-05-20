@@ -165,18 +165,17 @@ class Activity3PantallaDeInicio : AppCompatActivity(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_inicio      -> { /* already here */ }
+            R.id.nav_inicio -> { }
             R.id.nav_movimientos -> startActivity(Intent(this, Pantalla7::class.java))
-            R.id.nav_cuentas     -> Toast.makeText(this, "Cuentas", Toast.LENGTH_SHORT).show()
-            R.id.nav_categorias  -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
-            R.id.nav_ayuda       -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
-            R.id.nav_acerca_de   -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
-            R.id.nav_logout      -> logout()
+            R.id.nav_cuentas -> Toast.makeText(this, "Cuentas", Toast.LENGTH_SHORT).show()
+            R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
+            R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
+            R.id.nav_acerca_de -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> logout()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
     private fun logout() {
         getSharedPreferences(PREFS, MODE_PRIVATE).edit {
             putBoolean(KEY_LOGGED, false).remove(KEY_EMAIL)
@@ -185,7 +184,7 @@ class Activity3PantallaDeInicio : AppCompatActivity(),
         finish()
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("")
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -198,13 +197,13 @@ class Activity3PantallaDeInicio : AppCompatActivity(),
         lifecycleScope.launch {
             val dao = db.movimientoDao()
 
-            val ingresosTotal   = dao.getTotalIngresosFiltrado(filtroAno, filtroMes) ?: 0.0
-            val gastosPorCat    = dao.getGastosPorCategoriaFiltrado(filtroAno, filtroMes)
-            val gastosTotal     = gastosPorCat.sumOf { it.total }
+            val ingresosTotal = dao.getTotalIngresosFiltrado(filtroAno, filtroMes) ?: 0.0
+            val gastosPorCat = dao.getGastosPorCategoriaFiltrado(filtroAno, filtroMes)
+            val gastosTotal = gastosPorCat.sumOf { it.total }
 
-            binding.ingreso.text      = "$${"%.2f".format(ingresosTotal)}"
+            binding.ingreso.text = "$${"%.2f".format(ingresosTotal)}"
             binding.saldoAnterior.text = "$${"%.2f".format(ingresosTotal)}"
-            binding.gastos.text       = "$${"%.2f".format(gastosTotal)}"
+            binding.gastos.text = "$${"%.2f".format(gastosTotal)}"
             binding.saldoActual.text  = "$${"%.2f".format(ingresosTotal - gastosTotal)}"
 
             val max = gastosPorCat.maxOfOrNull { it.total } ?: 1.0
@@ -212,17 +211,17 @@ class Activity3PantallaDeInicio : AppCompatActivity(),
             val categorias = gastosPorCat.map { item ->
                 CategoriaResumen(
                     icono = when (item.categoria) {
-                        "Comida"    -> R.drawable.ic_food
-                        "Gasolina"  -> R.drawable.ic_gas
-                        "Casa"      -> R.drawable.ic_house
-                        "Ropa"      -> R.drawable.ic_clothes
-                        "Despensa"  -> R.drawable.ic_wallet
-                        else        -> R.drawable.ic_wallet
+                        "Comida" -> R.drawable.ic_food
+                        "Gasolina" -> R.drawable.ic_gas
+                        "Casa" -> R.drawable.ic_house
+                        "Ropa" -> R.drawable.ic_clothes
+                        "Despensa" -> R.drawable.ic_wallet
+                        else -> R.drawable.ic_wallet
                     },
-                    nombre      = item.categoria,
+                    nombre = item.categoria,
                     movimientos = item.movimientos,
-                    total       = item.total,
-                    porcentaje  = ((item.total / max) * 100).toInt()
+                    total = item.total,
+                    porcentaje = ((item.total / max) * 100).toInt()
                 )
             }.toMutableList()
 

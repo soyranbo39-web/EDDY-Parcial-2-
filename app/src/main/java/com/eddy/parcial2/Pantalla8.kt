@@ -43,21 +43,20 @@ class Pantalla8 : AppCompatActivity() {
             insets
         }
 
-        val montoInput       = findViewById<EditText>(R.id.inputMonto)
+        val montoInput = findViewById<EditText>(R.id.inputMonto)
         val descripcionInput = findViewById<EditText>(R.id.inputDescripcion)
-        val spinnerCuenta    = findViewById<Spinner>(R.id.spinnerSeleccionarCuenta)
+        val spinnerCuenta = findViewById<Spinner>(R.id.spinnerSeleccionarCuenta)
         val spinnerCategoria = findViewById<Spinner>(R.id.spinnerCategoria)
-        val botonFechaHora   = findViewById<Button>(R.id.botonFechaHora)
-        val botonGuardar     = findViewById<Button>(R.id.botonGuardar)
-        val botonBack        = findViewById<View>(R.id.botonTopRegresar)
+        val botonFechaHora = findViewById<Button>(R.id.botonFechaHora)
+        val botonGuardar = findViewById<Button>(R.id.botonGuardar)
+        val botonBack = findViewById<View>(R.id.botonTopRegresar)
 
         botonBack.setOnClickListener { goHome() }
 
-        val cuentas   = listOf("Efectivo", "TarjetaDebito", "TarjetaCredito")
-        val categorias = listOf("Comida", "Servicios", "Transporte", "Suscripciones",
-                                "Casa", "Ropa", "Gasolina", "Despensa")
+        val cuentas = listOf("Efectivo", "TarjetaDebito", "TarjetaCredito")
+        val categorias = listOf("Comida", "Servicios", "Transporte", "Suscripciones", "Casa", "Ropa", "Gasolina", "Despensa")
 
-        spinnerCuenta.adapter    = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, cuentas)
+        spinnerCuenta.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, cuentas)
         spinnerCategoria.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categorias)
 
         val movimientoId = intent.getIntExtra("movimiento_id", -1)
@@ -91,9 +90,9 @@ class Pantalla8 : AppCompatActivity() {
 
         botonFechaHora.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val year  = if (selectedAno != 0) selectedAno else calendar.get(Calendar.YEAR)
+            val year = if (selectedAno != 0) selectedAno else calendar.get(Calendar.YEAR)
             val month = if (selectedMes != 0) selectedMes - 1 else calendar.get(Calendar.MONTH)
-            val day   = if (selectedDia != 0) selectedDia else calendar.get(Calendar.DAY_OF_MONTH)
+            val day = if (selectedDia != 0) selectedDia else calendar.get(Calendar.DAY_OF_MONTH)
 
             DatePickerDialog(this, { _, y, m, d ->
                 selectedAno = y; selectedMes = m + 1; selectedDia = d
@@ -107,14 +106,14 @@ class Pantalla8 : AppCompatActivity() {
             val cantidad = clean.toDoubleOrNull() ?: actual.cantidad
 
             val updated = actual.copy(
-                cantidad     = cantidad,
-                descripcion  = descripcionInput.text.toString(),
-                tipoCuenta   = spinnerCuenta.selectedItem.toString(),
+                cantidad = cantidad,
+                descripcion = descripcionInput.text.toString(),
+                tipoCuenta = spinnerCuenta.selectedItem.toString(),
                 nombreCuenta = spinnerCuenta.selectedItem.toString(),
-                categoria    = spinnerCategoria.selectedItem.toString(),
-                dia          = selectedDia,
-                mes          = selectedMes,
-                ano          = selectedAno
+                categoria = spinnerCategoria.selectedItem.toString(),
+                dia = selectedDia,
+                mes = selectedMes,
+                ano = selectedAno
             )
             lifecycleScope.launch {
                 db.movimientoDao().actualizar(updated)
@@ -150,6 +149,6 @@ class Pantalla8 : AppCompatActivity() {
         finish()
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("")
     override fun onBackPressed() { goHome() }
 }

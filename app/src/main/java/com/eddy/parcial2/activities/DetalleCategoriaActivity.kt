@@ -30,10 +30,10 @@ class DetalleCategoriaActivity : AppCompatActivity() {
         db = AppDatabase.getDatabase(this)
 
         val categoria = intent.getStringExtra("categoria") ?: "Categoría"
-        val total     = intent.getDoubleExtra("total", 0.0)
+        val total = intent.getDoubleExtra("total", 0.0)
 
         binding.txtCategoria.text = categoria
-        binding.txtTotal.text     = "Total: $$total"
+        binding.txtTotal.text = "Total: $$total"
 
         lifecycleScope.launch {
             lista = db.movimientoDao().getMovimientosPorCategoria(categoria).toMutableList()
@@ -42,8 +42,8 @@ class DetalleCategoriaActivity : AppCompatActivity() {
 
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.ordenCuenta   -> lista = lista.sortedBy { it.nombreCuenta }.toMutableList()
-                R.id.ordenFecha    -> lista = lista.sortedByDescending { "%04d%02d%02d".format(it.ano, it.mes, it.dia) }.toMutableList()
+                R.id.ordenCuenta -> lista = lista.sortedBy { it.nombreCuenta }.toMutableList()
+                R.id.ordenFecha -> lista = lista.sortedByDescending { "%04d%02d%02d".format(it.ano, it.mes, it.dia) }.toMutableList()
                 R.id.ordenCantidad -> lista = lista.sortedByDescending { it.cantidad }.toMutableList()
             }
             configurarRecycler()
@@ -72,6 +72,6 @@ class DetalleCategoriaActivity : AppCompatActivity() {
         return true
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("")
     override fun onBackPressed() { goHome() }
 }
