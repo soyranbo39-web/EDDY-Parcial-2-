@@ -17,6 +17,10 @@
             android:id="@+id/nav_categorias"
             android:icon="@android:drawable/ic_menu_agenda"
             android:title="Categorías" />
+        <item
+            android:id="@+id/nav_mantenimiento_categorias"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Administrar Categorías" />
     </group>
 
     <item android:title="Otros">
