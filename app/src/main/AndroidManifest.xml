@@ -10,9 +10,6 @@
         android:theme="@style/Theme.EddyParcial2">
         <activity
             android:name=".Pantalla8"
-            android:exported="true" />
-        <activity
-            android:name=".Pantalla8"
             android:exported="false" />
         <activity
             android:name=".Pantalla11"
