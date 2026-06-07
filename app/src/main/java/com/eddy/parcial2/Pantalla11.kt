@@ -12,14 +12,23 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eddy.parcial2.activities.Activity3PantallaDeInicio
+import com.eddy.parcial2.activities.ReporteCategoriasActivity
+import com.eddy.parcial2.Login.LoginActivity
 import com.eddy.parcial2.adapters.CategoriaMantenimientoAdapter
 import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.data.UserRepository
 import com.eddy.parcial2.databinding.ActivityPantalla11Binding
 import com.eddy.parcial2.models.Categoria
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import androidx.core.view.GravityCompat
+import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.edit
 import kotlinx.coroutines.launch
 
-class Pantalla11 : AppCompatActivity() {
+class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityPantalla11Binding
     private lateinit var db: AppDatabase
@@ -39,13 +48,17 @@ class Pantalla11 : AppCompatActivity() {
 
         db = AppDatabase.getDatabase(this)
 
+        binding.navView.setNavigationItemSelectedListener(this)
+        loadUserDataInDrawer()
+
+        binding.btnMenu.setOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+
         setupRecyclerView()
 
         binding.botonTopRegresar.setOnClickListener {
-            val intent = Intent(this, Activity3PantallaDeInicio::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
-            finish()
+            irAlInicio()
         }
 
         binding.botonTopAgregar.setOnClickListener {
@@ -53,6 +66,65 @@ class Pantalla11 : AppCompatActivity() {
         }
 
         cargarCategorias()
+    }
+
+    private fun loadUserDataInDrawer() {
+        val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
+        val email = prefs.getString("user_email", null) ?: return
+        if (binding.navView.headerCount == 0) return
+
+        val headerView = binding.navView.getHeaderView(0)
+        val ivAvatar   = headerView.findViewById<ImageView>(R.id.ivUserAvatar)
+        val tvUsername = headerView.findViewById<TextView>(R.id.tvHeaderUsername)
+        val tvEmail    = headerView.findViewById<TextView>(R.id.tvHeaderEmail)
+
+        tvEmail.text = email
+        val userRepository = UserRepository(db.userDao())
+        lifecycleScope.launch {
+            runCatching { userRepository.getUserByEmail(email) }.onSuccess { user ->
+                user?.let {
+                    tvUsername.text = it.username
+                    tvEmail.text    = it.email
+                    ivAvatar.setImageResource(when (it.avatarId) {
+                        1 -> R.drawable.abrahan1
+                        2 -> R.drawable.abraham2
+                        3 -> R.drawable.abraham3
+                        4 -> R.drawable.abraham4
+                        else -> R.drawable.ic_launcher_foreground
+                    })
+                }
+            }
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_inicio -> irAlInicio()
+            R.id.nav_movimientos -> startActivity(Intent(this, Pantalla7::class.java))
+            R.id.nav_cuentas -> startActivity(Intent(this, com.eddy.parcial2.Pantalla9.Pantalla9::class.java))
+            R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
+            R.id.nav_mantenimiento_categorias -> { }
+            R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
+            R.id.nav_acerca_de -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> logout()
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    private fun logout() {
+        getSharedPreferences("session_prefs", MODE_PRIVATE).edit {
+            putBoolean("is_logged", false).remove("user_email")
+        }
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
+    }
+
+    private fun irAlInicio() {
+        val intent = Intent(this, Activity3PantallaDeInicio::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        startActivity(intent)
+        finish()
     }
 
     private fun setupRecyclerView() {
@@ -114,5 +186,14 @@ class Pantalla11 : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         cargarCategorias()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            irAlInicio()
+        }
     }
 }

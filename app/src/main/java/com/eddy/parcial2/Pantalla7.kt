@@ -16,10 +16,20 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eddy.parcial2.activities.Activity3PantallaDeInicio
+import com.eddy.parcial2.activities.ReporteCategoriasActivity
+import com.eddy.parcial2.Login.LoginActivity
 import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.data.UserRepository
+import com.eddy.parcial2.databinding.ActivityPantalla7Binding
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.GravityCompat
+import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.edit
 import kotlinx.coroutines.launch
 
-class Pantalla7 : AppCompatActivity() {
+class Pantalla7 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var modoOrden = "fecha"
 
@@ -35,23 +45,32 @@ class Pantalla7 : AppCompatActivity() {
 
     private var spinnersReady = false
     private lateinit var adapter: MovimientoAdapter
+    private lateinit var binding: ActivityPantalla7Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pantalla7)
+        binding = ActivityPantalla7Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        recyclerView = findViewById(R.id.recyclerListaMovimientos)
+        recyclerView = binding.recyclerListaMovimientos
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         db = AppDatabase.getDatabase(this)
+
+        binding.navView.setNavigationItemSelectedListener(this)
+        loadUserDataInDrawer()
+
+        binding.btnMenu.setOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
 
         adapter = MovimientoAdapter(mutableListOf()) { movimiento ->
             lifecycleScope.launch {
@@ -61,12 +80,12 @@ class Pantalla7 : AppCompatActivity() {
         }
         recyclerView.adapter = adapter
 
-        spinnerCuenta = findViewById(R.id.spinnerSortCuenta)
-        spinnerAno    = findViewById(R.id.spinnerSortAno)
-        spinnerMes    = findViewById(R.id.spinnerSortMes)
+        spinnerCuenta = binding.spinnerSortCuenta
+        spinnerAno    = binding.spinnerSortAno
+        spinnerMes    = binding.spinnerSortMes
 
-        val sortButton = findViewById<View>(R.id.botonTopSort)
-        val backButton = findViewById<View>(R.id.botonTopRegresar)
+        val sortButton = binding.botonTopSort
+        val backButton = binding.botonTopRegresar
 
         sortButton.setOnClickListener {
             val popup = PopupMenu(this, sortButton)
@@ -90,6 +109,58 @@ class Pantalla7 : AppCompatActivity() {
         val intent = Intent(this, Activity3PantallaDeInicio::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
+        finish()
+    }
+
+    private fun loadUserDataInDrawer() {
+        val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
+        val email = prefs.getString("user_email", null) ?: return
+        if (binding.navView.headerCount == 0) return
+
+        val headerView = binding.navView.getHeaderView(0)
+        val ivAvatar   = headerView.findViewById<ImageView>(R.id.ivUserAvatar)
+        val tvUsername = headerView.findViewById<TextView>(R.id.tvHeaderUsername)
+        val tvEmail    = headerView.findViewById<TextView>(R.id.tvHeaderEmail)
+
+        tvEmail.text = email
+        val userRepository = UserRepository(db.userDao())
+        lifecycleScope.launch {
+            runCatching { userRepository.getUserByEmail(email) }.onSuccess { user ->
+                user?.let {
+                    tvUsername.text = it.username
+                    tvEmail.text    = it.email
+                    ivAvatar.setImageResource(when (it.avatarId) {
+                        1 -> R.drawable.abrahan1
+                        2 -> R.drawable.abraham2
+                        3 -> R.drawable.abraham3
+                        4 -> R.drawable.abraham4
+                        else -> R.drawable.ic_launcher_foreground
+                    })
+                }
+            }
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_inicio -> goHome()
+            R.id.nav_movimientos -> { }
+            R.id.nav_cuentas -> startActivity(Intent(this, com.eddy.parcial2.Pantalla9.Pantalla9::class.java))
+            R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
+            R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
+            R.id.nav_ayuda -> android.widget.Toast.makeText(this, "ño quiello ayudate :(", android.widget.Toast.LENGTH_SHORT).show()
+            R.id.nav_acerca_de -> android.widget.Toast.makeText(this, "Acerca de", android.widget.Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> logout()
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    private fun logout() {
+        getSharedPreferences("session_prefs", MODE_PRIVATE).edit {
+            putBoolean("is_logged", false).remove("user_email")
+        }
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 
@@ -141,5 +212,11 @@ class Pantalla7 : AppCompatActivity() {
     }
 
     @Deprecated("Deprecated in Java")
-    override fun onBackPressed() { goHome() }
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            goHome()
+        }
+    }
 }

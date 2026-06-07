@@ -32,8 +32,8 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/outline_arrow_top_left_24"
-                android:tint="#FFFFFF"
+                android:src="@drawable/ic_menu_hamburger"
+                android:scaleType="centerInside"
                 android:contentDescription="Menú" />
 
             <TextView

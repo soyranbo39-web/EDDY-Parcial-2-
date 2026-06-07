@@ -16,6 +16,7 @@
             android:exported="true" />
         <activity
             android:name=".Pantalla9.Pantalla9"
+            android:label="Cuentas"
             android:exported="false" />
         <activity
             android:name=".Pantalla11"

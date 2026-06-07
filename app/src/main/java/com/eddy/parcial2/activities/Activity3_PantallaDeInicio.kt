@@ -167,7 +167,7 @@ class Activity3PantallaDeInicio : AppCompatActivity(),
         when (item.itemId) {
             R.id.nav_inicio -> { }
             R.id.nav_movimientos -> startActivity(Intent(this, Pantalla7::class.java))
-            R.id.nav_cuentas -> Toast.makeText(this, "Cuentas", Toast.LENGTH_SHORT).show()
+            R.id.nav_cuentas -> startActivity(Intent(this, com.eddy.parcial2.Pantalla9.Pantalla9::class.java))
             R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
             R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
             R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
