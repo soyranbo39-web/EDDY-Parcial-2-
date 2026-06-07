@@ -15,7 +15,11 @@
             android:name=".Pantalla7"
             android:exported="true" />
         <activity
+            android:name=".Pantalla11"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+
             android:exported="true"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
             <intent-filter>
