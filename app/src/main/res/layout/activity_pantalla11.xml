@@ -26,9 +26,9 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/outline_arrow_top_left_24"
             android:contentDescription="Regresar"
-            app:tint="#FFFFFF" />
+            android:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="0dp"
