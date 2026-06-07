@@ -50,6 +50,13 @@
             android:exported="true" />
         <activity android:name=".activities.ReporteCategoriasActivity" />
         <activity android:name=".activities.DetalleCategoriaActivity" />
+
+        <activity android:name=".Pantalla10"
+            android:exported="true"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>

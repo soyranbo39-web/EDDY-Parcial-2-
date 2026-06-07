@@ -15,4 +15,7 @@ interface UserDao {
 
     @Query("SELECT EXISTS(SELECT 1 FROM users WHERE email = :email)")
     suspend fun userExists(email: String): Boolean
+
+    @Query("UPDATE users SET username = :nuevoNombre, avatar_id = :nuevoAvatarId WHERE email = :email")
+    suspend fun updateNameAndAvatarByEmail(email: String, nuevoNombre: String, nuevoAvatarId: Int): Int
 }
