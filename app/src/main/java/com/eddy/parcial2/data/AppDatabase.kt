@@ -10,14 +10,13 @@ import com.eddy.parcial2.data.interfaces.UserDao
 import com.eddy.parcial2.data.models.User
 import com.eddy.parcial2.models.Categoria
 import com.eddy.parcial2.models.Movimiento
+import com.eddy.parcial2.Pantalla9.interfaces.CuentaDao
+import com.eddy.parcial2.Pantalla9.models.Cuenta
+
 
 @Database(
-    entities = [
-        User::class,
-        Movimiento::class,
-        Categoria::class
-    ],
-    version = 4,
+    entities = [User::class, Movimiento::class, Categoria::class, Cuenta::class],
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -25,6 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun movimientoDao(): MovimientoDao
     abstract fun categoriaDao(): CategoriaDao
+    abstract fun cuentaDao(): CuentaDao
 
     companion object {
         @Volatile
