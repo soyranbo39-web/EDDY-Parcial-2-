@@ -16,7 +16,7 @@ class Pantalla10 : AppCompatActivity() {
     private lateinit var binding: ActivityPantalla10Binding
     private lateinit var db: AppDatabase
 
-    private var emailUsuarioLogueado: String = "ejemplo@correo.com"
+    private var emailUsuarioLogueado: String = "ejemplo@correo.com" // no supe bien como extraer el correo xd
 
     private var avatarSeleccionadoId: Int = 1
 
