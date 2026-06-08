@@ -64,7 +64,7 @@ class Pantalla9 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         binding.botonTopRegresar.setOnClickListener { irAlInicio() }
 
         binding.botonTopAgregar.setOnClickListener {
-            // Abre Pantalla #10 se tiene que agregar logica de la pantalla 10 para agregar cuenta (por implementar) canto me estas desgarrando vicente no leas esto canto se vino aqui
+            startActivity(Intent(this, com.eddy.parcial2.Pantalla10::class.java))
             Toast.makeText(this, "Pantalla 10: Agregar cuenta", Toast.LENGTH_SHORT).show()
         }
 

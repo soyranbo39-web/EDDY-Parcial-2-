@@ -22,9 +22,17 @@ class Pantalla10 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityPantalla10Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
+        emailUsuarioLogueado = prefs.getString("user_email", "") ?: ""
+
+        if (emailUsuarioLogueado.isEmpty()) {
+            Toast.makeText(this, "Error: No se encontró una sesión activa", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
         db = AppDatabase.getDatabase(applicationContext)
 
