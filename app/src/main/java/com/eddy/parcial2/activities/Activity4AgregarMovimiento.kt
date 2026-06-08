@@ -65,9 +65,14 @@ class Activity4AgregarMovimiento : AppCompatActivity() {
         }
 
         cuentaSp.adapter        = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposCuenta)
-        categoriaSp.adapter     = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categorias)
         cuentaOrigenSp.adapter  = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposCuenta)
         cuentaDestinoSp.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiposCuenta)
+
+        lifecycleScope.launch {
+            val dbCategorias = db.categoriaDao().getCategoriasDesc().map { it.nombre }
+            val allCategorias = (categorias + dbCategorias).distinct()
+            categoriaSp.adapter = ArrayAdapter(this@Activity4AgregarMovimiento, android.R.layout.simple_spinner_dropdown_item, allCategorias)
+        }
 
         val cal = Calendar.getInstance()
         ano = cal.get(Calendar.YEAR)

@@ -54,16 +54,19 @@ class Pantalla8 : AppCompatActivity() {
         botonBack.setOnClickListener { goHome() }
 
         val cuentas = listOf("Efectivo", "TarjetaDebito", "TarjetaCredito")
-        val categorias = listOf("Comida", "Servicios", "Transporte", "Suscripciones", "Casa", "Ropa", "Gasolina", "Despensa")
+        val defaultCategorias = listOf("Comida", "Servicios", "Transporte", "Suscripciones", "Casa", "Ropa", "Gasolina", "Despensa")
 
         spinnerCuenta.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, cuentas)
-        spinnerCategoria.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categorias)
 
         val movimientoId = intent.getIntExtra("movimiento_id", -1)
         val db = AppDatabase.getDatabase(this)
 
-        if (movimientoId != -1) {
-            lifecycleScope.launch {
+        lifecycleScope.launch {
+            val dbCategorias = db.categoriaDao().getCategoriasDesc().map { it.nombre }
+            val allCategorias = (defaultCategorias + dbCategorias).distinct()
+            spinnerCategoria.adapter = ArrayAdapter(this@Pantalla8, android.R.layout.simple_spinner_dropdown_item, allCategorias)
+
+            if (movimientoId != -1) {
                 val movimiento = db.movimientoDao().obtenerPorId(movimientoId)
                 movimientoActual = movimiento
 
@@ -77,7 +80,7 @@ class Pantalla8 : AppCompatActivity() {
                 val cuentaIndex = cuentas.indexOf(movimiento.tipoCuenta)
                 if (cuentaIndex >= 0) spinnerCuenta.setSelection(cuentaIndex)
 
-                val categoriaIndex = categorias.indexOf(movimiento.categoria)
+                val categoriaIndex = allCategorias.indexOf(movimiento.categoria)
                 if (categoriaIndex >= 0) spinnerCategoria.setSelection(categoriaIndex)
 
                 selectedDia = movimiento.dia

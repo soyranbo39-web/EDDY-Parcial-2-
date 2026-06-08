@@ -144,7 +144,8 @@ class ReporteCategoriasActivity : AppCompatActivity(), NavigationView.OnNavigati
             val max = gastosPorCategoria.maxOfOrNull { it.total } ?: 1.0
 
             val categoriasEnDB = db.movimientoDao().getCategorias()
-            val todasCategorias = (todasLasCategorias + categoriasEnDB).distinct()
+            val categoriasMantenimiento = db.categoriaDao().getCategoriasDesc().map { it.nombre }
+            val todasCategorias = (todasLasCategorias + categoriasEnDB + categoriasMantenimiento).distinct()
 
             val lista = todasCategorias.map { nombreCat ->
                 val item = gastoMap[nombreCat]
