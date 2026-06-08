@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.eddy.parcial2.activities.Activity3PantallaDeInicio
 
 class Pantalla13 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class Pantalla13 : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.btnMenu).setOnClickListener {
-            startActivity(Intent(this, Pantalla3::class.java))
+            startActivity(Intent(this, Pantalla13::class.java))
             finish()
         }
     }
