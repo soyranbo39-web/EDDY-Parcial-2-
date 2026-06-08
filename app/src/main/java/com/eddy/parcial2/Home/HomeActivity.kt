@@ -118,8 +118,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_acerca_de -> {
-                // pantalla acerca de
-                 Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, com.eddy.parcial2.Pantalla13::class.java))
             }
 
             R.id.nav_logout -> logout()
