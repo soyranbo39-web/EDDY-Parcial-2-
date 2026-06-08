@@ -3,7 +3,7 @@ package com.eddy.parcial2.Pantalla9
 import android.content.Intent
 import android.os.Bundle
 import android.widget.PopupMenu
-import android.widget.Toast
+import android.widget.Toast  // usado por nav_ayuda y nav_acerca_de
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -65,8 +65,7 @@ class Pantalla9 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         binding.botonTopRegresar.setOnClickListener { irAlInicio() }
 
         binding.botonTopAgregar.setOnClickListener {
-            startActivity(Intent(this, com.eddy.parcial2.Pantalla10::class.java))
-            Toast.makeText(this, "Pantalla 10: Agregar cuenta", Toast.LENGTH_SHORT).show()
+            Pantalla10.newInstance().show(supportFragmentManager, "Pantalla10")
         }
 
         cargarCuentas()
@@ -144,8 +143,7 @@ class Pantalla9 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             menuEmergente.setOnMenuItemClickListener { opcion ->
                 when (opcion.title) {
                     "Modificar" -> {
-                        // Abre Pantalla #10 se tiene que agregar logica de la pantalla 10 para modificar cuenta (por implementar) canto me estas desgarrando vicente no leas esto canto se vino aqui
-                        Toast.makeText(this@Pantalla9, "Pantalla 10: Modificar cuenta", Toast.LENGTH_SHORT).show()
+                        Pantalla10.newInstance(cuenta.id).show(supportFragmentManager, "Pantalla10")
                     }
                     "Eliminar" -> eliminarCuenta(cuenta)
                 }
