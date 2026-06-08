@@ -2,6 +2,7 @@ package com.eddy.parcial2.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,6 +49,11 @@ class DetalleCategoriaActivity : AppCompatActivity() {
             }
             configurarRecycler()
             true
+        }
+
+        findViewById<ImageButton>(R.id.btnMenu).setOnClickListener {
+            startActivity(Intent(this, ReporteCategoriasActivity::class.java))
+            finish()
         }
     }
 

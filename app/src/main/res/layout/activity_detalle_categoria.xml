@@ -8,18 +8,29 @@
     android:background="#1E1E1E"
     tools:context=".activities.DetalleCategoriaActivity">
 
+    <ImageButton
+        android:id="@+id/btnMenu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="backbutton"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_revert"
+        tools:ignore="MissingConstraints" />
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
         android:background="#2A2A2A"
         android:minHeight="?attr/actionBarSize"
-        app:title="Detalles"
-        app:titleTextColor="@android:color/white"
-        app:menu="@menu/menu_detalle_categoria"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_detalle_categoria"
+        app:title="Detalles"
+        app:titleTextColor="@android:color/white" />
 
     <LinearLayout
         android:id="@+id/contentContainer"
