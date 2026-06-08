@@ -19,6 +19,6 @@
     <string name="avatar_4">Avatar 4</string>
     <string name="volver">Volver</string>
     <string name="ya_tengo_cuenta">Ya tengo cuenta. Iniciar sesión</string>
-    <string name = "modificar_usuario">Modificar Usuario</string>
-    <string name = "nvNombreUsuario">Nuevo Nombre de Usuario</string>
+    <string name="modificar_usuario">Modificar Usuario</string>
+    <string name="nvNombreUsuario">Nuevo Nombre de Usuario</string>
 </resources>

@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EddyParcial2">
         <activity
+            android:name=".Pantalla13"
+            android:exported="false" />
+        <activity
             android:name=".Pantalla8"
             android:exported="true" />
         <activity
@@ -16,50 +19,52 @@
             android:exported="true" />
         <activity
             android:name=".Pantalla9.Pantalla9"
-            android:label="Cuentas"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Cuentas" />
         <activity
             android:name=".Pantalla11"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-
-            android:exported="true"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Activity3PantallaDeInicio"
-            android:exported="true"/>
+        <activity
+            android:name=".activities.Activity3PantallaDeInicio"
+            android:exported="true" />
         <activity
             android:name=".Login.LoginActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="false"
-            android:theme="@style/Theme.EddyParcial2.NoActionBar"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+            android:theme="@style/Theme.EddyParcial2.NoActionBar" />
         <activity
             android:name=".Register.RegisterActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="false"
-            android:theme="@style/Theme.EddyParcial2.NoActionBar"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+            android:theme="@style/Theme.EddyParcial2.NoActionBar" />
         <activity
             android:name=".Home.HomeActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="false"
-            android:theme="@style/Theme.EddyParcial2.NoActionBar"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+            android:theme="@style/Theme.EddyParcial2.NoActionBar" />
         <activity
             android:name=".activities.Activity4AgregarMovimiento"
             android:exported="true" />
         <activity android:name=".activities.ReporteCategoriasActivity" />
         <activity android:name=".activities.DetalleCategoriaActivity" />
+        <activity
+            android:name=".Pantalla10"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".Pantalla10"
-            android:exported="true"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
