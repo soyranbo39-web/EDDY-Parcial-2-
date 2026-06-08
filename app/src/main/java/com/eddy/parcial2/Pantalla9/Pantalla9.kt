@@ -1,8 +1,7 @@
-package com.eddy.parcial2
+package com.eddy.parcial2.Pantalla9
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,41 +11,46 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eddy.parcial2.activities.Activity3PantallaDeInicio
+import com.eddy.parcial2.data.AppDatabase
+import com.eddy.parcial2.databinding.ActivityPantalla9Binding
+import com.eddy.parcial2.Pantalla9.interfaces.ICuentaRepository
+import com.eddy.parcial2.Pantalla9.models.Cuenta
+import com.eddy.parcial2.Pantalla9.repository.CuentaRepository
+import com.eddy.parcial2.R
 import com.eddy.parcial2.activities.ReporteCategoriasActivity
 import com.eddy.parcial2.Login.LoginActivity
-import com.eddy.parcial2.adapters.CategoriaMantenimientoAdapter
-import com.eddy.parcial2.data.AppDatabase
-import com.eddy.parcial2.data.UserRepository
-import com.eddy.parcial2.databinding.ActivityPantalla11Binding
-import com.eddy.parcial2.models.Categoria
+import com.eddy.parcial2.Pantalla7
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.view.GravityCompat
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import com.eddy.parcial2.data.UserRepository
 import androidx.core.content.edit
 import kotlinx.coroutines.launch
 
-class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Pantalla9 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var binding: ActivityPantalla11Binding
-    private lateinit var db: AppDatabase
-    private lateinit var adapter: CategoriaMantenimientoAdapter
+    private lateinit var binding: ActivityPantalla9Binding
+    private lateinit var repositorio: ICuentaRepository
+    private lateinit var adaptador: CuentaAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityPantalla11Binding.inflate(layoutInflater)
+        binding = ActivityPantalla9Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        title = "Cuentas"
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val barrasSistema = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(barrasSistema.left, barrasSistema.top, barrasSistema.right, barrasSistema.bottom)
             insets
         }
 
-        db = AppDatabase.getDatabase(this)
+        val baseDatos = AppDatabase.getDatabase(this)
+        repositorio = CuentaRepository(baseDatos.cuentaDao())
 
         binding.navView.setNavigationItemSelectedListener(this)
         loadUserDataInDrawer()
@@ -55,17 +59,16 @@ class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        setupRecyclerView()
+        configurarRecycler()
 
-        binding.botonTopRegresar.setOnClickListener {
-            irAlInicio()
-        }
+        binding.botonTopRegresar.setOnClickListener { irAlInicio() }
 
         binding.botonTopAgregar.setOnClickListener {
-            Pantalla12.newInstance().show(supportFragmentManager, "Pantalla12")
+            // Abre Pantalla #10 se tiene que agregar logica de la pantalla 10 para agregar cuenta (por implementar) canto me estas desgarrando vicente no leas esto canto se vino aqui
+            Toast.makeText(this, "Pantalla 10: Agregar cuenta", Toast.LENGTH_SHORT).show()
         }
 
-        cargarCategorias()
+        cargarCuentas()
     }
 
     private fun loadUserDataInDrawer() {
@@ -79,7 +82,7 @@ class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         val tvEmail    = headerView.findViewById<TextView>(R.id.tvHeaderEmail)
 
         tvEmail.text = email
-        val userRepository = UserRepository(db.userDao())
+        val userRepository = UserRepository(AppDatabase.getDatabase(this).userDao())
         lifecycleScope.launch {
             runCatching { userRepository.getUserByEmail(email) }.onSuccess { user ->
                 user?.let {
@@ -101,9 +104,9 @@ class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         when (item.itemId) {
             R.id.nav_inicio -> irAlInicio()
             R.id.nav_movimientos -> startActivity(Intent(this, Pantalla7::class.java))
-            R.id.nav_cuentas -> startActivity(Intent(this, com.eddy.parcial2.Pantalla9.Pantalla9::class.java))
+            R.id.nav_cuentas -> { }
             R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
-            R.id.nav_mantenimiento_categorias -> { }
+            R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
             R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
             R.id.nav_acerca_de -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
             R.id.nav_logout -> logout()
@@ -120,6 +123,57 @@ class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         finish()
     }
 
+    private fun configurarRecycler() {
+        adaptador = CuentaAdapter(mutableListOf()) { cuenta -> mostrarMenu(cuenta) }
+        binding.recyclerCuentas.layoutManager = LinearLayoutManager(this)
+        binding.recyclerCuentas.adapter = adaptador
+    }
+
+    private fun mostrarMenu(cuenta: Cuenta) {
+        val vista = binding.recyclerCuentas
+            .findViewHolderForItemId(cuenta.id.toLong())?.itemView ?: binding.recyclerCuentas
+
+        val menuEmergente = PopupMenu(this, vista)
+        menuEmergente.menu.add("Modificar")
+
+        lifecycleScope.launch {
+            val sinMovimientos = !repositorio.tieneMovimientos(cuenta.nombre)
+            if (sinMovimientos) menuEmergente.menu.add("Eliminar")
+
+            menuEmergente.setOnMenuItemClickListener { opcion ->
+                when (opcion.title) {
+                    "Modificar" -> {
+                        // Abre Pantalla #10 se tiene que agregar logica de la pantalla 10 para modificar cuenta (por implementar) canto me estas desgarrando vicente no leas esto canto se vino aqui
+                        Toast.makeText(this@Pantalla9, "Pantalla 10: Modificar cuenta", Toast.LENGTH_SHORT).show()
+                    }
+                    "Eliminar" -> eliminarCuenta(cuenta)
+                }
+                true
+            }
+            menuEmergente.show()
+        }
+    }
+
+    private fun eliminarCuenta(cuenta: Cuenta) {
+        lifecycleScope.launch {
+            repositorio.eliminar(cuenta)
+            cargarCuentas()
+            Snackbar.make(binding.main, "Cuenta eliminada", Snackbar.LENGTH_LONG)
+                .setAction("Deshacer") {
+                    lifecycleScope.launch {
+                        repositorio.insertar(cuenta)
+                        cargarCuentas()
+                    }
+                }.show()
+        }
+    }
+
+    fun cargarCuentas() {
+        lifecycleScope.launch {
+            adaptador.actualizarDatos(repositorio.obtenerCuentas())
+        }
+    }
+
     private fun irAlInicio() {
         val intent = Intent(this, Activity3PantallaDeInicio::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -127,65 +181,9 @@ class Pantalla11 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         finish()
     }
 
-    private fun setupRecyclerView() {
-        adapter = CategoriaMantenimientoAdapter(mutableListOf()) { categoria ->
-            showMenu(categoria)
-        }
-        binding.recyclerCategorias.layoutManager = LinearLayoutManager(this)
-        binding.recyclerCategorias.adapter = adapter
-    }
-
-    private fun showMenu(categoria: Categoria) {
-        val view = binding.recyclerCategorias.findViewHolderForItemId(categoria.id.toLong())?.itemView ?: binding.recyclerCategorias
-        val popup = PopupMenu(this, view)
-        popup.menu.add("Modificar")
-        
-        lifecycleScope.launch {
-            val count = db.categoriaDao().countMovimientosByCategoria(categoria.nombre)
-            if (count == 0) {
-                popup.menu.add("Eliminar")
-            }
-
-            popup.setOnMenuItemClickListener { item ->
-                when (item.title) {
-                    "Modificar" -> {
-                        Pantalla12.newInstance(categoria.id).show(supportFragmentManager, "Pantalla12")
-                    }
-                    "Eliminar" -> {
-                        eliminarCategoria(categoria)
-                    }
-                }
-                true
-            }
-            popup.show()
-        }
-    }
-
-    private fun eliminarCategoria(categoria: Categoria) {
-        lifecycleScope.launch {
-            db.categoriaDao().eliminar(categoria)
-            cargarCategorias()
-            
-            Snackbar.make(binding.main, "Categoría eliminada", Snackbar.LENGTH_LONG)
-                .setAction("Deshacer") {
-                    lifecycleScope.launch {
-                        db.categoriaDao().insertar(categoria)
-                        cargarCategorias()
-                    }
-                }.show()
-        }
-    }
-
-    fun cargarCategorias() {
-        lifecycleScope.launch {
-            val lista = db.categoriaDao().getCategoriasDesc()
-            adapter.updateData(lista)
-        }
-    }
-
     override fun onResume() {
         super.onResume()
-        cargarCategorias()
+        cargarCuentas()
     }
 
     @Deprecated("Deprecated in Java")

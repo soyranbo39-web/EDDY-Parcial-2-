@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pantalla11">
+    tools:context=".Pantalla9.Pantalla9">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -48,11 +48,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Categorías"
+                android:text="Cuentas"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="8dp"/>
 
             <ImageButton
                 android:id="@+id/botonTopAgregar"
@@ -60,13 +60,13 @@
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
                 android:src="@android:drawable/ic_input_add"
-                android:contentDescription="Agregar Categoría"
+                android:contentDescription="Agregar Cuenta"
                 app:tint="#FFFFFF" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerCategorias"
+            android:id="@+id/recyclerCuentas"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
