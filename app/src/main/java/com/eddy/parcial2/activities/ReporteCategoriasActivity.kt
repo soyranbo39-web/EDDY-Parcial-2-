@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eddy.parcial2.Login.LoginActivity
+import com.eddy.parcial2.Pantalla13
 import com.eddy.parcial2.Pantalla7
 import com.eddy.parcial2.R
 import com.eddy.parcial2.adapters.CategoriaAdapter
@@ -102,7 +103,7 @@ class ReporteCategoriasActivity : AppCompatActivity(), NavigationView.OnNavigati
             R.id.nav_categorias -> { }
             R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
             R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
-            R.id.nav_acerca_de -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+            R.id.nav_acerca_de -> startActivity(Intent(this, Pantalla13::class.java))
             R.id.nav_logout -> logout()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

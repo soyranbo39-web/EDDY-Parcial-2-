@@ -22,7 +22,7 @@ class Pantalla13 : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.btnMenu).setOnClickListener {
-            startActivity(Intent(this, Pantalla13::class.java))
+            startActivity(Intent(this, Activity3PantallaDeInicio::class.java))
             finish()
         }
     }

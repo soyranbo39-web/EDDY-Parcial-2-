@@ -28,6 +28,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.eddy.parcial2.data.UserRepository
 import androidx.core.content.edit
+import com.eddy.parcial2.Pantalla13
 import kotlinx.coroutines.launch
 
 class Pantalla9 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -108,7 +109,7 @@ class Pantalla9 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
             R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
             R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
-            R.id.nav_acerca_de -> Toast.makeText(this, "Acerca de", Toast.LENGTH_SHORT).show()
+            R.id.nav_acerca_de -> startActivity(Intent(this, Pantalla13::class.java))
             R.id.nav_logout -> logout()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

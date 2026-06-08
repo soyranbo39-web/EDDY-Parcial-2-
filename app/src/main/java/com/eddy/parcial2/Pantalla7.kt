@@ -149,7 +149,7 @@ class Pantalla7 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             R.id.nav_categorias -> startActivity(Intent(this, ReporteCategoriasActivity::class.java))
             R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
             R.id.nav_ayuda -> android.widget.Toast.makeText(this, "ño quiello ayudate :(", android.widget.Toast.LENGTH_SHORT).show()
-            R.id.nav_acerca_de -> android.widget.Toast.makeText(this, "Acerca de", android.widget.Toast.LENGTH_SHORT).show()
+            R.id.nav_acerca_de -> startActivity(Intent(this, Pantalla13::class.java))
             R.id.nav_logout -> logout()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
