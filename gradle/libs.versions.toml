@@ -13,6 +13,7 @@ recyclerview = "1.4.0"
 room = "2.7.0-alpha11"
 ksp = "2.1.0-1.0.29"
 firebaseDatabase = "22.0.1"
+firebaseAuth = "23.2.1"
 googleGmsGoogleServices = "4.4.4"
 
 [libraries]
@@ -29,6 +30,7 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
