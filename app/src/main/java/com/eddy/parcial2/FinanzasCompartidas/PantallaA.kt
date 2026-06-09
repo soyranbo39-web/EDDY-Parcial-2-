@@ -77,7 +77,7 @@ class PantallaA : AppCompatActivity() {
 
     private fun escucharGrupos() {
         val uid = auth.currentUser?.uid ?: return
-        db.child("grupos").orderByChild("miembros/$uid").equalTo(true.toString())
+        db.child("grupos").orderByChild("miembros/$uid").equalTo(true)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     grupos.clear()
@@ -113,14 +113,13 @@ class PantallaA : AppCompatActivity() {
 
     private fun crearGrupo(nombre: String) {
         val uid = auth.currentUser?.uid ?: return
-        val displayName = auth.currentUser?.email ?: "Usuario"
         val codigo = UUID.randomUUID().toString().replace("-", "").take(8).uppercase()
         val grupoRef = db.child("grupos").push()
         val grupo = Grupo(
             id = grupoRef.key ?: "",
             nombre = nombre,
             codigo = codigo,
-            miembros = mapOf(uid to displayName)
+            miembros = mapOf(uid to true)
         )
         grupoRef.setValue(grupo)
             .addOnSuccessListener {
@@ -155,7 +154,6 @@ class PantallaA : AppCompatActivity() {
 
     private fun unirseAGrupo(codigo: String) {
         val uid = auth.currentUser?.uid ?: return
-        val displayName = auth.currentUser?.email ?: "Usuario"
         db.child("grupos").orderByChild("codigo").equalTo(codigo)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -164,7 +162,7 @@ class PantallaA : AppCompatActivity() {
                         return
                     }
                     val grupoSnap = snapshot.children.first()
-                    grupoSnap.ref.child("miembros").child(uid).setValue(displayName)
+                    grupoSnap.ref.child("miembros").child(uid).setValue(true)
                         .addOnSuccessListener {
                             Toast.makeText(this@PantallaA, "Te uniste al grupo", Toast.LENGTH_SHORT).show()
                         }

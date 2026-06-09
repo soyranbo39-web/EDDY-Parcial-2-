@@ -4,5 +4,5 @@ data class Grupo(
     val id: String = "",
     val nombre: String = "",
     val codigo: String = "",
-    val miembros: Map<String, String> = emptyMap() // uid -> displayName
+    val miembros: Map<String, Boolean> = emptyMap() // uid -> true
 )
