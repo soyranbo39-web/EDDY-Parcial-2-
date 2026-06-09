@@ -15,7 +15,6 @@ import com.eddy.parcial2.R
 import com.eddy.parcial2.FinanzasCompartidas.models.Grupo
 import com.eddy.parcial2.databinding.ActivityPantallaABinding
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -25,19 +24,18 @@ import java.util.UUID
 class PantallaA : AppCompatActivity() {
 
     private lateinit var binding: ActivityPantallaABinding
-    private lateinit var auth: FirebaseAuth
     private val db = FirebaseDatabase.getInstance().reference
 
     private val grupos = mutableListOf<Grupo>()
     private lateinit var adaptador: GrupoAdapter
+    
+    // Identificador fijo para omitir autenticación
+    private val fixedUid = "usuario_local"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPantallaABinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        auth = FirebaseAuth.getInstance()
-        autenticarSiEsNecesario()
 
         adaptador = GrupoAdapter(grupos) { grupo ->
             val intent = Intent(this, PantallaB::class.java)
@@ -53,31 +51,14 @@ class PantallaA : AppCompatActivity() {
         binding.btnCrearGrupo.setOnClickListener { mostrarDialogoCrear() }
 
         binding.btnUnirseGrupo.setOnClickListener { mostrarDialogoUnirse() }
-    }
-
-    private fun autenticarSiEsNecesario() {
-        if (auth.currentUser == null) {
-            val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
-            val email = prefs.getString("user_email", "") ?: ""
-            val password = "firebase_session_pass"
-
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnFailureListener {
-                    auth.createUserWithEmailAndPassword(email, password)
-                        .addOnSuccessListener { escucharGrupos() }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(this, "Error de autenticación: ${e.message}", Toast.LENGTH_SHORT).show()
-                        }
-                }
-                .addOnSuccessListener { escucharGrupos() }
-        } else {
-            escucharGrupos()
-        }
+        
+        // Cargar grupos directamente
+        escucharGrupos()
     }
 
     private fun escucharGrupos() {
-        val uid = auth.currentUser?.uid ?: return
-        db.child("grupos").orderByChild("miembros/$uid").equalTo(true)
+        // Mostramos todos los grupos donde el usuario local es miembro
+        db.child("grupos").orderByChild("miembros/$fixedUid").equalTo(true)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     grupos.clear()
@@ -112,14 +93,13 @@ class PantallaA : AppCompatActivity() {
     }
 
     private fun crearGrupo(nombre: String) {
-        val uid = auth.currentUser?.uid ?: return
         val codigo = UUID.randomUUID().toString().replace("-", "").take(8).uppercase()
         val grupoRef = db.child("grupos").push()
         val grupo = Grupo(
             id = grupoRef.key ?: "",
             nombre = nombre,
             codigo = codigo,
-            miembros = mapOf(uid to true)
+            miembros = mapOf(fixedUid to true)
         )
         grupoRef.setValue(grupo)
             .addOnSuccessListener {
@@ -153,7 +133,6 @@ class PantallaA : AppCompatActivity() {
     }
 
     private fun unirseAGrupo(codigo: String) {
-        val uid = auth.currentUser?.uid ?: return
         db.child("grupos").orderByChild("codigo").equalTo(codigo)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -162,7 +141,7 @@ class PantallaA : AppCompatActivity() {
                         return
                     }
                     val grupoSnap = snapshot.children.first()
-                    grupoSnap.ref.child("miembros").child(uid).setValue(true)
+                    grupoSnap.ref.child("miembros").child(fixedUid).setValue(true)
                         .addOnSuccessListener {
                             Toast.makeText(this@PantallaA, "Te uniste al grupo", Toast.LENGTH_SHORT).show()
                         }
@@ -171,7 +150,6 @@ class PantallaA : AppCompatActivity() {
             })
     }
 
-    // ── Adapter interno ──────────────────────────────────────────────────────
     inner class GrupoAdapter(
         private val lista: List<Grupo>,
         private val alHacerClic: (Grupo) -> Unit

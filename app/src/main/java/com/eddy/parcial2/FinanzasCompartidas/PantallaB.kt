@@ -14,7 +14,6 @@ import com.eddy.parcial2.R
 import com.eddy.parcial2.FinanzasCompartidas.models.GastoCompartido
 import com.eddy.parcial2.databinding.ActivityPantallaBBinding
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,19 +22,20 @@ import com.google.firebase.database.FirebaseDatabase
 class PantallaB : AppCompatActivity() {
 
     private lateinit var binding: ActivityPantallaBBinding
-    private lateinit var auth: FirebaseAuth
     private val db = FirebaseDatabase.getInstance().reference
 
     private val gastos = mutableListOf<GastoCompartido>()
     private lateinit var adaptador: GastoAdapter
     private lateinit var grupoId: String
+    
+    // Identificador fijo para omitir autenticación
+    private val fixedUid = "usuario_local"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPantallaBBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
         grupoId = intent.getStringExtra("grupoId") ?: run { finish(); return }
         val grupoNombre = intent.getStringExtra("grupoNombre") ?: "Grupo"
         binding.txtNombreGrupo.text = grupoNombre
@@ -107,8 +107,8 @@ class PantallaB : AppCompatActivity() {
     }
 
     private fun guardarGasto(descripcion: String, monto: Double) {
-        val uid = auth.currentUser?.uid ?: return
-        val nombre = auth.currentUser?.email ?: "Usuario"
+        val uid = fixedUid
+        val nombre = "Invitado"
         val gastoRef = db.child("gastos").child(grupoId).push()
         val gasto = GastoCompartido(
             id = gastoRef.key ?: "",
