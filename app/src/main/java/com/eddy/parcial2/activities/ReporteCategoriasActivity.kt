@@ -104,6 +104,7 @@ class ReporteCategoriasActivity : AppCompatActivity(), NavigationView.OnNavigati
             R.id.nav_mantenimiento_categorias -> startActivity(Intent(this, com.eddy.parcial2.Pantalla11::class.java))
             R.id.nav_ayuda -> Toast.makeText(this, "ño quiello ayudate :(", Toast.LENGTH_SHORT).show()
             R.id.nav_acerca_de -> startActivity(Intent(this, Pantalla13::class.java))
+            R.id.nav_gestion_grupos -> startActivity(Intent(this, com.eddy.parcial2.FinanzasCompartidas.PantallaA::class.java))
             R.id.nav_logout -> logout()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

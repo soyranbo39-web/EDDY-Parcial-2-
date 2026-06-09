@@ -23,6 +23,15 @@
             android:title="Administrar Categorías" />
     </group>
 
+    <item android:title="Finanzas Compartidas">
+        <menu>
+            <item
+                android:id="@+id/nav_gestion_grupos"
+                android:icon="@android:drawable/ic_menu_share"
+                android:title="Gestión de Grupos" />
+        </menu>
+    </item>
+
     <item android:title="Otros">
         <menu>
             <item

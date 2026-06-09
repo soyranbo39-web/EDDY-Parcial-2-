@@ -121,6 +121,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, com.eddy.parcial2.Pantalla13::class.java))
             }
 
+            R.id.nav_gestion_grupos -> startActivity(Intent(this, com.eddy.parcial2.FinanzasCompartidas.PantallaA::class.java))
+
             R.id.nav_logout -> logout()
         }
 
