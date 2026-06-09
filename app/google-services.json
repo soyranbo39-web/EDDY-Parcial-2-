@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "230091666487",
-    "project_id": "eddy-proyecto",
-    "storage_bucket": "eddy-proyecto.firebasestorage.app"
+    "project_number": "293198197540",
+    "project_id": "eddy-repo",
+    "storage_bucket": "eddy-repo.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:230091666487:android:b4a119d298c96ca254bbb2",
+        "mobilesdk_app_id": "1:293198197540:android:73a50ee1160e8e3b7ef9b1",
         "android_client_info": {
           "package_name": "com.eddy.parcial2"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAP9vgqfBROB6PPids9PTLkv9ddQO0ce74"
+          "current_key": "AIzaSyCtsH4KVrSTIzsZeHVhaSyoboCkEzT2RPI"
         }
       ],
       "services": {
